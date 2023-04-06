@@ -18,7 +18,7 @@ public class LayerRenderer {
     }
 
     public void add(GameObject go) {
-        GraphicComponent comp = go.getGraphicComponent();
+        GraphicComponent comp = go.get(GraphicComponent.class);
         components.add(comp);
     }
 

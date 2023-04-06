@@ -14,7 +14,7 @@ public class Physics {
     public Physics() {}
 
     public void add(GameObject c) {
-        PhysicsComponent p = c.getPhysicsComponent();
+        PhysicsComponent p = c.get(PhysicsComponent.class);
 
         if (p instanceof ActivePhysicsComponent) {
             activeComponents.add((ActivePhysicsComponent) p);

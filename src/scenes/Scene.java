@@ -8,7 +8,7 @@ import physics.Physics;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Scene {
+public abstract class Scene {
     private Renderer renderer = new Renderer();
     private Physics physics = new Physics();
     private Camera camera = new Camera();
@@ -38,6 +38,7 @@ public class Scene {
         for (GameObject object : waiting) {
             renderer.add(object);
             physics.add(object);
+
             objects.add(object);
         }
         waiting.clear();
@@ -46,6 +47,8 @@ public class Scene {
     public void render(Graphics2D g) {
         renderer.render(g);
     }
+
+    public abstract void init();
 
     public Camera getCamera() {
         return camera;

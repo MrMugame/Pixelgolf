@@ -3,6 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.InvocationTargetException;
 
 import scenes.DebugScene;
 import scenes.Scene;
@@ -18,7 +19,7 @@ public class GameWindow {
 
     public int FPS_LIMIT = 60;
 
-    public GameWindow() {
+    private GameWindow() {
         WIDTH = 1200;
         HEIGHT = 800;
     }
@@ -49,7 +50,7 @@ public class GameWindow {
 
         window.createBufferStrategy(2);
 
-        currentScene = new DebugScene();
+        changeScene(DebugScene.class);
     }
 
     public void run() {
@@ -113,6 +114,15 @@ public class GameWindow {
 
             DisplayMode mode = gd.getDisplayMode();
             window.setPreferredSize(new Dimension(mode.getWidth(), mode.getHeight()));
+        }
+    }
+
+    public <T extends Scene> void changeScene(Class<T> c) {
+        try {
+            currentScene = c.getDeclaredConstructor().newInstance();
+            currentScene.init();
+        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -5,42 +5,37 @@ import game.input.InputComponent;
 import game.physics.PhysicsComponent;
 import physics.Vector2D;
 
+import java.util.ArrayList;
+
 public class GameObject {
     private final String name;
     private Transform transform;
-    private final InputComponent inputComponent;
-    private final GraphicComponent graphicComponent;
-    private final PhysicsComponent physicsComponent;
+    private ArrayList<Component> components = new ArrayList<>();
 
 
-    public GameObject(String n, InputComponent i, GraphicComponent g, PhysicsComponent p, Vector2D pos, Vector2D size, int z) {
+    public GameObject(String n, Vector2D pos, Vector2D size, int z) {
         name = n;
         transform = new Transform(pos, size, z);
-
-        inputComponent = i;
-        inputComponent.parent = this;
-        graphicComponent = g;
-        graphicComponent.parent = this;
-        physicsComponent = p;
-        physicsComponent.parent = this;
     }
 
     public void update(float dt) {
-        inputComponent.update(dt);
-        graphicComponent.update(dt);
-        physicsComponent.update(dt);
+        for (Component component : components) {
+            component.update(dt);
+        }
     }
 
-    public GraphicComponent getGraphicComponent() {
-        return graphicComponent;
+    public void add(Component component) {
+        components.add(component);
+        component.parent = this;
     }
 
-    public InputComponent getInputComponent() {
-        return inputComponent;
-    }
-
-    public PhysicsComponent getPhysicsComponent() {
-        return physicsComponent;
+    public <T extends Component> T get(Class<T> c) {
+        for (Component component : components) {
+            if (c.isAssignableFrom(component.getClass())) {
+                return c.cast(component);
+            }
+        }
+        return null;
     }
 
     public Transform getTransform() {

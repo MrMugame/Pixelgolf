@@ -1,6 +1,7 @@
 package game.input;
 
 import game.physics.BallPhysics;
+import game.physics.PhysicsComponent;
 import input.MouseListener;
 import physics.CollisionMath;
 
@@ -18,7 +19,7 @@ public class BallInput extends InputComponent {
         if (!dragging && listener.isPressed(BUTTON1) && CollisionMath.pointCircle(parent.getTransform().getCenter() , parent.getTransform().size.x / 2 , listener.getMousePosition())) {
             dragging = true;
         } else if (dragging && !listener.isPressed(BUTTON1)) {
-            BallPhysics physics = (BallPhysics) parent.getPhysicsComponent();
+            BallPhysics physics = (BallPhysics) parent.get(PhysicsComponent.class);
             physics.velocity = parent.getTransform().position.sub(listener.getMousePosition());
             dragging = false;
         }
