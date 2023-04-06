@@ -52,7 +52,7 @@ public class GameWindow {
         currentScene = new DebugScene();
     }
 
-    public void run() throws InterruptedException {
+    public void run() {
         BufferStrategy strategy = window.getBufferStrategy();
         Graphics2D g = null;
 
@@ -97,7 +97,11 @@ public class GameWindow {
 
             long sleepTime = (long) 1e9/FPS_LIMIT - frameTime;
             if (sleepTime > 0) {
-                Thread.sleep((long)(sleepTime/1e6));
+                try {
+                    Thread.sleep((long)(sleepTime/1e6));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

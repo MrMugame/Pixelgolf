@@ -1,5 +1,7 @@
 package Assets;
 
+import main.GameWindow;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -14,7 +16,7 @@ public class Assets {
             return textures.get(path);
         }
         try {
-            Image img = ImageIO.read(new File("src/Assets/" + path));
+            Image img = ImageIO.read(Assets.class.getResource(path));
             textures.put(path, img);
             return img;
         } catch(IOException e) {
