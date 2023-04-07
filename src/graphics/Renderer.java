@@ -1,8 +1,7 @@
-package main;
+package graphics;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import game.GameObject;
 

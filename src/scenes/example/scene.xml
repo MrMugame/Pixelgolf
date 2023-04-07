@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Scene>
+    <Gameobject name="Ball" x="3" y="-3" width="0.25" height="0.25" zindex="1">
+        <StaticGraphic path="ball.png"/>
+        <BallInput/>
+        <BallPhysics mass="10"/>
+    </Gameobject>
+    <Gameobject name="Wall" x="0" y="0" width="5" height="10" zindex="0">
+        <StaticGraphic path="img.png"/>
+        <NoInput/>
+        <NoPhysics/>
+    </Gameobject>
+</Scene>

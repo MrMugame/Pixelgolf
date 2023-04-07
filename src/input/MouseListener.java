@@ -1,9 +1,8 @@
 package input;
 
-import game.GameObject;
 import game.Transform;
 import physics.Vector2D;
-import main.GameWindow;
+import graphics.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +42,17 @@ public class MouseListener implements java.awt.event.MouseListener, MouseWheelLi
         Vector2D pos = new Vector2D(mouse.x, mouse.y);
 
         return Transform.fromScreenPosition(pos);
+    }
+
+    public Vector2D getMousePositionScreen() {
+        GameWindow w = GameWindow.get();
+        Point mouse = MouseInfo.getPointerInfo().getLocation();
+        SwingUtilities.convertPointFromScreen(mouse, w.getWindow());
+        Insets insets = w.getWindow().getInsets();
+        mouse.x -= insets.left;
+        mouse.y -= insets.top;
+
+        return new Vector2D(mouse.x, mouse.y);
     }
 
     public boolean isInWindow() {

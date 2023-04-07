@@ -1,9 +1,7 @@
-package main;
+package graphics;
 
 import input.KeyboardListener;
 import physics.Vector2D;
-
-import java.awt.event.KeyListener;
 
 import static java.awt.event.KeyEvent.*;
 

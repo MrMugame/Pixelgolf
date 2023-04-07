@@ -1,4 +1,4 @@
-package main;
+package graphics;
 
 import game.GameObject;
 import game.graphics.GraphicComponent;

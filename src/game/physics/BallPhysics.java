@@ -13,8 +13,8 @@ import static java.awt.event.KeyEvent.VK_SPACE;
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();
 
-    public BallPhysics(float m) {
-        super(m);
+    public BallPhysics(float mass) {
+        super(mass);
     }
 
     @Override

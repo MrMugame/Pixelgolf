@@ -1,8 +1,9 @@
 package scenes;
 
-import main.Camera;
+import graphics.Camera;
 import game.GameObject;
-import main.Renderer;
+import graphics.Renderer;
+import gui.UIRenderer;
 import physics.Physics;
 
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Scene {
     private Renderer renderer = new Renderer();
+    private UIRenderer uiRenderer = new UIRenderer();
     private Physics physics = new Physics();
     private Camera camera = new Camera();
     private ArrayList<GameObject> objects = new ArrayList<>();
@@ -30,6 +32,7 @@ public abstract class Scene {
     public void update(float dt) {
         physics.update();
         camera.update(dt);
+        uiRenderer.update();
 
         for (GameObject object : objects) {
             object.update(dt);
@@ -46,11 +49,16 @@ public abstract class Scene {
 
     public void render(Graphics2D g) {
         renderer.render(g);
+        uiRenderer.render(g);
     }
 
     public abstract void init();
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public UIRenderer getUiRenderer() {
+        return uiRenderer;
     }
 }

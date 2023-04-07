@@ -1,11 +1,11 @@
-package main;
+package graphics;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.lang.reflect.InvocationTargetException;
 
 import scenes.DebugScene;
+import scenes.Level;
 import scenes.Scene;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
@@ -50,7 +50,8 @@ public class GameWindow {
 
         window.createBufferStrategy(2);
 
-        changeScene(DebugScene.class);
+        //changeScene(new Level("example/scene.xml"));
+        changeScene(new DebugScene());
     }
 
     public void run() {
@@ -90,6 +91,7 @@ public class GameWindow {
             currentScene.render(g);
             // END RENDER
 
+                g.setFont(new Font("Calibri", Font.PLAIN, 12));
             g.setColor(Color.GREEN);
             g.drawString(String.format("FPS: %.0f", fps), 0, 10);
 
@@ -117,13 +119,9 @@ public class GameWindow {
         }
     }
 
-    public <T extends Scene> void changeScene(Class<T> c) {
-        try {
-            currentScene = c.getDeclaredConstructor().newInstance();
-            currentScene.init();
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+    public void changeScene(Scene s) {
+        currentScene = s;
+        currentScene.init();
     }
 
     public Scene getScene() {

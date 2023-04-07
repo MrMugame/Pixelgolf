@@ -7,8 +7,18 @@ import game.input.NoInput;
 import game.physics.BallPhysics;
 import game.physics.NoPhysics;
 import game.physics.Wall;
+import gui.UIComponent;
+import gui.components.UIBlock;
+import gui.components.UIButton;
+import gui.components.UIText;
+import gui.constraints.UIAspectConstraint;
+import gui.constraints.UICenterConstraint;
+import gui.constraints.UIPixelConstraint;
+import gui.constraints.UIRelativeConstraint;
 import physics.Polygon;
 import physics.Vector2D;
+
+import java.awt.*;
 
 public class DebugScene extends Scene {
     public DebugScene() {
@@ -46,6 +56,26 @@ public class DebugScene extends Scene {
 
         addGameObject(g2);
         addGameObject(g1);
+
+/*        UIComponent c = new UIBlock(0.25f);
+        c.getConstraints().addX(new UICenterConstraint());
+        c.getConstraints().addY(new UIPixelConstraint(10));
+        c.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
+        c.getConstraints().addHeight(new UIPixelConstraint(100));
+
+        UIComponent d = new UIText("Cats like dogs", new Color(1.0f, 0, 0), "roboto.ttf", 12);
+        d.getConstraints().addX(new UICenterConstraint());
+        d.getConstraints().addY(new UICenterConstraint());
+        d.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
+        d.getConstraints().addHeight(new UIAspectConstraint(1));*/
+
+        UIComponent button = new UIButton("Press me!", new Color(0, 1f, 1f), new Color(0, 0, 0), 50);
+        button.getConstraints().addX(new UICenterConstraint());
+        button.getConstraints().addY(new UIPixelConstraint(10));
+        button.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
+        button.getConstraints().addHeight(new UIPixelConstraint(100));
+
+        getUiRenderer().getContainer().add(button);
 
 
         //addGameObject(new GameObject("Pepe3", new StaticGraphic("img.png"), new Wall(p), new Vector2D(1f, 0.5f), new Vector2D(1, 5), 1));

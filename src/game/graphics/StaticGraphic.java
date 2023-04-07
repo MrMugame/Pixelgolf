@@ -1,14 +1,15 @@
 package game.graphics;
 
-import Assets.Assets;
+import assets.Assets;
 
 import java.awt.*;
 
 public class StaticGraphic extends GraphicComponent {
     private String path;
+    private Image image;
 
-    public StaticGraphic(String p) {
-        path = p;
+    public StaticGraphic(String path) {
+        this.path = path;
     }
 
     @Override
@@ -16,6 +17,9 @@ public class StaticGraphic extends GraphicComponent {
 
     @Override
     public Image getTexture() {
-        return Assets.loadTexture(path);
+        if (image == null) {
+            image = Assets.loadImage(path);
+        }
+        return image;
     }
 }

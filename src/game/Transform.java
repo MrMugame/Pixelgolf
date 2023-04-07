@@ -1,6 +1,6 @@
 package game;
 
-import main.GameWindow;
+import graphics.GameWindow;
 import physics.Vector2D;
 
 public class Transform {
