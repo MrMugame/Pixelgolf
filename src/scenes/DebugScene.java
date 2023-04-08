@@ -11,10 +11,7 @@ import gui.UIComponent;
 import gui.components.UIBlock;
 import gui.components.UIButton;
 import gui.components.UIText;
-import gui.constraints.UIAspectConstraint;
-import gui.constraints.UICenterConstraint;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
+import gui.constraints.*;
 import physics.Polygon;
 import physics.Vector2D;
 
@@ -69,11 +66,11 @@ public class DebugScene extends Scene {
         d.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
         d.getConstraints().addHeight(new UIAspectConstraint(1));*/
 
-        UIComponent button = new UIButton("Press me!", new Color(0, 1f, 1f), new Color(0, 0, 0), 50);
-        button.getConstraints().addX(new UICenterConstraint());
-        button.getConstraints().addY(new UIPixelConstraint(10));
-        button.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
-        button.getConstraints().addHeight(new UIPixelConstraint(100));
+        UIComponent button = new UIButton("Spielen ", new Color(0, 1f, 1f), new Color(0, 0, 0), "roboto_black.ttf", 50);
+        button.getConstraints().addX(new UIUnitConstraint(2.5f));
+        button.getConstraints().addY(new UIRelativeConstraint(0.4f));
+        button.getConstraints().addWidth(new UIUnitConstraint(16));
+        button.getConstraints().addHeight(new UIUnitConstraint(4));
 
         getUiRenderer().getContainer().add(button);
 

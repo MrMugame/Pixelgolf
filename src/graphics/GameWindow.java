@@ -102,9 +102,7 @@ public class GameWindow {
             if (sleepTime > 0) {
                 try {
                     Thread.sleep((long)(sleepTime/1e6));
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                } catch (InterruptedException ignored) {}
             }
         }
     }
