@@ -13,9 +13,13 @@ public abstract class Scene {
     private Renderer renderer = new Renderer();
     private UIRenderer uiRenderer = new UIRenderer();
     private Physics physics = new Physics();
-    private Camera camera = new Camera();
+    private Camera camera;
     private ArrayList<GameObject> objects = new ArrayList<>();
     private ArrayList<GameObject> waiting = new ArrayList<>();
+
+    protected Scene(Camera cam) {
+        camera = cam;
+    }
 
     public void addGameObject(GameObject go) {
         if (waiting.contains(go) || objects.contains(go)) return;
@@ -32,7 +36,7 @@ public abstract class Scene {
     public void update(float dt) {
         physics.update();
         camera.update(dt);
-        uiRenderer.update();
+        uiRenderer.update(dt);
 
         for (GameObject object : objects) {
             object.update(dt);

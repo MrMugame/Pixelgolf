@@ -1,6 +1,7 @@
 package scenes;
 
 import game.GameObject;
+import graphics.DebugCamera;
 
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class Level extends Scene {
     private String path;
 
     public Level(String p) {
+        super(new DebugCamera());
         path = p;
     }
 

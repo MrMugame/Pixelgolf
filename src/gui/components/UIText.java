@@ -34,13 +34,13 @@ public class UIText extends UIComponent {
 
         FontMetrics metrics = g.getFontMetrics();
         ArrayList<String> lines = calculateLines(metrics);
-        int padding = (getConstraints().height - lines.size() * metrics.getHeight()) / 2 - metrics.getDescent();
-        int y = getConstraints().y + padding;
+        int padding = (getHeight() - lines.size() * metrics.getHeight()) / 2 - metrics.getDescent();
+        int y = getY() + padding;
 
         for (String line : lines) {
             y += metrics.getHeight();
-            int offset = center ? (getConstraints().width - metrics.stringWidth(line)) / 2 - 4: 0;
-            g.drawString(line, getConstraints().x + offset, y);
+            int offset = center ? (getWidth() - metrics.stringWidth(line)) / 2 - 4: 0;
+            g.drawString(line, getX() + offset, y);
         }
 
     }
@@ -50,14 +50,14 @@ public class UIText extends UIComponent {
 
         String[] words = text.split(" ");
         String line = "";
-
+        // TODO: Add support for explicit line breaks
         for (String word : words) {
-            if (metrics.stringWidth(line + word) >= getConstraints().width) {
+            if (metrics.stringWidth(line + word) >= getWidth()) {
                 lines.add(line);
                 line = "";
             }
 
-            line += " " + word;
+            line += line.length() == 0 ? word : " " + word;
         }
 
         if(line.trim().length() > 0) {
@@ -65,5 +65,9 @@ public class UIText extends UIComponent {
         }
 
         return lines;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

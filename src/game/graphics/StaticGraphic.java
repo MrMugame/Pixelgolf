@@ -3,10 +3,11 @@ package game.graphics;
 import assets.Assets;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class StaticGraphic extends GraphicComponent {
     private String path;
-    private Image image;
+    private BufferedImage image;
 
     public StaticGraphic(String path) {
         this.path = path;
@@ -16,7 +17,7 @@ public class StaticGraphic extends GraphicComponent {
     public void update(float dt) {}
 
     @Override
-    public Image getTexture() {
+    public BufferedImage getTexture() {
         if (image == null) {
             image = Assets.loadImage(path);
         }

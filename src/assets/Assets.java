@@ -2,15 +2,21 @@ package assets;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Assets {
+
+    public static String DEFAULT_FONT_BOLD = "roboto_black.ttf";
+    public static String DEFAULT_FONT = "roboto.ttf";
+
+
     private static HashMap<String, Font> fonts = new HashMap<>();
 
-    public static Image loadImage(String path) {
+    public static BufferedImage loadImage(String path) {
         try {
             return ImageIO.read(Objects.requireNonNull(Assets.class.getResource(path)));
         } catch(IOException e) {

@@ -21,13 +21,14 @@ public class UIBlock extends UIComponent {
     @Override
     protected void render(Graphics2D g) {
         if (stroke != null) {
+            // TODO: Make color changeable and maybe use option type?
             g.setColor(new Color(0,0,0));
             g.setStroke(stroke);
-            g.drawRect(getConstraints().x, getConstraints().y, getConstraints().width, getConstraints().height);
+            g.drawRect(getX(), getY(), getWidth(), getHeight());
         }
 
         g.setColor(color);
-        g.fillRect(getConstraints().x, getConstraints().y, getConstraints().width, getConstraints().height);
+        g.fillRect(getX(), getY(), getWidth(), getHeight());
     }
 
     public void setColor(Color color) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public abstract class UIComponent {
     private ArrayList<UIComponent> childs = new ArrayList<>();
     private UIConstraints constraints = new UIConstraints();
+
     private UIComponent parent;
 
     public void add(UIComponent component) {
@@ -14,11 +15,15 @@ public abstract class UIComponent {
         childs.add(component);
     }
 
-    protected void updateInternally() {
+    public void remove(UIComponent component) {
+        childs.remove(component);
+    }
+
+    protected void updateInternally(float dt) {
         constraints.calculate(this);
         update();
         for (UIComponent child : childs) {
-            child.updateInternally();
+            child.updateInternally(dt);
         }
     }
 
@@ -42,5 +47,25 @@ public abstract class UIComponent {
 
     public UIConstraints getConstraints() {
         return constraints;
+    }
+
+    public void setConstraints(UIConstraints constraints) {
+        this.constraints = constraints;
+    }
+
+    protected int getWidth() {
+        return getConstraints().width;
+    }
+
+    protected int getHeight() {
+        return getConstraints().height;
+    }
+
+    protected int getX() {
+        return getConstraints().x;
+    }
+
+    protected int getY() {
+        return getConstraints().y;
     }
 }

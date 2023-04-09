@@ -16,6 +16,11 @@ public class UIUnitConstraint extends UIConstraint {
 
     @Override
     public int getValue(UIComponent component, boolean vertical) {
-        return (int)(units * UNIT);
+        if (units < 0) {
+            int delta = vertical ? component.getParent().getConstraints().heightCt.getValue(component.getParent(), true) : component.getParent().getConstraints().widthCt.getValue(component.getParent(), false);
+            return delta + (int)(units * UNIT);
+        } else {
+            return (int)(units * UNIT);
+        }
     }
 }

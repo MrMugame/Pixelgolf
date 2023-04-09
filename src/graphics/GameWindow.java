@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import scenes.DebugScene;
 import scenes.Level;
 import scenes.Scene;
+import scenes.mainmenu.MainMenu;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
@@ -50,8 +51,7 @@ public class GameWindow {
 
         window.createBufferStrategy(2);
 
-        //changeScene(new Level("example/scene.xml"));
-        changeScene(new DebugScene());
+        changeScene(new MainMenu());
     }
 
     public void run() {
@@ -84,14 +84,14 @@ public class GameWindow {
                 fps = (float) 1e9 / frameTime;
                 timeElapsed = 0;
             }
-
             currentScene.update((float)(frameTime/1e6));
+
 
             // RENDER
             currentScene.render(g);
             // END RENDER
 
-                g.setFont(new Font("Calibri", Font.PLAIN, 12));
+            g.setFont(new Font("Calibri", Font.PLAIN, 12));
             g.setColor(Color.GREEN);
             g.drawString(String.format("FPS: %.0f", fps), 0, 10);
 
@@ -115,6 +115,10 @@ public class GameWindow {
             DisplayMode mode = gd.getDisplayMode();
             window.setPreferredSize(new Dimension(mode.getWidth(), mode.getHeight()));
         }
+    }
+
+    public void exit() {
+        System.exit(0);
     }
 
     public void changeScene(Scene s) {

@@ -7,6 +7,7 @@ import game.input.NoInput;
 import game.physics.BallPhysics;
 import game.physics.NoPhysics;
 import game.physics.Wall;
+import graphics.DebugCamera;
 import gui.UIComponent;
 import gui.components.UIBlock;
 import gui.components.UIButton;
@@ -19,7 +20,7 @@ import java.awt.*;
 
 public class DebugScene extends Scene {
     public DebugScene() {
-
+        super(new DebugCamera());
     }
 
     @Override
@@ -54,25 +55,11 @@ public class DebugScene extends Scene {
         addGameObject(g2);
         addGameObject(g1);
 
-/*        UIComponent c = new UIBlock(0.25f);
-        c.getConstraints().addX(new UICenterConstraint());
-        c.getConstraints().addY(new UIPixelConstraint(10));
-        c.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
-        c.getConstraints().addHeight(new UIPixelConstraint(100));
-
-        UIComponent d = new UIText("Cats like dogs", new Color(1.0f, 0, 0), "roboto.ttf", 12);
-        d.getConstraints().addX(new UICenterConstraint());
-        d.getConstraints().addY(new UICenterConstraint());
-        d.getConstraints().addWidth(new UIRelativeConstraint(0.25f));
-        d.getConstraints().addHeight(new UIAspectConstraint(1));*/
-
-        UIComponent button = new UIButton("Spielen ", new Color(0, 1f, 1f), new Color(0, 0, 0), "roboto_black.ttf", 50);
-        button.getConstraints().addX(new UIUnitConstraint(2.5f));
-        button.getConstraints().addY(new UIRelativeConstraint(0.4f));
-        button.getConstraints().addWidth(new UIUnitConstraint(16));
-        button.getConstraints().addHeight(new UIUnitConstraint(4));
-
-        getUiRenderer().getContainer().add(button);
+        for (int i = 0; i < 15*15; i++) {
+            GameObject g3 = new GameObject("Pepe" + i, new Vector2D(1f*(i % 15), 1f*((int)(i/15))), new Vector2D(1f, 1f), 0);
+            g3.add(new StaticGraphic("grass.png"));
+            addGameObject(g3);
+        }
 
 
         //addGameObject(new GameObject("Pepe3", new StaticGraphic("img.png"), new Wall(p), new Vector2D(1f, 0.5f), new Vector2D(1, 5), 1));
