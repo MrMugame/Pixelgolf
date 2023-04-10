@@ -55,6 +55,10 @@ public class MouseListener implements java.awt.event.MouseListener, MouseWheelLi
         return new Vector2D(mouse.x, mouse.y);
     }
 
+    public void reset() {
+        buttons = new boolean[20];
+    }
+
     public boolean isInWindow() {
         return inWindow;
     }

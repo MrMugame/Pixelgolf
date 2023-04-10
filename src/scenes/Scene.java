@@ -36,7 +36,7 @@ public abstract class Scene {
     public void update(float dt) {
         physics.update();
         camera.update(dt);
-        uiRenderer.update(dt);
+        uiRenderer.update();
 
         for (GameObject object : objects) {
             object.update(dt);

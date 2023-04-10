@@ -2,6 +2,7 @@ package scenes.settingsmenu.components;
 
 import gui.ConstraintFactory;
 import gui.UIComponent;
+import gui.components.UIBlock;
 import gui.components.UIClickable;
 import gui.components.UIContainer;
 import gui.components.UIPage;
@@ -11,21 +12,26 @@ import gui.constraints.UIRelativeConstraint;
 import gui.constraints.UIUnitConstraint;
 import scenes.mainmenu.components.UIMenuButton;
 
+import java.awt.*;
+
 public class UISettingsMenu extends UIComponent {
 
     public UISettingsMenu() {}
 
     @Override
     protected void init() {
+        UIBlock background = new UIBlock(new Color(0, 0, 0, 0.50f));
+        background.setConstraints(ConstraintFactory.fullscreen());
+        add(background);
+
         UIPage page = new UIPage(new UIVideoSettings(), new UIAudioSettings());
         page.getConstraints().addX(new UICenterConstraint());
-        page.getConstraints().addY(new UIUnitConstraint(6f));
-        page.getConstraints().addWidth(new UIUnitConstraint(25f));
+        page.getConstraints().addY(new UIUnitConstraint(8f));
+        page.getConstraints().addWidth(new UIUnitConstraint(30f));
         page.getConstraints().addHeight(new UIUnitConstraint(25f));
 
-
-
         add(page);
+
 
         UIComponent navbar = new UIContainer();
         navbar.getConstraints().addX(new UICenterConstraint());

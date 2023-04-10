@@ -13,6 +13,8 @@ public class Assets {
     public static String DEFAULT_FONT_BOLD = "roboto_black.ttf";
     public static String DEFAULT_FONT = "roboto.ttf";
 
+    public static Color COLOR_HIGHLIGHT = new Color(0.659f, 0.902f, 0.114f);
+
 
     private static HashMap<String, Font> fonts = new HashMap<>();
 

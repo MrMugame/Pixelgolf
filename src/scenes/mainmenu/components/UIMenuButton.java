@@ -17,9 +17,7 @@ public class UIMenuButton extends UIClickable {
     private String text;
     private UIText label;
 
-    private static final Color COLOR = new Color(0, 0, 0);
-    private static final Color HOVER = new Color(0.659f, 0.902f, 0.114f);
-
+    private static final Color COLOR = new Color(1f, 1f, 1f);
 
     public UIMenuButton(String text) {
         this.text = text;
@@ -43,7 +41,7 @@ public class UIMenuButton extends UIClickable {
 
     @Override
     protected void onHoverEnter() {
-        label.setColor(HOVER);
+        label.setColor(Assets.COLOR_HIGHLIGHT);
     }
 
     @Override

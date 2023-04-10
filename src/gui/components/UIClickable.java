@@ -1,6 +1,6 @@
 package gui.components;
 
-import gui.Listener;
+import gui.ClickListener;
 import gui.UIComponent;
 import input.MouseListener;
 import physics.Vector2D;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import static java.awt.event.MouseEvent.BUTTON1;
 
 public class UIClickable extends UIComponent {
-    private ArrayList<Listener> listeners = new ArrayList<>();
+    private ArrayList<ClickListener> listeners = new ArrayList<>();
     private boolean isHovered = false;
     private boolean debounce = false;
 
     @Override
-    protected void updateInternally(float dt) {
+    protected void updateInternally() {
         checkHover();
         checkClick();
-        super.updateInternally(dt);
+        super.updateInternally();
     }
 
     private void checkHover() {
@@ -41,7 +41,7 @@ public class UIClickable extends UIComponent {
 
         if (listener.isPressed(BUTTON1) && isHovered && !debounce) {
             debounce = true;
-            for (Listener l : listeners) {
+            for (ClickListener l : listeners) {
                 l.run();
             }
         } else if (!listener.isPressed(BUTTON1) && debounce) {
@@ -49,7 +49,7 @@ public class UIClickable extends UIComponent {
         }
     }
 
-    public void addListener(Listener listener) {
+    public void addListener(ClickListener listener) {
         listeners.add(listener);
     }
 

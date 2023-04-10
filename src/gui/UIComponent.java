@@ -19,11 +19,15 @@ public abstract class UIComponent {
         childs.remove(component);
     }
 
-    protected void updateInternally(float dt) {
+    public void removeAll() {
+        childs = new ArrayList<>();
+    }
+
+    protected void updateInternally() {
         constraints.calculate(this);
         update();
         for (UIComponent child : childs) {
-            child.updateInternally(dt);
+            child.updateInternally();
         }
     }
 

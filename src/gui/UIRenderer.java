@@ -11,12 +11,12 @@ public class UIRenderer {
 
     public UIRenderer() {}
 
-    public void update(float dt) {
+    public void update() {
         container.getConstraints().addX(new UIPixelConstraint(0));
         container.getConstraints().addY(new UIPixelConstraint(0));
         container.getConstraints().addWidth(new UIPixelConstraint(GameWindow.get().WIDTH));
         container.getConstraints().addHeight(new UIPixelConstraint(GameWindow.get().HEIGHT));
-        container.updateInternally(dt);
+        container.updateInternally();
     }
 
     public void render(Graphics2D g) {

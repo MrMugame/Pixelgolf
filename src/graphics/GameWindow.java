@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+import input.MouseListener;
 import scenes.DebugScene;
 import scenes.Level;
 import scenes.Scene;
@@ -17,6 +18,8 @@ public class GameWindow {
     public int WIDTH, HEIGHT;
     private JFrame window;
     private Scene currentScene;
+
+    private boolean fullscreend = false;
 
     public int FPS_LIMIT = 60;
 
@@ -42,11 +45,11 @@ public class GameWindow {
         window.setIgnoreRepaint(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //setFullscreen();
 
         window.pack();
 
         window.setLocationRelativeTo(null);
+        //setFullscreen();
         window.setVisible(true);
 
         window.createBufferStrategy(2);
@@ -63,6 +66,7 @@ public class GameWindow {
         float fps = 0;
 
         while (true) {
+            //TODO: Only do this on size change
             Rectangle size = window.getBounds();
             Insets insets = window.getInsets();
             WIDTH = size.width - insets.left - insets.right;
@@ -84,12 +88,10 @@ public class GameWindow {
                 fps = (float) 1e9 / frameTime;
                 timeElapsed = 0;
             }
+
             currentScene.update((float)(frameTime/1e6));
 
-
-            // RENDER
             currentScene.render(g);
-            // END RENDER
 
             g.setFont(new Font("Calibri", Font.PLAIN, 12));
             g.setColor(Color.GREEN);
@@ -108,13 +110,37 @@ public class GameWindow {
     }
 
     public void setFullscreen() {
+        if (fullscreend) return;
+
         GraphicsDevice gd = getLocalGraphicsEnvironment().getDefaultScreenDevice();
         if (gd.isFullScreenSupported()) {
+            window.setVisible(false);
             gd.setFullScreenWindow(window);
 
             DisplayMode mode = gd.getDisplayMode();
             window.setPreferredSize(new Dimension(mode.getWidth(), mode.getHeight()));
+            window.setVisible(true);
+            MouseListener.get().reset();
+
+            fullscreend = true;
         }
+
+    }
+
+    public void setWindowed() {
+        if (!fullscreend) return;
+
+        window.setVisible(false);
+
+        GraphicsDevice gd = getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        gd.setFullScreenWindow(null);
+
+        window.setPreferredSize(new Dimension(1200, 800));
+        window.setVisible(true);
+        // Regestriert sonst die Knopfdrücke nicht richtig da beim wechsel ja die Maus zwangsweise gedrückt ist (vielleicht wegen window.setvisible?)
+        MouseListener.get().reset();
+
+        fullscreend = false;
     }
 
     public void exit() {
