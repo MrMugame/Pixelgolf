@@ -29,7 +29,7 @@ public class Assets {
     public static Font loadFont(String path) {
         if (!fonts.containsKey(path)) {
             try {
-                Font font = Font.createFont(Font.TRUETYPE_FONT, new File(Objects.requireNonNull(Assets.class.getResource(path)).getPath()));
+                Font font = Font.createFont(Font.TRUETYPE_FONT, Assets.class.getResource(path).openStream());
                 GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
                 fonts.put(path, font);
             } catch(IOException | FontFormatException | NullPointerException e) {
