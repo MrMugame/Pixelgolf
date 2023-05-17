@@ -1,25 +1,20 @@
-package scenes.mainmenu.components;
+package gui.components.specific;
 
 import assets.Assets;
 import gui.ConstraintFactory;
-import gui.UIComponent;
-import gui.components.UIBlock;
 import gui.components.UIClickable;
 import gui.components.UIText;
-import gui.constraints.UICenterConstraint;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
 
 import java.awt.*;
 
-public class UIMenuButton extends UIClickable {
+public class UITextButton extends UIClickable {
 
     private String text;
     private UIText label;
 
     private static final Color COLOR = new Color(1f, 1f, 1f);
 
-    public UIMenuButton(String text) {
+    public UITextButton(String text) {
         this.text = text;
     }
 

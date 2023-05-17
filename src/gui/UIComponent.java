@@ -49,6 +49,10 @@ public abstract class UIComponent {
         return parent;
     }
 
+    public UIComponent getChild(int index) {
+        return childs.get(index);
+    }
+
     public UIConstraints getConstraints() {
         return constraints;
     }

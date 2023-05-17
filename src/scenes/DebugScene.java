@@ -3,20 +3,11 @@ package scenes;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
 import game.GameObject;
-import game.input.NoInput;
 import game.physics.BallPhysics;
-import game.physics.NoPhysics;
 import game.physics.Wall;
 import graphics.DebugCamera;
-import gui.UIComponent;
-import gui.components.UIBlock;
-import gui.components.UIButton;
-import gui.components.UIText;
-import gui.constraints.*;
 import physics.Polygon;
 import physics.Vector2D;
-
-import java.awt.*;
 
 public class DebugScene extends Scene {
     public DebugScene() {
@@ -62,7 +53,7 @@ public class DebugScene extends Scene {
         }
 
 
-        //addGameObject(new GameObject("Pepe3", new StaticGraphic("img.png"), new Wall(p), new Vector2D(1f, 0.5f), new Vector2D(1, 5), 1));
+        //addGameObject(new GameObject("Pepe3", new StaticGraphic("heading.png"), new Wall(p), new Vector2D(1f, 0.5f), new Vector2D(1, 5), 1));
         //addGameObject(new GameObject("Pepe2", new NoInput(), new StaticGraphic("pepe.png"), new NoPhysics(), new Vector2D(-0.5f, 0.5f), new Vector2D(1, 1), 10));
         //addGameObject(new GameObject("Pepe5", new NoInput(), new StaticGraphic("ball_black.png"), new Wall(p3), new Vector2D(-14f, 0.5f), new Vector2D(5, 5), 1));
 

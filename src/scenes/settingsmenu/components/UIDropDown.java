@@ -31,10 +31,6 @@ public class UIDropDown extends UIComponent {
 
     @Override
     protected void update() {
-/*        if (dropped && MouseListener.get().isPressed(BUTTON1)) {
-            dropped = false;
-            drop();
-        }*/
         if (justSwitched && !MouseListener.get().isPressed(BUTTON1)) {
             justSwitched = false;
         }
@@ -58,6 +54,7 @@ public class UIDropDown extends UIComponent {
         option.getConstraints().addY(new UIRelativeConstraint(offset));
         option.getConstraints().addWidth(new UIRelativeConstraint(1));
         option.getConstraints().addHeight(new UIRelativeConstraint(1));
+        // TODO: ugly variable passing
         option.addListener(() -> {
             if (justSwitched) return;
             justSwitched = true;

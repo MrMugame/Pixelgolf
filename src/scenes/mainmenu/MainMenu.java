@@ -27,8 +27,8 @@ public class MainMenu extends Scene {
         page.getConstraints().addHeight(new UIRelativeConstraint(1));
         getUiRenderer().getContainer().add(page);
 
-        GameObject go = new GameObject("Background", new Vector2D(-6, 4), new Vector2D(12, 8), 0);
+/*        GameObject go = new GameObject("Background", new Vector2D(-6, 4), new Vector2D(12, 8), 0);
         go.add(new StaticGraphic("minecraft.png"));
-        addGameObject(go);
+        addGameObject(go);*/
     }
 }

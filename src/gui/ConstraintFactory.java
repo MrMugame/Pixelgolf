@@ -5,11 +5,21 @@ import gui.constraints.UIRelativeConstraint;
 import gui.constraints.UIUnitConstraint;
 
 public class ConstraintFactory {
-
+    // TODO: Real or better factory bettern
     public static UIConstraints unitConstrains(float x, float y, float width, float height) {
         UIConstraints constraints = new UIConstraints();
         constraints.addX(new UIUnitConstraint(x));
         constraints.addY(new UIUnitConstraint(y));
+        constraints.addWidth(new UIUnitConstraint(width));
+        constraints.addHeight(new UIUnitConstraint(height));
+
+        return constraints;
+    }
+
+    public static UIConstraints unitConstrains(float x, float y, float width, float height, boolean fullX, boolean fullY) {
+        UIConstraints constraints = new UIConstraints();
+        constraints.addX(new UIUnitConstraint(x, fullX));
+        constraints.addY(new UIUnitConstraint(y, fullY));
         constraints.addWidth(new UIUnitConstraint(width));
         constraints.addHeight(new UIUnitConstraint(height));
 

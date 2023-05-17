@@ -18,10 +18,10 @@ public class UIVideoSettings extends UIComponent {
         text.setConstraints(ConstraintFactory.unitConstrains(0, 0, 20, 3));
         add(text);*/
 
-        UIDropDown dropDown = new UIDropDown(0, "Fenster", "Vollbild");
-        dropDown.setConstraints(ConstraintFactory.unitConstrains(-8, 0, 8, 1.5f));
-        dropDown.addListener((i) -> {
-            System.out.println(i);
+        // UIDropDown dropDown = new UIDropDown(0, "Fenster", "Vollbild");
+        UISelectButton button = new UISelectButton("Fenster", "Vollbild");
+        button.setConstraints(ConstraintFactory.unitConstrains(-8, 0, 8, 1.5f));
+        button.addListener((i) -> {
             switch (i) {
                 case 0:
                     GameWindow.get().setWindowed();
@@ -31,7 +31,7 @@ public class UIVideoSettings extends UIComponent {
                     break;
             }
         });
-        add(dropDown);
+        add(button);
 
         UIText text = new UIText("Videomodus", new Color(1f, 1f, 1f), Assets.DEFAULT_FONT, 22, false);
         text.setConstraints(ConstraintFactory.unitConstrains(0, 0, 10, 1.5f));

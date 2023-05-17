@@ -7,10 +7,8 @@ import gui.components.UIClickable;
 import gui.components.UIContainer;
 import gui.components.UIPage;
 import gui.constraints.UICenterConstraint;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
 import gui.constraints.UIUnitConstraint;
-import scenes.mainmenu.components.UIMenuButton;
+import gui.components.specific.UITextButton;
 
 import java.awt.*;
 
@@ -39,14 +37,21 @@ public class UISettingsMenu extends UIComponent {
         navbar.getConstraints().addWidth(new UIUnitConstraint(16.5f));
         navbar.getConstraints().addHeight(new UIUnitConstraint(2.5f));
 
-        UIClickable videosettings = new UIMenuButton("Video");
+        UIClickable escape = new UITextButton("Zurück");
+        escape.setConstraints(ConstraintFactory.unitConstrains(0, 0, 8.0f, 2.5f));
+        escape.addListener(() -> {
+            ((UIPage) getParent()).switchPage(0);
+        });
+        add(escape);
+
+        UIClickable videosettings = new UITextButton("Video");
         videosettings.setConstraints(ConstraintFactory.unitConstrains(0, 0, 6.5f, 2.5f));
         videosettings.addListener(() -> {
             page.switchPage(0);
         });
         navbar.add(videosettings);
 
-        UIClickable audiosettings = new UIMenuButton("Audio");
+        UIClickable audiosettings = new UITextButton("Audio");
         audiosettings.setConstraints(ConstraintFactory.unitConstrains(10f, 0, 6.5f, 2.5f));
         audiosettings.addListener(() -> {
             page.switchPage(1);

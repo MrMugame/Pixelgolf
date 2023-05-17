@@ -19,7 +19,6 @@ public class UIDropOption extends UIClickable {
         this.text = text;
     }
 
-    // TODO: FIX constraints not being calculated between update and render step
     @Override
     protected void init() {
         UIText text = new UIText(this.text, new Color(0, 0, 0), Assets.DEFAULT_FONT, 20, false);
@@ -31,11 +30,5 @@ public class UIDropOption extends UIClickable {
 
         add(block);
         add(text);
-    }
-
-    public void updateText(String text) {
-        this.text = text;
-        removeAll();
-        init();
     }
 }

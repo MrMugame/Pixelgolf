@@ -13,7 +13,7 @@ public class UIImageAspectConstraint extends UIConstraint {
     @Override
     public int getValue(UIComponent component, boolean vertical) {
         BufferedImage image = ((UIImage) component).getImage();
-        float ratio = (float)(image.getWidth() / image.getHeight());
+        float ratio = (float) image.getWidth() / image.getHeight();
         if (vertical) {
             return (int)(component.getConstraints().widthCt.getValue(component, false) / ratio);
         } else {
@@ -21,3 +21,4 @@ public class UIImageAspectConstraint extends UIConstraint {
         }
     }
 }
+

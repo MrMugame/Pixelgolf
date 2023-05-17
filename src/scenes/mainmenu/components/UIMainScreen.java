@@ -6,7 +6,9 @@ import gui.UIComponent;
 import gui.components.UIClickable;
 import gui.components.UIImage;
 import gui.components.UIPage;
+import gui.components.specific.UITextButton;
 import gui.constraints.UIImageAspectConstraint;
+import gui.constraints.UIPassthroughConstraint;
 import gui.constraints.UIUnitConstraint;
 import scenes.DebugScene;
 
@@ -16,30 +18,39 @@ public class UIMainScreen extends UIComponent {
 
     @Override
     protected void init() {
-        UIComponent image = new UIImage("ui/heading.png");
-        image.getConstraints().addX(new UIUnitConstraint(3.5f));
-        image.getConstraints().addY(new UIUnitConstraint(3));
-        image.getConstraints().addWidth(new UIImageAspectConstraint());
-        image.getConstraints().addHeight(new UIUnitConstraint(6));
-        add(image);
+        UIComponent background = new UIImage("ui/background_1.png");
+        background.setConstraints(ConstraintFactory.fullscreen());
+        add(background);
 
-        UIClickable playbutton = new UIMenuButton("Spielen");
-        playbutton.setConstraints(ConstraintFactory.unitConstrains(3.5f, -30, 9, 2.5f));
+
+        UIComponent heading = new UIImage("ui/heading.png");
+        heading.getConstraints().addX(new UIUnitConstraint(3.5f));
+        heading.getConstraints().addY(new UIUnitConstraint(3));
+        heading.getConstraints().addWidth(new UIImageAspectConstraint());
+        heading.getConstraints().addHeight(new UIUnitConstraint(12));
+        add(heading);
+
+        float delta = -10;
+
+        UIClickable playbutton = new UIImageButton("ui/start_button.png");
+        playbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f, delta + -15, 9, 5.5f, false, true));
+        playbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         playbutton.addListener(() -> {
             GameWindow.get().changeScene(new DebugScene());
         });
         add(playbutton);
 
-        UIClickable optionbutton = new UIMenuButton("Optionen");
-        optionbutton.setConstraints(ConstraintFactory.unitConstrains(3.5f, -26.5f, 10, 2.5f));
+        UIClickable optionbutton = new UIImageButton("ui/options_button.png");
+        optionbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f, delta + -8.5f, 10, 5.5f, false, true));
+        optionbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         optionbutton.addListener(() -> {
             ((UIPage) getParent()).switchPage(1);
         });
         add(optionbutton);
 
-
-        UIClickable exitbutton = new UIMenuButton("Exit");
-        exitbutton.setConstraints(ConstraintFactory.unitConstrains(3.5f, -23f, 4.5f, 2.5f));
+        UIClickable exitbutton = new UIImageButton("ui/exit_button.png");
+        exitbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f,  delta + -2f, 10.5f, 5.5f, false, true));
+        exitbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         exitbutton.addListener(() -> {
             GameWindow.get().exit();
         });
