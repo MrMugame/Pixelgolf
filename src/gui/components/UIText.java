@@ -39,7 +39,7 @@ public class UIText extends UIComponent {
 
         for (String line : lines) {
             y += metrics.getHeight();
-            int offset = center ? (getWidth() - metrics.stringWidth(line)) / 2 - 4: 0;
+            int offset = center ? (getWidth() - metrics.stringWidth(line)) / 2 : 0;
             g.drawString(line, getX() + offset, y);
         }
 

@@ -1,10 +1,13 @@
-package scenes.settingsmenu.components;
+package scenes.mainmenu.settingsmenu.components;
 
 import assets.Assets;
 import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
 import gui.components.UIText;
+import gui.constraints.UIEndAlignContstraint;
+import gui.constraints.UIPixelConstraint;
+import gui.constraints.UIUnitConstraint;
 
 import java.awt.*;
 
@@ -20,7 +23,8 @@ public class UIVideoSettings extends UIComponent {
 
         // UIDropDown dropDown = new UIDropDown(0, "Fenster", "Vollbild");
         UISelectButton button = new UISelectButton("Fenster", "Vollbild");
-        button.setConstraints(ConstraintFactory.unitConstrains(-8, 0, 8, 1.5f));
+        button.setConstraints(ConstraintFactory.unitConstrains(0, 0, 8, 1.5f));
+        button.getConstraints().addX(new UIEndAlignContstraint());
         button.addListener((i) -> {
             switch (i) {
                 case 0:

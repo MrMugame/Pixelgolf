@@ -36,7 +36,7 @@ public class DebugScene extends Scene {
         GameObject g1 = new GameObject("Pepe", new Vector2D(-1f, -2.0f), new Vector2D(0.5f, 0.5f), 5);
         GameObject g2 = new GameObject("Pepe4", new Vector2D(-5f, 0.5f), new Vector2D(5, 10), 1);
 
-        g2.add(new StaticGraphic("img.png"));
+        g2.add(new StaticGraphic("level_unplayed.png"));
         g2.add(new Wall(p2));
 
         g1.add(new StaticGraphic("ball.png"));

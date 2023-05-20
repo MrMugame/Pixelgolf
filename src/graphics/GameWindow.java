@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 import input.MouseListener;
-import scenes.DebugScene;
-import scenes.Level;
 import scenes.Scene;
 import scenes.mainmenu.MainMenu;
 

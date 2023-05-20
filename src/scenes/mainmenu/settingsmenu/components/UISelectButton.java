@@ -1,4 +1,4 @@
-package scenes.settingsmenu.components;
+package scenes.mainmenu.settingsmenu.components;
 
 import assets.Assets;
 import gui.ConstraintFactory;

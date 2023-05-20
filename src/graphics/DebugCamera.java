@@ -7,7 +7,7 @@ import static java.awt.event.KeyEvent.*;
 import static java.awt.event.KeyEvent.VK_D;
 
 public class DebugCamera extends Camera {
-
+    // TODO: Make Camera a GameObject maybe?
     public DebugCamera() {}
 
     @Override

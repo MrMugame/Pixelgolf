@@ -1,8 +1,6 @@
 package gui;
 
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
-import gui.constraints.UIUnitConstraint;
+import gui.constraints.*;
 
 public class ConstraintFactory {
     // TODO: Real or better factory bettern
@@ -31,6 +29,16 @@ public class ConstraintFactory {
         constraints.addX(new UIPixelConstraint(0));
         constraints.addY(new UIPixelConstraint(0));
         constraints.addWidth(new UIRelativeConstraint(1));
+        constraints.addHeight(new UIRelativeConstraint(1));
+
+        return constraints;
+    }
+
+    public static UIConstraints fullscreenAspect() {
+        UIConstraints constraints = new UIConstraints();
+        constraints.addX(new UICenterConstraint());
+        constraints.addY(new UIPixelConstraint(0));
+        constraints.addWidth(new UIImageAspectConstraint());
         constraints.addHeight(new UIRelativeConstraint(1));
 
         return constraints;

@@ -1,4 +1,4 @@
-package scenes.mainmenu.components;
+package scenes.mainmenu.startmenu.components;
 
 import assets.Assets;
 import gui.ConstraintFactory;
@@ -34,14 +34,14 @@ public class UIImageButton extends UIClickable {
         arrowLeft.getConstraints().addX(new UIUnitConstraint(-2f, false));
         arrowLeft.getConstraints().addY(new UICenterConstraint());
         arrowLeft.getConstraints().addWidth(new UIImageAspectConstraint());
-        arrowLeft.getConstraints().addHeight(new UIRelativeConstraint(0.35f));
+        arrowLeft.getConstraints().addHeight(new UIRelativeConstraint(0.40f));
 
         // 5x7
         arrowRight = new UIContainer();
         arrowRight.getConstraints().addX(new UIUnitConstraint(2f, true));
         arrowRight.getConstraints().addY(new UICenterConstraint());
         arrowRight.getConstraints().addWidth(new UIPassthroughConstraint());
-        arrowRight.getConstraints().addHeight(new UIRelativeConstraint(0.35f));
+        arrowRight.getConstraints().addHeight(new UIRelativeConstraint(0.40f));
         UIImage img = new UIImage("ui/arrow_right.png");
         img.getConstraints().addX(new UIRelativeConstraint(-1));
         img.getConstraints().addY(new UIPixelConstraint(0));

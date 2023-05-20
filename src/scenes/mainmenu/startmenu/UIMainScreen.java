@@ -1,4 +1,4 @@
-package scenes.mainmenu.components;
+package scenes.mainmenu.startmenu;
 
 import graphics.GameWindow;
 import gui.ConstraintFactory;
@@ -6,11 +6,11 @@ import gui.UIComponent;
 import gui.components.UIClickable;
 import gui.components.UIImage;
 import gui.components.UIPage;
-import gui.components.specific.UITextButton;
 import gui.constraints.UIImageAspectConstraint;
 import gui.constraints.UIPassthroughConstraint;
 import gui.constraints.UIUnitConstraint;
 import scenes.DebugScene;
+import scenes.mainmenu.startmenu.components.UIImageButton;
 
 public class UIMainScreen extends UIComponent {
 
@@ -19,7 +19,7 @@ public class UIMainScreen extends UIComponent {
     @Override
     protected void init() {
         UIComponent background = new UIImage("ui/background_1.png");
-        background.setConstraints(ConstraintFactory.fullscreen());
+        background.setConstraints(ConstraintFactory.fullscreenAspect());
         add(background);
 
 
@@ -36,7 +36,8 @@ public class UIMainScreen extends UIComponent {
         playbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f, delta + -15, 9, 5.5f, false, true));
         playbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         playbutton.addListener(() -> {
-            GameWindow.get().changeScene(new DebugScene());
+            //GameWindow.get().changeScene(new DebugScene());
+            ((UIPage) getParent()).switchPage(2);
         });
         add(playbutton);
 

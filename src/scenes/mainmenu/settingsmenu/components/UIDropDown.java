@@ -1,4 +1,4 @@
-package scenes.settingsmenu.components;
+package scenes.mainmenu.settingsmenu.components;
 
 import gui.SelectListener;
 import gui.UIComponent;

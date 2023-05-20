@@ -1,4 +1,4 @@
-package scenes.settingsmenu.components;
+package scenes.mainmenu.settingsmenu;
 
 import gui.ConstraintFactory;
 import gui.UIComponent;
@@ -9,6 +9,8 @@ import gui.components.UIPage;
 import gui.constraints.UICenterConstraint;
 import gui.constraints.UIUnitConstraint;
 import gui.components.specific.UITextButton;
+import scenes.mainmenu.settingsmenu.components.UIAudioSettings;
+import scenes.mainmenu.settingsmenu.components.UIVideoSettings;
 
 import java.awt.*;
 
@@ -18,7 +20,7 @@ public class UISettingsMenu extends UIComponent {
 
     @Override
     protected void init() {
-        UIBlock background = new UIBlock(new Color(0, 0, 0, 0.50f));
+        UIBlock background = new UIBlock(new Color(0, 0, 0, 0.5f));
         background.setConstraints(ConstraintFactory.fullscreen());
         add(background);
 

@@ -1,13 +1,10 @@
-package scenes.settingsmenu.components;
+package scenes.mainmenu.settingsmenu.components;
 
 import assets.Assets;
 import gui.ConstraintFactory;
-import gui.UIConstraints;
 import gui.components.UIBlock;
 import gui.components.UIClickable;
 import gui.components.UIText;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
 import gui.constraints.UIUnitConstraint;
 
 import java.awt.*;

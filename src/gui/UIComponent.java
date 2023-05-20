@@ -8,10 +8,15 @@ public abstract class UIComponent {
     private UIConstraints constraints = new UIConstraints();
 
     private UIComponent parent;
+    private boolean initialized = false;
 
     public void add(UIComponent component) {
+        if (!component.initialized) {
+            component.init();
+            component.initialized = true;
+        }
+
         component.parent = this;
-        component.init();
         childs.add(component);
     }
 
