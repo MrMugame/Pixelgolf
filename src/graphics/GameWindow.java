@@ -137,7 +137,7 @@ public class GameWindow {
         window.setVisible(false);
 
         GraphicsDevice gd = getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(null);
+        if (gd.getFullScreenWindow() == window) gd.setFullScreenWindow(null);
 
         window.setPreferredSize(new Dimension(1200, 800));
         window.setVisible(true);

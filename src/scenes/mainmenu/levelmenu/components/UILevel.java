@@ -56,15 +56,15 @@ public class UILevel extends UIClickable {
         selecter = new UIContainer();
         selecter.getConstraints().addX(new UICenterConstraint());
         selecter.getConstraints().addY(new UIUnitConstraint(0));
-        selecter.getConstraints().addWidth(new UIRelativeConstraint(1.25f));
+        selecter.getConstraints().addWidth(new UIRelativeConstraint(1.1f));
         selecter.getConstraints().addHeight(new UIPassthroughConstraint());
 
         UIImage selectorImg = new UIImage(stars == 0 ? "ui/level_selector_unplayed.png" : "ui/level_selector_played.png");
         selectorImg.setConstraints(ConstraintFactory.fullscreen());
-        selectorImg.getConstraints().addY(new UIRelativeConstraint(-1.2f));
+        selectorImg.getConstraints().addY(new UIRelativeConstraint(-0.8f));
         selectorImg.getConstraints().addHeight(new UIImageAspectConstraint());
-
         selecter.add(selectorImg);
+
 
         addListener(() -> {
             GameWindow.get().changeScene(new Level("maps/level_" + number + ".xml"));

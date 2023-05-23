@@ -1,10 +1,14 @@
 package assets;
 
+import scenes.levels.LevelLoader;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -40,5 +44,15 @@ public class Assets {
         }
 
         return fonts.get(path);
+    }
+
+    public static File getFile(Class<?> c, String path) {
+        try {
+            // Zu URI konvertieren um komisches Escaping von z.B. Leerzeichen zu vermeiden
+            return new File(new URI(Objects.requireNonNull(c.getResource(path)).toString()).getPath());
+        } catch (URISyntaxException e) {
+            System.err.println("Konnte Datei nicht Finden: " + path);
+            return null;
+        }
     }
 }

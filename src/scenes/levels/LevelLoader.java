@@ -3,22 +3,17 @@ package scenes.levels;
 import assets.Assets;
 import game.GameObject;
 import game.graphics.DynamicGraphic;
-import game.graphics.StaticGraphic;
 import game.physics.Wall;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import physics.Vector2D;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
@@ -38,7 +33,7 @@ public class LevelLoader {
         map = new Map();
 
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();;
-        Document document = builder.parse(new File(LevelLoader.class.getResource(filepath).getPath()));
+        Document document = builder.parse(Assets.getFile(LevelLoader.class, filepath));
         document.getDocumentElement().normalize();
 
         // Check for correct root element
@@ -59,6 +54,22 @@ public class LevelLoader {
             String[] xy = point.split(";");
             map.track.addPoint(new Vector2D(Float.parseFloat(xy[0]), Float.parseFloat(xy[1])));
         }
+
+        NodeList statics = root.getElementsByTagName("Static");
+
+        for (int i = 0; i < statics.getLength(); i++) {
+            Element element = (Element) statics.item(i);
+            Map.StaticGrpahic g = new Map.StaticGrpahic();
+
+            g.x = Float.parseFloat(element.getAttribute("x"));
+            g.y = Float.parseFloat(element.getAttribute("y"));
+            g.width = Float.parseFloat(element.getAttribute("w"));
+            g.height = Float.parseFloat(element.getAttribute("h"));
+            g.texture = element.getAttribute("tex");
+
+            map.statics.add(g);
+        }
+
     }
 
     public GameObject renderBackground() {
@@ -79,6 +90,11 @@ public class LevelLoader {
 
         g.setPaint(new TexturePaint(Assets.loadImage(map.trackTexture), new Rectangle(0, 0, 16, 16)));
         g.fillPolygon(polygon);
+
+        for (Map.StaticGrpahic graphic : map.statics) {
+            // TODO: Maybe use Texture paint to have subpixel accuracy or remove w, h and draw it so it fits the pixel grid
+            g.drawImage(Assets.loadImage(graphic.texture), (int) graphic.x*TILESIZE, (int) -graphic.y*TILESIZE, (int) graphic.width*TILESIZE, (int) graphic.height*TILESIZE, null);
+        }
 
         g.dispose();
 

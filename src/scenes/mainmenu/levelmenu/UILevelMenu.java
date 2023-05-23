@@ -1,12 +1,20 @@
 package scenes.mainmenu.levelmenu;
 
+import assets.Assets;
 import gui.ConstraintFactory;
 import gui.UIComponent;
-import gui.UIConstraint;
 import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.constraints.*;
+import scenes.levels.LevelLoader;
 import scenes.mainmenu.levelmenu.components.UILevel;
+
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UILevelMenu extends UIComponent {
 
@@ -24,8 +32,16 @@ public class UILevelMenu extends UIComponent {
         container.getConstraints().addWidth(new UIUnitConstraint(40));
         container.getConstraints().addHeight(new UIAspectConstraint(1));
 
-        for (int i = 0; i < 9; i++) {
-            UILevel level = new UILevel(i + 1, 2);
+        List<String> levels = scanLevels();
+
+        // TODO: Paging
+        int i = 0;
+        for (String path : levels) {
+            if (i == 8) break;
+            if (!path.matches("^level_\\d+\\.xml$")) continue;
+            int number = Integer.parseInt(path.split("_")[1].split("\\.")[0]);
+
+            UILevel level = new UILevel(number, 0);
             level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());
 
@@ -52,8 +68,17 @@ public class UILevelMenu extends UIComponent {
             }
 
             container.add(level);
+            i += 1;
         }
 
         add(container);
+    }
+
+    private List<String> scanLevels() {
+        return Stream.of(Assets.getFile(LevelLoader.class, "maps/").listFiles())
+                .filter(file -> !file.isDirectory())
+                .map(File::getName)
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

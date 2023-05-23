@@ -4,7 +4,6 @@ import game.GameObject;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
 import game.physics.BallPhysics;
-import game.physics.Wall;
 import graphics.DebugCamera;
 import physics.Vector2D;
 import scenes.Scene;
