@@ -17,6 +17,7 @@ public class UISelectButton extends UIClickable {
     private ArrayList<SelectListener> listeners = new ArrayList<>();
     private ArrayList<String> options;
     private int selected = 0;
+    // TODO: Maybe make a selector component a generic class
 
     private UIComponent text;
 

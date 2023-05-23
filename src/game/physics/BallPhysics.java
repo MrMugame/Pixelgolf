@@ -1,14 +1,10 @@
 package game.physics;
 
-import input.KeyboardListener;
-import input.MouseListener;
 import physics.Collision;
 import physics.Polygon;
 import physics.Vector2D;
 
 import java.util.ArrayList;
-
-import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();

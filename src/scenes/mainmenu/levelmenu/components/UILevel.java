@@ -1,14 +1,15 @@
 package scenes.mainmenu.levelmenu.components;
 
 import assets.Assets;
+import graphics.GameWindow;
 import gui.ConstraintFactory;
+import gui.UIComponent;
 import gui.components.UIClickable;
+import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.components.UIText;
-import gui.constraints.UICenterConstraint;
-import gui.constraints.UIImageAspectConstraint;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
+import gui.constraints.*;
+import scenes.levels.Level;
 
 import java.awt.*;
 
@@ -17,7 +18,7 @@ public class UILevel extends UIClickable {
     private int stars;
     private int number;
 
-    private UIImage selecter;
+    private UIComponent selecter;
 
     public UILevel(int number, int stars) {
         this.number = number;
@@ -52,11 +53,22 @@ public class UILevel extends UIClickable {
         text.getConstraints().addHeight(new UIRelativeConstraint(0.6f));
         add(text);
 
-        selecter = new UIImage("ui/level_selected.png");
+        selecter = new UIContainer();
         selecter.getConstraints().addX(new UICenterConstraint());
-        selecter.getConstraints().addY(new UICenterConstraint());
+        selecter.getConstraints().addY(new UIUnitConstraint(0));
         selecter.getConstraints().addWidth(new UIRelativeConstraint(1.25f));
-        selecter.getConstraints().addHeight(new UIImageAspectConstraint());
+        selecter.getConstraints().addHeight(new UIPassthroughConstraint());
+
+        UIImage selectorImg = new UIImage(stars == 0 ? "ui/level_selector_unplayed.png" : "ui/level_selector_played.png");
+        selectorImg.setConstraints(ConstraintFactory.fullscreen());
+        selectorImg.getConstraints().addY(new UIRelativeConstraint(-1.2f));
+        selectorImg.getConstraints().addHeight(new UIImageAspectConstraint());
+
+        selecter.add(selectorImg);
+
+        addListener(() -> {
+            GameWindow.get().changeScene(new Level("maps/level_" + number + ".xml"));
+        });
     }
 
     @Override

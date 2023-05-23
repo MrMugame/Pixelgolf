@@ -21,7 +21,8 @@ public class Assets {
     public static BufferedImage loadImage(String path) {
         try {
             return ImageIO.read(Objects.requireNonNull(Assets.class.getResource(path)));
-        } catch(IOException e) {
+        } catch(IOException | NullPointerException e) {
+            System.err.println("Cant load texture: " + path);
             return null;
         }
     }

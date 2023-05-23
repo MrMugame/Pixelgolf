@@ -25,8 +25,8 @@ public class UILevelMenu extends UIComponent {
         container.getConstraints().addHeight(new UIAspectConstraint(1));
 
         for (int i = 0; i < 9; i++) {
-            UILevel level = new UILevel(i + 1, 0);
-            level.getConstraints().addWidth(new UIUnitConstraint(8));
+            UILevel level = new UILevel(i + 1, 2);
+            level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());
 
 

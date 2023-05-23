@@ -1,22 +1,19 @@
 package scenes.mainmenu.startmenu.components;
 
-import assets.Assets;
-import gui.ConstraintFactory;
 import gui.UIComponent;
 import gui.components.UIClickable;
 import gui.components.UIContainer;
 import gui.components.UIImage;
-import gui.components.UIText;
 import gui.constraints.*;
 
 
-public class UIImageButton extends UIClickable {
+public class UIStartMenuButton extends UIClickable {
 
     private String path;
 
     private UIComponent arrowLeft, arrowRight;
 
-    public UIImageButton(String path) {
+    public UIStartMenuButton(String path) {
         this.path = path;
     }
 

@@ -9,8 +9,7 @@ import gui.components.UIPage;
 import gui.constraints.UIImageAspectConstraint;
 import gui.constraints.UIPassthroughConstraint;
 import gui.constraints.UIUnitConstraint;
-import scenes.DebugScene;
-import scenes.mainmenu.startmenu.components.UIImageButton;
+import scenes.mainmenu.startmenu.components.UIStartMenuButton;
 
 public class UIMainScreen extends UIComponent {
 
@@ -32,7 +31,7 @@ public class UIMainScreen extends UIComponent {
 
         float delta = -10;
 
-        UIClickable playbutton = new UIImageButton("ui/start_button.png");
+        UIClickable playbutton = new UIStartMenuButton("ui/start_button.png");
         playbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f, delta + -15, 9, 5.5f, false, true));
         playbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         playbutton.addListener(() -> {
@@ -41,7 +40,7 @@ public class UIMainScreen extends UIComponent {
         });
         add(playbutton);
 
-        UIClickable optionbutton = new UIImageButton("ui/options_button.png");
+        UIClickable optionbutton = new UIStartMenuButton("ui/options_button.png");
         optionbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f, delta + -8.5f, 10, 5.5f, false, true));
         optionbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         optionbutton.addListener(() -> {
@@ -49,7 +48,7 @@ public class UIMainScreen extends UIComponent {
         });
         add(optionbutton);
 
-        UIClickable exitbutton = new UIImageButton("ui/exit_button.png");
+        UIClickable exitbutton = new UIStartMenuButton("ui/exit_button.png");
         exitbutton.setConstraints(ConstraintFactory.unitConstrains(5.5f,  delta + -2f, 10.5f, 5.5f, false, true));
         exitbutton.getConstraints().addWidth(new UIPassthroughConstraint());
         exitbutton.addListener(() -> {

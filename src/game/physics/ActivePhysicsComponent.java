@@ -1,14 +1,9 @@
 package game.physics;
 
-import game.Component;
-import input.KeyboardListener;
-import input.MouseListener;
 import physics.Polygon;
 import physics.Vector2D;
 
 import java.util.ArrayList;
-
-import static java.awt.event.KeyEvent.*;
 
 public abstract class ActivePhysicsComponent extends PhysicsComponent {
     public Vector2D velocity = new Vector2D();

@@ -20,7 +20,7 @@ public class BallInput extends InputComponent {
             dragging = true;
         } else if (dragging && !listener.isPressed(BUTTON1)) {
             BallPhysics physics = (BallPhysics) parent.get(PhysicsComponent.class);
-            physics.velocity = parent.getTransform().position.sub(listener.getMousePosition());
+            physics.velocity = parent.getTransform().getCenter().sub(listener.getMousePosition());
             dragging = false;
         }
     }

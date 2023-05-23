@@ -1,8 +1,8 @@
 package game.graphics;
 
 import assets.Assets;
+import game.Component;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class StaticGraphic extends GraphicComponent {
@@ -12,9 +12,6 @@ public class StaticGraphic extends GraphicComponent {
     public StaticGraphic(String path) {
         this.path = path;
     }
-
-    @Override
-    public void update(float dt) {}
 
     @Override
     public BufferedImage getTexture() {

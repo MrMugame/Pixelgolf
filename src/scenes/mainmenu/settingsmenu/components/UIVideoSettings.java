@@ -17,11 +17,6 @@ public class UIVideoSettings extends UIComponent {
 
     @Override
     protected void init() {
-/*        UIText text = new UIText("Video", new Color(0,0,0), Assets.DEFAULT_FONT, 30, false);
-        text.setConstraints(ConstraintFactory.unitConstrains(0, 0, 20, 3));
-        add(text);*/
-
-        // UIDropDown dropDown = new UIDropDown(0, "Fenster", "Vollbild");
         UISelectButton button = new UISelectButton("Fenster", "Vollbild");
         button.setConstraints(ConstraintFactory.unitConstrains(0, 0, 8, 1.5f));
         button.getConstraints().addX(new UIEndAlignContstraint());

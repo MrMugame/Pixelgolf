@@ -21,6 +21,7 @@ public class Renderer {
         LayerRenderer layer = new LayerRenderer(go.getTransform().Zindex);
         layer.add(go);
         layers.add(layer);
+        sortLayers();
     }
 
     private void sortLayers() {
@@ -28,7 +29,6 @@ public class Renderer {
     }
 
     public void render(Graphics2D g) {
-        sortLayers();
         for (LayerRenderer layer : layers) {
             layer.render(g);
         }

@@ -1,8 +1,5 @@
 package game;
 
-import game.graphics.GraphicComponent;
-import game.input.InputComponent;
-import game.physics.PhysicsComponent;
 import physics.Vector2D;
 
 import java.util.ArrayList;
@@ -25,8 +22,8 @@ public class GameObject {
     }
 
     public void add(Component component) {
-        components.add(component);
         component.parent = this;
+        components.add(component);
     }
 
     public <T extends Component> T get(Class<T> c) {

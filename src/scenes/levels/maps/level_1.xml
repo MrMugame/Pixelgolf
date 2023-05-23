@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Map width="20" height="10">
+    <Track insideTex="stone.png" outsideTex="grass.png">
+        <p>2;-2</p>
+        <p>2;-6</p>
+        <p>4;-8</p>
+        <p>10;-8</p>
+        <p>10;-5</p>
+        <p>5;-5</p>
+        <p>5;-2</p>
+    </Track>
+</Map>
