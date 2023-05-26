@@ -4,13 +4,18 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import game.GameObject;
+import game.graphics.GraphicComponent;
 
 public class Renderer {
     private ArrayList<LayerRenderer> layers = new ArrayList<LayerRenderer>();
 
     public Renderer() {}
 
+    // TODO: REMOVE
+
     public void add(GameObject go) {
+        if (go.get(GraphicComponent.class) == null) return;
+
         for (LayerRenderer layer : layers) {
             if (go.getTransform().Zindex == layer.Zindex) {
                 layer.add(go);

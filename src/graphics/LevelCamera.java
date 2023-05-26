@@ -2,12 +2,12 @@ package graphics;
 
 import input.KeyboardListener;
 import physics.Vector2D;
+import scenes.levels.Level;
 
 import static java.awt.event.KeyEvent.*;
-import static java.awt.event.KeyEvent.VK_D;
 
-public class DebugCamera extends Camera {
-    public DebugCamera() {}
+public class LevelCamera extends Camera {
+    public LevelCamera() {}
 
     @Override
     public void update(float dt) {
@@ -31,6 +31,14 @@ public class DebugCamera extends Camera {
 
         if (movement.isNullVector()) return;
 
+        Vector2D oldPosition = position.scale(1);
         position = position.add(movement.normalize().scale(offset));
+
+        if (-position.y > ((Level) GameWindow.get().getScene()).getMapHeight() || -position.y < 0) {
+            position.y = oldPosition.y;
+        }
+        if (position.x > ((Level) GameWindow.get().getScene()).getMapWidth() || position.x < 0) {
+            position.x = oldPosition.x;
+        }
     }
 }

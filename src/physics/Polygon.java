@@ -40,7 +40,7 @@ public class Polygon {
         java.awt.Polygon poly = new java.awt.Polygon();
 
         for (Vector2D point : points) {
-            poly.addPoint((int) point.x * scalar, (int) -point.y * scalar);
+            poly.addPoint((int) (point.x * scalar), (int) (-point.y * scalar));
         }
 
         return poly;

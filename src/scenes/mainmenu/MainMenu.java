@@ -16,6 +16,20 @@ public class MainMenu extends Scene {
         super(new Camera());
     }
 
+    // STEEEF
+    // Zurück buttons
+    // Option menu
+    // Escape menu
+    // Ingame HUD (+ Round finished)
+    // Spielgraphics selber
+
+    // Fragen:
+    // Kamera wie??
+    // Ball/Kanten wie?? (glatt, pixelig)
+    // Background Texture wo das Pixel grid aligned ist?
+
+
+
     @Override
     public void init() {
         UIComponent page = new UIPage(new UIMainScreen(), new UISettingsMenu(), new UILevelMenu());

@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class Assets {
 
-    public static final String DEFAULT_FONT_BOLD = "roboto_black.ttf";
+    public static final String DEFAULT_FONT_BOLD = "Pixelgold_Font.ttf";
     public static final String DEFAULT_FONT = "roboto.ttf";
 
     public static final Color COLOR_HIGHLIGHT = new Color(0.659f, 0.902f, 0.114f);

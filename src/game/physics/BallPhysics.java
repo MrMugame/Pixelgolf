@@ -29,6 +29,7 @@ public class BallPhysics extends ActivePhysicsComponent {
         Vector2D center = parent.getTransform().getCenter();
 
         // TODO: Refactor cause this is awful
+        // Doesn't take deleting polygons into account
         for (Polygon p : polygons) {
             ArrayList<Collision> c = p.collisionCircle(center, parent.getTransform().size.x / 2);
             if (!c.isEmpty()) {

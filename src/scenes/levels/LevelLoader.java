@@ -18,7 +18,7 @@ import java.io.File;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
 public class LevelLoader {
-
+    // Pixel on Background Image per Game Unit
     private static int TILESIZE = 10;
 
     private String filepath;
@@ -73,22 +73,28 @@ public class LevelLoader {
     }
 
     public GameObject renderBackground() {
+        // TODO: Make Margin Camera dependent somehow dont ask me how pls
+        float margin = 8;
         //         ^ (+)
         // (-) <---|---> (+)
         //         v (-)
         Polygon polygon = map.track.toAWTPolygon(TILESIZE);
 
-        BufferedImage texture = new BufferedImage((int) map.width*TILESIZE, (int) map.height*TILESIZE, TYPE_INT_RGB);
+        BufferedImage texture = new BufferedImage((int) (map.width+margin*2)*TILESIZE, (int) (map.height+margin*2)*TILESIZE, TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) texture.getGraphics();
 
-        g.setPaint(new TexturePaint(Assets.loadImage(map.outsideTexture), new Rectangle(0, 0, 16, 16)));
-        g.fillRect(0, 0, (int) map.width*TILESIZE, (int) map.height*TILESIZE);
+        BufferedImage outsideTexture = Assets.loadImage(map.outsideTexture);
+        g.setPaint(new TexturePaint(outsideTexture, new Rectangle(0, 0, outsideTexture.getWidth(), outsideTexture.getHeight())));
+        g.fillRect(0, 0, texture.getWidth(), (int) texture.getHeight());
+
+        g.translate(margin*TILESIZE, margin*TILESIZE);
 
         g.setColor(new Color(0, 0, 0));
         g.setStroke(new BasicStroke(2));
         g.drawPolygon(polygon);
 
-        g.setPaint(new TexturePaint(Assets.loadImage(map.trackTexture), new Rectangle(0, 0, 16, 16)));
+        BufferedImage insideTexture = Assets.loadImage(map.trackTexture);
+        g.setPaint(new TexturePaint(insideTexture, new Rectangle(0, 0, insideTexture.getWidth(), insideTexture.getHeight())));
         g.fillPolygon(polygon);
 
         for (Map.StaticGrpahic graphic : map.statics) {
@@ -98,9 +104,8 @@ public class LevelLoader {
 
         g.dispose();
 
-        GameObject go = new GameObject("background", new Vector2D(0, 0), new Vector2D(map.width, map.height), 0);
+        GameObject go = new GameObject("background", new Vector2D(-margin, margin), new Vector2D(map.width+2*margin, map.height+2*margin), 0);
         go.add(new DynamicGraphic(texture));
-        go.add(new Wall(map.track));
 
         return go;
     }

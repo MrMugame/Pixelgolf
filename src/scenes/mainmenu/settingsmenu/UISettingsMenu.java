@@ -47,14 +47,14 @@ public class UISettingsMenu extends UIComponent {
         add(escape);
 
         UIClickable videosettings = new UITextButton("Video");
-        videosettings.setConstraints(ConstraintFactory.unitConstrains(0, 0, 6.5f, 2.5f));
+        videosettings.setConstraints(ConstraintFactory.unitConstrains(0, 0, 7.5f, 2.5f));
         videosettings.addListener(() -> {
             page.switchPage(0);
         });
         navbar.add(videosettings);
 
         UIClickable audiosettings = new UITextButton("Audio");
-        audiosettings.setConstraints(ConstraintFactory.unitConstrains(10f, 0, 6.5f, 2.5f));
+        audiosettings.setConstraints(ConstraintFactory.unitConstrains(10f, 0, 7.5f, 2.5f));
         audiosettings.addListener(() -> {
             page.switchPage(1);
         });
