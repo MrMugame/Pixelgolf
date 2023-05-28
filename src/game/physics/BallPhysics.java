@@ -5,6 +5,7 @@ import physics.Polygon;
 import physics.Vector2D;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();
@@ -18,7 +19,9 @@ public class BallPhysics extends ActivePhysicsComponent {
         // Air Resistance
         //applyForce(velocity.scale(-1 * 0.5f * 1.2f * velocity.magnitude() * 0.47f * 0.554f));
         // Friction
-        //applyForce(velocity.normalize().scale(-0.3f));
+/*        if(!velocity.isNullVector()) {
+            applyForce(velocity.normalize().scale(-0.3f));
+        }*/
 
         super.update(dt);
 
@@ -28,46 +31,19 @@ public class BallPhysics extends ActivePhysicsComponent {
     public void testCollision(ArrayList<Polygon> polygons) {
         Vector2D center = parent.getTransform().getCenter();
 
-        // TODO: Refactor cause this is awful
-        // Doesn't take deleting polygons into account
+        ArrayList<Collision> currentCollisions = new ArrayList<>();
         for (Polygon p : polygons) {
-            ArrayList<Collision> c = p.collisionCircle(center, parent.getTransform().size.x / 2);
-            if (!c.isEmpty()) {
-                for (Collision collision : c) {
-                    if (!isColliding(collision)) {
-                        Vector2D n = collision.getNormal().normalize();
-                        velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
-                        collisions.add(collision);
-                    }
-                }
+            ArrayList<Collision> newCollisions = p.collisionCircle(center, parent.getTransform().size.x / 2);
 
-                ArrayList<Collision> found = new ArrayList<>();
-                outer: for (Collision collision : collisions) {
-                    if (!collision.collider.equals(p)) continue;
-                    for (Collision k : c) {
-                        if (collision.matches(k)) continue outer;
-                    }
-                    found.add(collision);
+            for (Collision collision : newCollisions) {
+                if (!collisions.contains(collision)) {
+                    Vector2D n = collision.getNormal().normalize();
+                    velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
                 }
-                collisions.removeAll(found);
-            } else {
-                clearCollisionsPolygon(p);
+                currentCollisions.add(collision);
             }
         }
-    }
 
-    public void clearCollisionsPolygon(Polygon p) {
-        ArrayList<Collision> found = new ArrayList<>();
-        for (Collision c : collisions) {
-            if (c.collider.equals(p)) found.add(c);
-        }
-        collisions.removeAll(found);
-    }
-
-    public boolean isColliding(Collision other) {
-        for (Collision c : collisions) {
-            if (c.matches(other)) return true;
-        }
-        return false;
+        collisions = currentCollisions;
     }
 }

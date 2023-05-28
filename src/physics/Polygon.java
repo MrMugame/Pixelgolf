@@ -26,6 +26,7 @@ public class Polygon {
         return collisions;
     }
 
+    // TODO: Make behaviour at convex corners a little better
     public Vector2D getLineNormal(int index) {
         Vector2D a = points.get(index);
         Vector2D b = points.get(index+1 >= points.size() ? 0 : index+1);

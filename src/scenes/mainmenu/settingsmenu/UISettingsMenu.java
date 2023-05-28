@@ -8,7 +8,7 @@ import gui.components.UIContainer;
 import gui.components.UIPage;
 import gui.constraints.UICenterConstraint;
 import gui.constraints.UIUnitConstraint;
-import gui.components.specific.UITextButton;
+import scenes.mainmenu.settingsmenu.components.UITextButton;
 import scenes.mainmenu.settingsmenu.components.UIAudioSettings;
 import scenes.mainmenu.settingsmenu.components.UIVideoSettings;
 

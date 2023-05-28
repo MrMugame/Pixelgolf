@@ -1,5 +1,7 @@
 package physics;
 
+import java.util.Objects;
+
 public class Collision {
     public final Polygon collider;
     public final int line;
@@ -13,7 +15,16 @@ public class Collision {
         return collider.getLineNormal(line);
     }
 
-    public boolean matches(Collision o) {
-        return collider.equals(o.collider) && line == o.line;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Collision collision = (Collision) o;
+        return line == collision.line && Objects.equals(collider, collision.collider);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(collider, line);
     }
 }

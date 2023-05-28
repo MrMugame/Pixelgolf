@@ -46,7 +46,7 @@ public class UILevel extends UIClickable {
         img.getConstraints().addHeight(new UIImageAspectConstraint());
         add(img);
 
-        UIText text = new UIText(Integer.toString(number), new Color(0,0,0), Assets.DEFAULT_FONT_BOLD, 56, true);
+        UIText text = new UIText(Integer.toString(number), new Color(0,0,0), Assets.DEFAULT_FONT, 56, true);
         text.getConstraints().addX(new UIPixelConstraint(0));
         text.getConstraints().addY(new UIPixelConstraint(0));
         text.getConstraints().addWidth(new UIRelativeConstraint(1));

@@ -1,4 +1,4 @@
-package gui.components.specific;
+package scenes.mainmenu.settingsmenu.components;
 
 import assets.Assets;
 import gui.ConstraintFactory;
@@ -20,7 +20,7 @@ public class UITextButton extends UIClickable {
 
     @Override
     protected void init() {
-        label = new UIText(text, COLOR, Assets.DEFAULT_FONT_BOLD, 38, false);
+        label = new UIText(text, COLOR, Assets.DEFAULT_FONT, 38, false);
         label.setConstraints(ConstraintFactory.fullscreen());
 
 /*        UIComponent block = new UIBlock(new Color(0,0,1));

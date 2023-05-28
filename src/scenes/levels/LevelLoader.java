@@ -18,10 +18,10 @@ import java.io.File;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
 public class LevelLoader {
-    // Pixel on Background Image per Game Unit
-    private static int TILESIZE = 10;
+    // Anzahl der Pixel pro Ingame-Einheit auf dem Hintergrundbild
+    private static final int TILESIZE = 10;
 
-    private String filepath;
+    private final String filepath;
     private Map map;
 
     public LevelLoader(String filepath) {
