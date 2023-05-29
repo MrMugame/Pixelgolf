@@ -17,6 +17,8 @@ public abstract class Scene {
     private ArrayList<GameObject> objects = new ArrayList<>();
     private ArrayList<GameObject> waiting = new ArrayList<>();
 
+    private boolean paused = false;
+
     protected Scene(Camera cam) {
         camera = cam;
     }
@@ -34,9 +36,10 @@ public abstract class Scene {
     }
 
     public void update(float dt) {
+        uiRenderer.update();
+        if (paused) return;
         physics.update();
         camera.update(dt);
-        uiRenderer.update();
 
         for (GameObject object : objects) {
             object.update(dt);
@@ -64,5 +67,13 @@ public abstract class Scene {
 
     public UIRenderer getUiRenderer() {
         return uiRenderer;
+    }
+
+    public void pause() {
+        this.paused = true;
+    }
+
+    public void pursue() {
+        this.paused = false;
     }
 }

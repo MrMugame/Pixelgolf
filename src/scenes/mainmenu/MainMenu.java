@@ -16,20 +16,6 @@ public class MainMenu extends Scene {
         super(new Camera());
     }
 
-    // STEEEF
-    // Zurück buttons
-    // Option menu
-    // Escape menu
-    // Ingame HUD (+ Round finished)
-    // Spielgraphics selber
-
-    // Fragen:
-    // Kamera wie??
-    // Ball/Kanten wie?? (glatt, pixelig)
-    // Background Texture wo das Pixel grid aligned ist?
-
-
-
     @Override
     public void init() {
         UIComponent page = new UIPage(new UIMainScreen(), new UISettingsMenu(), new UILevelMenu());
@@ -38,9 +24,5 @@ public class MainMenu extends Scene {
         page.getConstraints().addWidth(new UIRelativeConstraint(1));
         page.getConstraints().addHeight(new UIRelativeConstraint(1));
         getUiRenderer().getContainer().add(page);
-
-/*        GameObject go = new GameObject("Background", new Vector2D(-6, 4), new Vector2D(12, 8), 0);
-        go.add(new StaticGraphic("minecraft.png"));
-        addGameObject(go);*/
     }
 }

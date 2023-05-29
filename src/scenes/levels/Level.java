@@ -5,16 +5,16 @@ import game.graphics.StaticGraphic;
 import game.input.BallInput;
 import game.physics.BallPhysics;
 import game.physics.Wall;
-import graphics.DebugCamera;
 import graphics.LevelCamera;
+import gui.ConstraintFactory;
+import gui.UIComponent;
 import physics.Vector2D;
 import scenes.Scene;
+import scenes.levels.components.EscapeMenuUI;
 
 public class Level extends Scene {
 
     private final LevelLoader loader;
-
-    private GameObject background;
 
     public Level(String path) {
         super(new LevelCamera());
@@ -29,7 +29,7 @@ public class Level extends Scene {
             throw new RuntimeException(e);
         }
 
-        background = loader.renderBackground();
+        GameObject background = loader.renderBackground();
         addGameObject(background);
 
         GameObject walls = new GameObject("walls", new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0);
@@ -42,6 +42,11 @@ public class Level extends Scene {
         g1.add(new BallPhysics(10f));
         g1.add(new BallInput());
         addGameObject(g1);
+
+
+        UIComponent escapeMenu = new EscapeMenuUI();
+        escapeMenu.setConstraints(ConstraintFactory.fullscreen());
+        getUiRenderer().getContainer().add(escapeMenu);
     }
 
     public float getMapWidth() {

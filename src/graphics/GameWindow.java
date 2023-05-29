@@ -62,8 +62,9 @@ public class GameWindow {
 
         long lastTime = System.nanoTime();
         long timeElapsed = 0;
-        float fps = 0;
         int frames = 0;
+        float fps = 0;
+
 
         while (true) {
             //TODO: Only do this on size change
@@ -93,7 +94,7 @@ public class GameWindow {
                 frames = 0;
             }
 
-            currentScene.update((float)(frameTime/1e6));
+            currentScene.update((float) (frameTime/1e6));
 
             currentScene.render(g);
 
