@@ -1,16 +1,12 @@
 package scenes.mainmenu.settingsmenu;
 
+import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
-import gui.components.UIBlock;
-import gui.components.UIClickable;
-import gui.components.UIContainer;
-import gui.components.UIPage;
-import gui.constraints.UICenterConstraint;
-import gui.constraints.UIUnitConstraint;
-import scenes.mainmenu.settingsmenu.components.UITextButton;
-import scenes.mainmenu.settingsmenu.components.UIAudioSettings;
-import scenes.mainmenu.settingsmenu.components.UIVideoSettings;
+import gui.components.*;
+import gui.constraints.*;
+import scenes.mainmenu.settingsmenu.components.UIBackButton;
+import scenes.mainmenu.settingsmenu.components.UISelectButton;
 
 import java.awt.*;
 
@@ -20,46 +16,51 @@ public class UISettingsMenu extends UIComponent {
 
     @Override
     protected void init() {
-        UIBlock background = new UIBlock(new Color(0, 0, 0, 0.5f));
-        background.setConstraints(ConstraintFactory.fullscreen());
+        UIComponent background = new UIImage("ui/background_2.png");
+        background.setConstraints(ConstraintFactory.fullscreenAspect());
         add(background);
 
-        UIPage page = new UIPage(new UIVideoSettings(), new UIAudioSettings());
-        page.getConstraints().addX(new UICenterConstraint());
-        page.getConstraints().addY(new UIUnitConstraint(8f));
-        page.getConstraints().addWidth(new UIUnitConstraint(30f));
-        page.getConstraints().addHeight(new UIUnitConstraint(25f));
-
-        add(page);
-
-
-        UIComponent navbar = new UIContainer();
-        navbar.getConstraints().addX(new UICenterConstraint());
-        navbar.getConstraints().addY(new UIUnitConstraint(2));
-        navbar.getConstraints().addWidth(new UIUnitConstraint(16.5f));
-        navbar.getConstraints().addHeight(new UIUnitConstraint(2.5f));
-
-        UIClickable escape = new UITextButton("Zurück");
-        escape.setConstraints(ConstraintFactory.unitConstrains(0, 0, 8.0f, 2.5f));
-        escape.addListener(() -> {
+        UIBackButton backButton = new UIBackButton();
+        backButton.setConstraints(ConstraintFactory.unitConstrains(2, 2, 6, 0));
+        backButton.getConstraints().addHeight(new UIPassthroughConstraint());
+        backButton.addListener(() -> {
             ((UIPage) getParent()).switchPage(0);
         });
-        add(escape);
+        add(backButton);
 
-        UIClickable videosettings = new UITextButton("Video");
-        videosettings.setConstraints(ConstraintFactory.unitConstrains(0, 0, 7.5f, 2.5f));
-        videosettings.addListener(() -> {
-            page.switchPage(0);
+        UIComponent block = new UIImage("ui/settings_container.png");
+        block.getConstraints().addX(new UICenterConstraint());
+        block.getConstraints().addY(new UICenterConstraint());
+        block.getConstraints().addWidth(new UIUnitConstraint(50));
+        block.getConstraints().addHeight(new UIImageAspectConstraint());
+
+        UIContainer container = new UIContainer();
+        container.getConstraints().addX(new UICenterConstraint());
+        container.getConstraints().addY(new UICenterConstraint());
+        container.getConstraints().addWidth(new UIRelativeConstraint(0.85f));
+        container.getConstraints().addHeight(new UIRelativeConstraint(0.80f));
+        block.add(container);
+
+        UISelectButton button_1 = new UISelectButton(GameWindow.get().isFullscreen() ? 1 : 0, "Fullscreen Off", "Fullscreen On");
+        button_1.getConstraints().addX(new UIEndAlignContstraint());
+        button_1.getConstraints().addY(new UIUnitConstraint(0));
+        button_1.getConstraints().addWidth(new UIUnitConstraint(15));
+        button_1.getConstraints().addHeight(new UIPassthroughConstraint());
+        button_1.addListener((i) -> {
+            switch (i) {
+                case 0:
+                    GameWindow.get().setWindowed();
+                    break;
+                case 1:
+                    GameWindow.get().setFullscreen();
+                    break;
+            }
         });
-        navbar.add(videosettings);
+        container.add(button_1);
 
-        UIClickable audiosettings = new UITextButton("Audio");
-        audiosettings.setConstraints(ConstraintFactory.unitConstrains(10f, 0, 7.5f, 2.5f));
-        audiosettings.addListener(() -> {
-            page.switchPage(1);
-        });
-        navbar.add(audiosettings);
 
-        add(navbar);
+
+
+        add(block);
     }
 }

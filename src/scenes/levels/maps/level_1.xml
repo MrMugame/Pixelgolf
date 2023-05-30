@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Map width="20" height="10">
+<Map width="25" height="15">
     <Track insideTex="stone.png" outsideTex="grass.png">
         <p>2;-2</p>
-        <p>2;-6</p>
-        <p>4;-8</p>
-        <p>10;-8</p>
-        <p>10;-5</p>
-        <p>5;-5</p>
-        <p>5;-2</p>
+        <p>2;-9</p>
+        <p>5;-12</p>
+        <p>15;-12</p>
+        <p>15;-8</p>
+        <p>6;-8</p>
+        <p>6;-2</p>
     </Track>
     <Static x="6" y="-2" w="2" h="2" tex="flower.png"/>
 </Map>

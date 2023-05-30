@@ -30,4 +30,8 @@ public class UIPage extends UIComponent {
         index = page;
         add(pages.get(index));
     }
+
+    public int getIndex() {
+        return index;
+    }
 }

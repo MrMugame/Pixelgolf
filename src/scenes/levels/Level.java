@@ -10,7 +10,7 @@ import gui.ConstraintFactory;
 import gui.UIComponent;
 import physics.Vector2D;
 import scenes.Scene;
-import scenes.levels.components.EscapeMenuUI;
+import scenes.levels.components.UIEscapeMenu;
 
 public class Level extends Scene {
 
@@ -44,7 +44,7 @@ public class Level extends Scene {
         addGameObject(g1);
 
 
-        UIComponent escapeMenu = new EscapeMenuUI();
+        UIComponent escapeMenu = new UIEscapeMenu();
         escapeMenu.setConstraints(ConstraintFactory.fullscreen());
         getUiRenderer().getContainer().add(escapeMenu);
     }

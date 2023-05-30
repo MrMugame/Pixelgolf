@@ -5,9 +5,11 @@ import gui.ConstraintFactory;
 import gui.UIComponent;
 import gui.components.UIContainer;
 import gui.components.UIImage;
+import gui.components.UIPage;
 import gui.constraints.*;
 import scenes.levels.LevelLoader;
 import scenes.mainmenu.levelmenu.components.UILevel;
+import scenes.mainmenu.settingsmenu.components.UIBackButton;
 
 import java.io.File;
 import java.net.URI;
@@ -25,6 +27,14 @@ public class UILevelMenu extends UIComponent {
         UIComponent background = new UIImage("ui/background_2.png");
         background.setConstraints(ConstraintFactory.fullscreenAspect());
         add(background);
+
+        UIBackButton backButton = new UIBackButton();
+        backButton.setConstraints(ConstraintFactory.unitConstrains(2, 2, 6, 0));
+        backButton.getConstraints().addHeight(new UIPassthroughConstraint());
+        backButton.addListener(() -> {
+            ((UIPage) getParent()).switchPage(0);
+        });
+        add(backButton);
 
         UIContainer container = new UIContainer();
         container.getConstraints().addX(new UICenterConstraint());

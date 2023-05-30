@@ -40,11 +40,13 @@ public class UIClickable extends UIComponent {
         MouseListener listener = MouseListener.get();
 
         if (listener.isPressed(BUTTON1) && isHovered && !debounce) {
+            onPressStart();
             debounce = true;
+        } else if (!listener.isPressed(BUTTON1) && debounce) {
+            onPressEnd();
             for (ClickListener l : listeners) {
                 l.run();
             }
-        } else if (!listener.isPressed(BUTTON1) && debounce) {
             debounce = false;
         }
     }
@@ -55,4 +57,7 @@ public class UIClickable extends UIComponent {
 
     protected void onHoverEnter() {};
     protected void onHoverLeave() {};
+
+    protected void onPressStart() {};
+    protected void onPressEnd() {};
 }

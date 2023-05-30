@@ -5,12 +5,15 @@ import java.util.ArrayList;
 
 public abstract class UIComponent {
     private ArrayList<UIComponent> childs = new ArrayList<>();
+
     private UIConstraints constraints = new UIConstraints();
 
     private UIComponent parent;
     private boolean initialized = false;
 
     public void add(UIComponent component) {
+        if (childs.contains(component)) return; // TODO: Changing to a set would make this obsolete (atleast i think)
+
         if (!component.initialized) {
             component.init();
             component.initialized = true;

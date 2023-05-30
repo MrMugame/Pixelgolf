@@ -161,4 +161,8 @@ public class GameWindow {
     public Scene getScene() {
         return currentScene;
     }
+
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
 }

@@ -16,12 +16,13 @@ public class BallPhysics extends ActivePhysicsComponent {
 
     @Override
     public void update(float dt) {
-        // Air Resistance
-        //applyForce(velocity.scale(-1 * 0.5f * 1.2f * velocity.magnitude() * 0.47f * 0.554f));
-        // Friction
-/*        if(!velocity.isNullVector()) {
-            applyForce(velocity.normalize().scale(-0.3f));
-        }*/
+        // -- Patrick
+        // Luftwiederstand
+        applyForce(velocity.scale(-1 * 0.5f * 1.2f * velocity.magnitude() * 0.47f * 0.554f));
+        // Reibung
+        if (!velocity.isNullVector()) {
+            applyForce(velocity.normalize().scale(-5.5f));
+        }
 
         super.update(dt);
 
@@ -39,6 +40,7 @@ public class BallPhysics extends ActivePhysicsComponent {
                 if (!collisions.contains(collision)) {
                     Vector2D n = collision.getNormal().normalize();
                     velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
+                    velocity = velocity.scale(0.75f); // -- Patrick
                 }
                 currentCollisions.add(collision);
             }

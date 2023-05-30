@@ -15,10 +15,6 @@ import java.util.Objects;
 public class Assets {
 
     public static final String DEFAULT_FONT = "pixelgold.ttf";
-
-    public static final Color COLOR_HIGHLIGHT = new Color(0.659f, 0.902f, 0.114f);
-
-
     private static HashMap<String, Font> fonts = new HashMap<>();
 
     public static BufferedImage loadImage(String path) {

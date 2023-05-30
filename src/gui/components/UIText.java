@@ -42,7 +42,6 @@ public class UIText extends UIComponent {
             int offset = center ? (getWidth() - metrics.stringWidth(line)) / 2 : 0;
             g.drawString(line, getX() + offset, y);
         }
-
     }
 
     private ArrayList<String> calculateLines(FontMetrics metrics) {
@@ -65,9 +64,5 @@ public class UIText extends UIComponent {
         }
 
         return lines;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 }
