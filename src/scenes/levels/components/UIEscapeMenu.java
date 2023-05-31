@@ -72,8 +72,6 @@ public class UIEscapeMenu extends UIComponent {
         background.getConstraints().addWidth(new UIImageAspectConstraint());
         menu.add(background);
 
-        // TODO: Contstrain duplicater
-
         UIEscapeButton backButton = new UIEscapeButton("ui/escape_back_button.png", "ui/escape_small_button_hover.png", "ui/escape_small_button_press.png");
         backButton.getConstraints().addX(new UICenterConstraint());
         backButton.getConstraints().addY(new UIUnitConstraint(3));

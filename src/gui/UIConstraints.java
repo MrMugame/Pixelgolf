@@ -37,4 +37,14 @@ public class UIConstraints {
         heightCt = constraint;
     }
 
+    public UIConstraints copy() {
+        UIConstraints constraints = new UIConstraints();
+        constraints.addX(xCt);
+        constraints.addY(yCt);
+        constraints.addWidth(widthCt);
+        constraints.addHeight(heightCt);
+
+        return constraints;
+    }
+
 }

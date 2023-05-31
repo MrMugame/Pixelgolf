@@ -33,7 +33,6 @@ public class UIStartMenuButton extends UIClickable {
         arrowLeft.getConstraints().addWidth(new UIImageAspectConstraint());
         arrowLeft.getConstraints().addHeight(new UIRelativeConstraint(0.40f));
 
-        // 5x7
         arrowRight = new UIContainer();
         arrowRight.getConstraints().addX(new UIUnitConstraint(2f, true));
         arrowRight.getConstraints().addY(new UICenterConstraint());
