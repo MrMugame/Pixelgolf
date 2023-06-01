@@ -1,8 +1,13 @@
 package scenes.levels;
 
 import assets.Assets;
+import game.Component;
 import game.GameObject;
 import game.graphics.DynamicGraphic;
+import game.graphics.StaticGraphic;
+import game.input.BallInput;
+import game.physics.BallPhysics;
+import game.physics.Flagpole;
 import game.physics.Wall;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
@@ -31,7 +37,7 @@ public class LevelLoader {
         this.filepath = filepath;
     }
 
-    // TODO: Make the Exceptions nice
+    // TODO: Make the Exceptions nice && Cleanup
     public void load() throws Exception {
         map = new Map();
 
@@ -59,20 +65,58 @@ public class LevelLoader {
         }
 
         NodeList statics = root.getElementsByTagName("Static");
-
         for (int i = 0; i < statics.getLength(); i++) {
             Element element = (Element) statics.item(i);
             Map.StaticGrpahic g = new Map.StaticGrpahic();
 
             g.x = Float.parseFloat(element.getAttribute("x"));
             g.y = Float.parseFloat(element.getAttribute("y"));
-            g.width = Float.parseFloat(element.getAttribute("w"));
-            g.height = Float.parseFloat(element.getAttribute("h"));
             g.texture = element.getAttribute("tex");
 
             map.statics.add(g);
         }
 
+        NodeList dynamics = root.getElementsByTagName("Dynamic");
+        for (int i = 0; i < dynamics.getLength(); i++) {
+            Element element = (Element) dynamics.item(i);
+
+            String name = element.getAttribute("name");
+            float x = Float.parseFloat(element.getAttribute("x"));
+            float y = Float.parseFloat(element.getAttribute("y"));
+            float width = Float.parseFloat(element.getAttribute("w"));
+            float height = Float.parseFloat(element.getAttribute("h"));
+            int z = Integer.parseInt(element.getAttribute("z"));
+
+            GameObject object = new GameObject(name, new Vector2D(x, y), new Vector2D(width, height), z);
+
+            NodeList components = element.getChildNodes();
+            for (int j = 0; j < components.getLength(); j++) {
+                if (!(components.item(j) instanceof Element)) continue;
+                Element component = (Element) components.item(j);
+                switch (component.getTagName()) {
+                    case "StaticGraphic":
+                        String path = component.getAttribute("path");
+                        StaticGraphic graphic = new StaticGraphic(path);
+                        object.add(graphic);
+                        break;
+                    case "BallPhysics":
+                        float mass = Float.parseFloat(component.getAttribute("mass"));
+                        BallPhysics physics = new BallPhysics(mass);
+                        object.add(physics);
+                        break;
+                    case "BallInput":
+                        object.add(new BallInput());
+                        break;
+                    case "Flagpole":
+                        object.add(new Flagpole());
+                        break;
+                    default:
+                        System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());
+                }
+            }
+
+            map.dynamics.add(object);
+        }
     }
 
     public GameObject renderBackground() {
@@ -102,7 +146,8 @@ public class LevelLoader {
 
         for (Map.StaticGrpahic graphic : map.statics) {
             // TODO: Maybe use Texture paint to have subpixel accuracy or remove w, h and draw it so it fits the pixel grid
-            g.drawImage(Assets.loadImage(graphic.texture), (int) graphic.x*TILESIZE, (int) -graphic.y*TILESIZE, (int) graphic.width*TILESIZE, (int) graphic.height*TILESIZE, null);
+            System.out.println(graphic.x);
+            g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
         }
 
         g.dispose();
@@ -111,6 +156,10 @@ public class LevelLoader {
         go.add(new DynamicGraphic(texture));
 
         return go;
+    }
+
+    public ArrayList<GameObject> getDynamicObjects() {
+        return map.dynamics;
     }
 
     public Map getMap() {

@@ -40,20 +40,9 @@ public class Level extends Scene {
         walls.add(new Wall(loader.getMap().track));
         addGameObject(walls);
 
-        // TESTING
-        GameObject ball = new GameObject("ball", new Vector2D(3f, -2.5f), new Vector2D(0.5f, 0.5f), 5);
-        ball.add(new StaticGraphic("game/ball.png"));
-        ball.add(new BallPhysics(10f));
-        ball.add(new BallInput());
-        addGameObject(ball);
-
-        getCamera().setPosition(ball.getTransform().position);
-
-
-        GameObject flag = new GameObject("flagpole", new Vector2D(3f, -7.5f), new Vector2D(0.5f, 0.5f), 4);
-        flag.add(new StaticGraphic("img.png"));
-        flag.add(new Flagpole(0.5f));
-        addGameObject(flag);
+        for (GameObject object : loader.getDynamicObjects()) {
+            addGameObject(object);
+        }
 
         UIComponent HUD = new UIHUD();
         HUD.setConstraints(ConstraintFactory.fullscreen());

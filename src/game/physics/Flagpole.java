@@ -9,17 +9,19 @@ public class Flagpole extends StaticPhysicsComponent {
 
     private Polygon polygon;
 
-    public Flagpole(float size) {
-        // TODO: Change to an init method so you dont have size parameter
-        polygon = new Polygon();
-        polygon.addPoint(new Vector2D(size/2-0.1f, -size/2+0.1f));
-        polygon.addPoint(new Vector2D(size/2-0.1f, -size/2-0.1f));
-        polygon.addPoint(new Vector2D(size/2+0.1f, -size/2-0.1f));
-        polygon.addPoint(new Vector2D(size/2+0.1f, -size/2+0.1f));
-    }
+    public Flagpole() {}
 
     @Override
     public Polygon getPolygon() {
+        if (polygon == null) {
+            float width = parent.getTransform().size.x;
+            float height = parent.getTransform().size.y;
+            polygon = new Polygon();
+            polygon.addPoint(new Vector2D(width/2-0.1f, -height/2+0.1f));
+            polygon.addPoint(new Vector2D(width/2-0.1f, -height/2-0.1f));
+            polygon.addPoint(new Vector2D(width/2+0.1f, -height/2-0.1f));
+            polygon.addPoint(new Vector2D(width/2+0.1f, -height/2+0.1f));
+        }
         return polygon;
     }
 }

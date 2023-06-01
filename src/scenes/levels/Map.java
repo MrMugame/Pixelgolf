@@ -1,5 +1,6 @@
 package scenes.levels;
 
+import game.GameObject;
 import physics.Polygon;
 
 import java.util.ArrayList;
@@ -11,8 +12,13 @@ public class Map {
     public String outsideTexture;
 
     public static class StaticGrpahic {
-        public float width, height, x, y;
+        public float x, y;
         public String texture;
     }
+
     public ArrayList<StaticGrpahic> statics = new ArrayList<>();
+
+    public ArrayList<GameObject> dynamics = new ArrayList<>();
+
+
 }
