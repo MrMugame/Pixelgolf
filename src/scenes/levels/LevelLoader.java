@@ -145,8 +145,6 @@ public class LevelLoader {
         g.fillPolygon(polygon);
 
         for (Map.StaticGrpahic graphic : map.statics) {
-            // TODO: Maybe use Texture paint to have subpixel accuracy or remove w, h and draw it so it fits the pixel grid
-            System.out.println(graphic.x);
             g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
         }
 

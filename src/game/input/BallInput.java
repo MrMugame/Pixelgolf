@@ -16,7 +16,7 @@ public class BallInput extends InputComponent {
     public void update(float dt) {
         MouseListener listener = MouseListener.get();
 
-        if (!dragging && listener.isPressed(BUTTON1) && CollisionMath.pointCircle(parent.getTransform().getCenter() , parent.getTransform().size.x / 2 , listener.getMousePosition())) {
+        if (parent.get(ActivePhysicsComponent.class).velocity.magnitudeSquared() < 0.001f && !dragging && listener.isPressed(BUTTON1) && CollisionMath.pointCircle(parent.getTransform().getCenter() , parent.getTransform().size.x / 2 , listener.getMousePosition())) {
             dragging = true;
         } else if (dragging && !listener.isPressed(BUTTON1)) {
             BallPhysics physics = (BallPhysics) parent.get(ActivePhysicsComponent.class);
