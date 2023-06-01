@@ -4,10 +4,14 @@ import physics.Polygon;
 
 public class Wall extends StaticPhysicsComponent {
 
-    public Wall(Polygon poly) {
-        super(poly);
+    private Polygon polygon;
+
+    public Wall(Polygon polygon) {
+        this.polygon = polygon;
     }
 
     @Override
-    public void update(float dt) {}
+    public Polygon getPolygon() {
+        return polygon;
+    }
 }

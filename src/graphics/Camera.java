@@ -26,4 +26,8 @@ public class Camera {
     public Vector2D getPosition() {
         return position;
     }
+
+    public void setPosition(Vector2D position) {
+        this.position = position;
+    }
 }

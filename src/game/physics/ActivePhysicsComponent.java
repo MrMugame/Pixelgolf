@@ -2,6 +2,7 @@ package game.physics;
 
 import game.Component;
 import game.GameObject;
+import physics.Collider;
 import physics.Collision;
 import physics.Polygon;
 import physics.Vector2D;
@@ -26,7 +27,7 @@ public abstract class ActivePhysicsComponent extends Component {
         force = new Vector2D();
     }
 
-    public abstract void testCollision(ArrayList<Polygon> p);
+    public abstract void testCollision(ArrayList<Collider> colliders);
 
     public void applyForce(Vector2D f) {
         force = force.add(f);

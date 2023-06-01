@@ -3,13 +3,13 @@ package scenes.levels;
 import game.GameObject;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
-import game.miscellaneous.Flagpole;
+import game.physics.Flagpole;
 import game.physics.BallPhysics;
 import game.physics.Wall;
+import graphics.GameWindow;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
 import gui.UIComponent;
-import gui.UIConstraints;
 import physics.Vector2D;
 import scenes.Scene;
 import scenes.levels.components.UIEscapeMenu;
@@ -40,29 +40,37 @@ public class Level extends Scene {
         walls.add(new Wall(loader.getMap().track));
         addGameObject(walls);
 
+        // TESTING
+        GameObject ball = new GameObject("ball", new Vector2D(3f, -2.5f), new Vector2D(0.5f, 0.5f), 5);
+        ball.add(new StaticGraphic("game/ball.png"));
+        ball.add(new BallPhysics(10f));
+        ball.add(new BallInput());
+        addGameObject(ball);
 
-        GameObject g1 = new GameObject("ball", new Vector2D(3f, -2.5f), new Vector2D(0.5f, 0.5f), 5);
-        g1.add(new StaticGraphic("game/ball.png"));
-        g1.add(new BallPhysics(10f));
-        g1.add(new BallInput());
-        addGameObject(g1);
+        getCamera().setPosition(ball.getTransform().position);
+
 
         GameObject flag = new GameObject("flagpole", new Vector2D(3f, -7.5f), new Vector2D(0.5f, 0.5f), 4);
         flag.add(new StaticGraphic("img.png"));
-        flag.add(new Flagpole());
+        flag.add(new Flagpole(0.5f));
         addGameObject(flag);
 
         UIComponent HUD = new UIHUD();
         HUD.setConstraints(ConstraintFactory.fullscreen());
         getUiRenderer().getContainer().add(HUD);
 
-/*        UIComponent winScreen = new UIWinScreen(2, loader.getNextPath());
-        winScreen.setConstraints(ConstraintFactory.fullscreen());
-        getUiRenderer().getContainer().add(winScreen);*/
-
         UIComponent escapeMenu = new UIEscapeMenu();
         escapeMenu.setConstraints(ConstraintFactory.fullscreen());
         getUiRenderer().getContainer().add(escapeMenu);
+    }
+
+    public void won() {
+        // TODO: Maybe do this with an event system
+        pause();
+
+        UIComponent winScreen = new UIWinScreen(2, loader.getPath(), loader.getNextPath());
+        winScreen.setConstraints(ConstraintFactory.fullscreen());
+        getUiRenderer().getContainer().add(winScreen);
     }
 
     public float getMapWidth() {

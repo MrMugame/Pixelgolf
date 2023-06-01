@@ -21,14 +21,14 @@ public class Physics {
     }
 
     public void update() {
-        ArrayList<Polygon> polygons = new ArrayList<>();
+        ArrayList<Collider> colliders = new ArrayList<>();
         for (StaticPhysicsComponent passive : staticComponents) {
             passive.getPolygon().setTranslation(passive.parent.getTransform().position);
-            polygons.add(passive.getPolygon());
+            colliders.add(new Collider(passive.parent, passive.getPolygon()));
         }
 
         for (ActivePhysicsComponent active : activeComponents) {
-            active.testCollision(polygons);
+            active.testCollision(colliders);
         }
     }
 }

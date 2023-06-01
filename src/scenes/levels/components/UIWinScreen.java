@@ -14,10 +14,11 @@ public class UIWinScreen extends UIComponent {
     private static String OFF = "ui/win_star_off.png";
 
     private int stars;
-    private String next;
+    private String next, self;
 
-    public UIWinScreen(int stars, String next) {
+    public UIWinScreen(int stars, String self, String next) {
         this.stars = stars;
+        this.self = self;
         this.next = next;
     }
 
@@ -94,7 +95,7 @@ public class UIWinScreen extends UIComponent {
         buttonRetry.getConstraints().addWidth(new UIPassthroughConstraint());
         buttonRetry.getConstraints().addHeight(new UIUnitConstraint(4.5f));
         buttonRetry.addListener(() -> {
-            System.out.println("Retry");
+            GameWindow.get().changeScene(new Level(self));
         });
         containerTwo.add(buttonRetry);
 

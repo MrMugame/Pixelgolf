@@ -117,6 +117,10 @@ public class LevelLoader {
         return map;
     }
 
+    public String getPath() {
+        return filepath;
+    }
+
     public String getNextPath() {
         // TODO: Don't really like this
         int number = Integer.parseInt(filepath.split("_")[1].split("\\.")[0]);

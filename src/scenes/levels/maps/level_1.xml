@@ -10,4 +10,5 @@
         <p>6;-2</p>
     </Track>
     <Static x="6" y="-2" w="2" h="2" tex="flower.png"/>
+
 </Map>
