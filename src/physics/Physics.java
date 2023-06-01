@@ -24,6 +24,7 @@ public class Physics {
         ArrayList<Collider> colliders = new ArrayList<>();
         for (StaticPhysicsComponent passive : staticComponents) {
             passive.getPolygon().setTranslation(passive.parent.getTransform().position);
+            passive.getPolygon().setRotation(passive.parent.getTransform().rotation);
             colliders.add(new Collider(passive.parent, passive.getPolygon()));
         }
 

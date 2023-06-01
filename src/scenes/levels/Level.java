@@ -2,14 +2,11 @@ package scenes.levels;
 
 import game.GameObject;
 import game.graphics.StaticGraphic;
-import game.input.BallInput;
-import game.physics.Flagpole;
-import game.physics.BallPhysics;
 import game.physics.Wall;
-import graphics.GameWindow;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
 import gui.UIComponent;
+import gui.components.UIContainer;
 import physics.Vector2D;
 import scenes.Scene;
 import scenes.levels.components.UIEscapeMenu;
@@ -18,6 +15,7 @@ import scenes.levels.components.UIWinScreen;
 
 public class Level extends Scene {
 
+    private UIContainer container;
     private final LevelLoader loader;
 
     public Level(String path) {
@@ -36,7 +34,7 @@ public class Level extends Scene {
         GameObject background = loader.renderBackground();
         addGameObject(background);
 
-        GameObject walls = new GameObject("walls", new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0);
+        GameObject walls = new GameObject("walls", new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0, 0);
         walls.add(new Wall(loader.getMap().track));
         addGameObject(walls);
 
@@ -44,9 +42,13 @@ public class Level extends Scene {
             addGameObject(object);
         }
 
+        container = new UIContainer();
+        container.setConstraints(ConstraintFactory.fullscreen());
+        getUiRenderer().getContainer().add(container);
+
         UIComponent HUD = new UIHUD();
         HUD.setConstraints(ConstraintFactory.fullscreen());
-        getUiRenderer().getContainer().add(HUD);
+        container.add(HUD);
 
         UIComponent escapeMenu = new UIEscapeMenu();
         escapeMenu.setConstraints(ConstraintFactory.fullscreen());
@@ -59,7 +61,7 @@ public class Level extends Scene {
 
         UIComponent winScreen = new UIWinScreen(2, loader.getPath(), loader.getNextPath());
         winScreen.setConstraints(ConstraintFactory.fullscreen());
-        getUiRenderer().getContainer().add(winScreen);
+        container.add(winScreen);
     }
 
     public float getMapWidth() {

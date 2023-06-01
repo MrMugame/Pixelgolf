@@ -7,25 +7,16 @@ public class Transform {
     public static final int SCALE_FACTOR = 100;
 
     public Vector2D position;
+    public float rotation; // Radians / Bogenmaß
     public Vector2D size;
     public int Zindex;
+    public boolean rotateCenter = false;
 
-    public Transform() {
-        position = new Vector2D();
-        size = new Vector2D();
-        Zindex = 0;
-    }
-
-    public Transform(Vector2D pos, Vector2D s, int z) {
-        position = pos;
-        size = s;
-        Zindex = z;
-    }
-
-    public Transform(int z) {
-        position = new Vector2D();
-        size = new Vector2D();
-        Zindex = z;
+    public Transform(Vector2D position, Vector2D size, float rotation, int Zindex) {
+        this.position = position;
+        this.size = size;
+        this.Zindex = Zindex;
+        this.rotation = rotation;
     }
 
     public void translate(Vector2D add) {
@@ -50,5 +41,14 @@ public class Transform {
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
         Vector2D pos = position.sub(w).scale((float) 1/SCALE_FACTOR).invertY().scale(1.0f/GameWindow.get().getScene().getCamera().getZoom()).add(GameWindow.get().getScene().getCamera().getPosition());
         return pos;
+    }
+
+    public static Vector2D rotateVector(Vector2D input, float radians) {
+        float cos = (float) Math.cos(radians);
+        float sin = (float) Math.sin(radians);
+
+        // https://en.wikipedia.org/wiki/Rotation_matrix
+        return new Vector2D(input.x * cos - input.y * sin,
+                input.x * sin + input.y * cos);
     }
 }

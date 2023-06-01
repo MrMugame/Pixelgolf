@@ -26,28 +26,29 @@ public class LayerRenderer {
     }
 
     public void render(Graphics2D g) {
-        Camera c = GameWindow.get().getScene().getCamera();
+        Camera camera = GameWindow.get().getScene().getCamera();
         for (GraphicComponent component : components) {
-            Transform t = component.parent.getTransform();
-            Vector2D pos = Transform.toScreenPosition(t.position.add(c.getTranslation()));
-            Vector2D size = Transform.toScreenSize(t.size);
+            Transform transform = component.parent.getTransform();
+            Vector2D pos = Transform.toScreenPosition(transform.position.add(camera.getTranslation()));
+            Vector2D size = Transform.toScreenSize(transform.size);
+
+            // Fälle separieren aufgrund von Performance Problemen
+            if (transform.rotation == 0) {
+                g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);
+            } else {
+                AffineTransform backup =  g.getTransform();
+
+                if (transform.rotateCenter) {
+                    g.rotate(transform.rotation, (int) (pos.x + size.x/2), (int) (pos.y + size.y/2));
+                } else {
+                    g.rotate(transform.rotation, (int) pos.x, (int) pos.y);
+                }
 
 
-            /*
-            // Mit Texture Paint malen um Subpixelgenauigkeit zu erreichen
-            // Auskommentiert weil extrem langsam
+                g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);
 
-            AffineTransform origin = g.getTransform();
-
-            g.translate(pos.x, pos.y);
-            g.setPaint(new TexturePaint(component.getTexture(), new Rectangle((int) size.x, (int) size.y)));
-            g.fillRect(0, 0, (int) size.x, (int) size.y);
-
-            g.setTransform(origin);
-            */
-
-
-            g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);
+                g.setTransform(backup);
+            }
         }
     }
 }

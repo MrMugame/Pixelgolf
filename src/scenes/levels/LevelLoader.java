@@ -85,9 +85,10 @@ public class LevelLoader {
             float y = Float.parseFloat(element.getAttribute("y"));
             float width = Float.parseFloat(element.getAttribute("w"));
             float height = Float.parseFloat(element.getAttribute("h"));
+            float rotation = Float.parseFloat(element.getAttribute("r"));
             int z = Integer.parseInt(element.getAttribute("z"));
 
-            GameObject object = new GameObject(name, new Vector2D(x, y), new Vector2D(width, height), z);
+            GameObject object = new GameObject(name, new Vector2D(x, y), new Vector2D(width, height), (float)(rotation * Math.PI), z);
 
             NodeList components = element.getChildNodes();
             for (int j = 0; j < components.getLength(); j++) {
@@ -150,7 +151,7 @@ public class LevelLoader {
 
         g.dispose();
 
-        GameObject go = new GameObject("background", new Vector2D(-margin, margin), new Vector2D(map.width+2*margin, map.height+2*margin), 0);
+        GameObject go = new GameObject("background", new Vector2D(-margin, margin), new Vector2D(map.width+2*margin, map.height+2*margin), 0, 0);
         go.add(new DynamicGraphic(texture));
 
         return go;

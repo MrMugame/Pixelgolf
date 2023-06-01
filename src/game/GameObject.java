@@ -10,9 +10,9 @@ public class GameObject {
     private ArrayList<Component> components = new ArrayList<>();
 
 
-    public GameObject(String n, Vector2D pos, Vector2D size, int z) {
+    public GameObject(String n, Vector2D pos, Vector2D size, float rotation, int z) {
         name = n;
-        transform = new Transform(pos, size, z);
+        transform = new Transform(pos, size, rotation, z);
     }
 
     public void update(float dt) {
