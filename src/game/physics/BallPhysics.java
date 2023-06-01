@@ -1,5 +1,6 @@
 package game.physics;
 
+import game.GameObject;
 import physics.Collision;
 import physics.Polygon;
 import physics.Vector2D;

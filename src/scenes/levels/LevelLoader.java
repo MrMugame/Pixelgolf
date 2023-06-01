@@ -14,6 +14,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Objects;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
@@ -112,5 +115,21 @@ public class LevelLoader {
 
     public Map getMap() {
         return map;
+    }
+
+    public String getNextPath() {
+        // TODO: Don't really like this
+        int number = Integer.parseInt(filepath.split("_")[1].split("\\.")[0]);
+        String nextPath = "maps/level_" + (number + 1) + ".xml";
+        try {
+            File file = new File(new URI(Objects.requireNonNull(LevelLoader.class.getResource(nextPath)).toString()).getPath());
+            if(file.exists() && !file.isDirectory()) {
+                return nextPath;
+            } else {
+                return null;
+            }
+        } catch (URISyntaxException | NullPointerException e) {
+            return null;
+        }
     }
 }

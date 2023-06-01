@@ -2,7 +2,6 @@ package physics;
 
 import game.GameObject;
 import game.physics.ActivePhysicsComponent;
-import game.physics.PhysicsComponent;
 import game.physics.StaticPhysicsComponent;
 
 import java.util.ArrayList;
@@ -13,14 +12,12 @@ public class Physics {
 
     public Physics() {}
 
-    public void add(GameObject c) {
-        PhysicsComponent p = c.get(PhysicsComponent.class);
+    public void add(GameObject object) {
+        ActivePhysicsComponent active = object.get(ActivePhysicsComponent.class);
+        if (active != null) activeComponents.add(active);
 
-        if (p instanceof ActivePhysicsComponent) {
-            activeComponents.add((ActivePhysicsComponent) p);
-        } else if (p instanceof StaticPhysicsComponent) {
-            staticComponents.add((StaticPhysicsComponent) p);
-        }
+        StaticPhysicsComponent passiv = object.get(StaticPhysicsComponent.class);
+        if (passiv != null) staticComponents.add(passiv);
     }
 
     public void update() {

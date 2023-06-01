@@ -3,10 +3,8 @@ package graphics;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.nio.charset.Charset;
 
 import input.MouseListener;
-import scenes.DebugScene;
 import scenes.Scene;
 import scenes.mainmenu.MainMenu;
 

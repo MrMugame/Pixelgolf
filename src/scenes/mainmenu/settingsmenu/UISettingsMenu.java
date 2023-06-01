@@ -41,22 +41,18 @@ public class UISettingsMenu extends UIComponent {
         container.getConstraints().addHeight(new UIRelativeConstraint(0.80f));
         block.add(container);
 
-        UISelectButton button_1 = new UISelectButton(GameWindow.get().isFullscreen() ? 1 : 0, "Fullscreen Off", "Fullscreen On");
-        button_1.getConstraints().addX(new UIEndAlignContstraint());
-        button_1.getConstraints().addY(new UIUnitConstraint(0));
-        button_1.getConstraints().addWidth(new UIUnitConstraint(15));
-        button_1.getConstraints().addHeight(new UIPassthroughConstraint());
-        button_1.addListener((i) -> {
+        UISelectButton buttonScreen = new UISelectButton(GameWindow.get().isFullscreen() ? 1 : 0, "Fullscreen: Off", "Fullscreen: On");
+        buttonScreen.getConstraints().addX(new UIUnitConstraint(0));
+        buttonScreen.getConstraints().addY(new UIUnitConstraint(0));
+        buttonScreen.getConstraints().addWidth(new UIUnitConstraint(15));
+        buttonScreen.getConstraints().addHeight(new UIPassthroughConstraint());
+        buttonScreen.addListener((i) -> {
             switch (i) {
-                case 0:
-                    GameWindow.get().setWindowed();
-                    break;
-                case 1:
-                    GameWindow.get().setFullscreen();
-                    break;
+                case 0 -> GameWindow.get().setWindowed();
+                case 1 -> GameWindow.get().setFullscreen();
             }
         });
-        container.add(button_1);
+        container.add(buttonScreen);
 
 
 

@@ -33,17 +33,11 @@ public class UIStartMenuButton extends UIClickable {
         arrowLeft.getConstraints().addWidth(new UIImageAspectConstraint());
         arrowLeft.getConstraints().addHeight(new UIRelativeConstraint(0.40f));
 
-        arrowRight = new UIContainer();
-        arrowRight.getConstraints().addX(new UIUnitConstraint(2f, true));
+        arrowRight = new UIImage("ui/arrow_right.png");
+        arrowRight.getConstraints().addX(new UIEndAlignContstraint(new UIUnitConstraint(-2)));
         arrowRight.getConstraints().addY(new UICenterConstraint());
-        arrowRight.getConstraints().addWidth(new UIPassthroughConstraint());
+        arrowRight.getConstraints().addWidth(new UIImageAspectConstraint());
         arrowRight.getConstraints().addHeight(new UIRelativeConstraint(0.40f));
-        UIImage img = new UIImage("ui/arrow_right.png");
-        img.getConstraints().addX(new UIRelativeConstraint(-1));
-        img.getConstraints().addY(new UIPixelConstraint(0));
-        img.getConstraints().addWidth(new UIImageAspectConstraint());
-        img.getConstraints().addHeight(new UIRelativeConstraint(1));
-        arrowRight.add(img);
     }
 
     @Override

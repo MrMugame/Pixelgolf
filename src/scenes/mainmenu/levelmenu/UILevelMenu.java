@@ -1,12 +1,14 @@
 package scenes.mainmenu.levelmenu;
 
 import assets.Assets;
+import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
 import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.components.UIPage;
 import gui.constraints.*;
+import scenes.levels.Level;
 import scenes.levels.LevelLoader;
 import scenes.mainmenu.levelmenu.components.UILevel;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
@@ -54,6 +56,10 @@ public class UILevelMenu extends UIComponent {
             UILevel level = new UILevel(number, 0);
             level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());
+
+            level.addListener(() -> {
+                GameWindow.get().changeScene(new Level("maps/" + path));
+            });
 
 
             if (i % 3 == 0) {

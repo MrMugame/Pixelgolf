@@ -3,14 +3,18 @@ package scenes.levels;
 import game.GameObject;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
+import game.miscellaneous.Flagpole;
 import game.physics.BallPhysics;
 import game.physics.Wall;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
 import gui.UIComponent;
+import gui.UIConstraints;
 import physics.Vector2D;
 import scenes.Scene;
 import scenes.levels.components.UIEscapeMenu;
+import scenes.levels.components.UIHUD;
+import scenes.levels.components.UIWinScreen;
 
 public class Level extends Scene {
 
@@ -43,6 +47,18 @@ public class Level extends Scene {
         g1.add(new BallInput());
         addGameObject(g1);
 
+        GameObject flag = new GameObject("flagpole", new Vector2D(3f, -7.5f), new Vector2D(0.5f, 0.5f), 4);
+        flag.add(new StaticGraphic("img.png"));
+        flag.add(new Flagpole());
+        addGameObject(flag);
+
+        UIComponent HUD = new UIHUD();
+        HUD.setConstraints(ConstraintFactory.fullscreen());
+        getUiRenderer().getContainer().add(HUD);
+
+/*        UIComponent winScreen = new UIWinScreen(2, loader.getNextPath());
+        winScreen.setConstraints(ConstraintFactory.fullscreen());
+        getUiRenderer().getContainer().add(winScreen);*/
 
         UIComponent escapeMenu = new UIEscapeMenu();
         escapeMenu.setConstraints(ConstraintFactory.fullscreen());

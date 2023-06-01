@@ -82,22 +82,15 @@ public class UIEscapeMenu extends UIComponent {
         });
         menu.add(backButton);
 
-        UIContainer container = new UIContainer();
-        container.getConstraints().addX(new UICenterConstraint());
-        container.getConstraints().addY(new UIUnitConstraint(-3, true));
-        container.getConstraints().addHeight(new UIPassthroughConstraint());
-        container.getConstraints().addWidth(new UIPassthroughConstraint());
-        menu.add(container);
-
         UIEscapeButton exitButton = new UIEscapeButton("ui/escape_exit_button.png", "ui/escape_small_button_hover.png", "ui/escape_small_button_press.png");
         exitButton.getConstraints().addX(new UICenterConstraint());
-        exitButton.getConstraints().addY(new UIRelativeConstraint(-1));
+        exitButton.getConstraints().addY(new UIEndAlignContstraint(new UIUnitConstraint(3)));
         exitButton.getConstraints().addHeight(new UIUnitConstraint(6));
         exitButton.getConstraints().addWidth(new UIPassthroughConstraint());
         exitButton.addListener(() -> {
             GameWindow.get().changeScene(new MainMenu());
         });
-        container.add(exitButton);
+        menu.add(exitButton);
 
         UIEscapeButton optionsButton = new UIEscapeButton("ui/escape_options_button.png", "ui/escape_big_button_hover.png", "ui/escape_big_button_press.png");
         optionsButton.getConstraints().addX(new UICenterConstraint());

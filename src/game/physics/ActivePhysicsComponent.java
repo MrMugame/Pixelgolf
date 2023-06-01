@@ -1,11 +1,14 @@
 package game.physics;
 
+import game.Component;
+import game.GameObject;
+import physics.Collision;
 import physics.Polygon;
 import physics.Vector2D;
 
 import java.util.ArrayList;
 
-public abstract class ActivePhysicsComponent extends PhysicsComponent {
+public abstract class ActivePhysicsComponent extends Component {
     public Vector2D velocity = new Vector2D();
     public Vector2D force = new Vector2D();
     public float mass;

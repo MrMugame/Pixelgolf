@@ -65,10 +65,6 @@ public class UILevel extends UIClickable {
         selectorImg.getConstraints().addHeight(new UIImageAspectConstraint());
         selecter.add(selectorImg);
 
-
-        addListener(() -> {
-            GameWindow.get().changeScene(new Level("maps/level_" + number + ".xml"));
-        });
     }
 
     @Override
