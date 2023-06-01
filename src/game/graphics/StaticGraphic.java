@@ -20,4 +20,9 @@ public class StaticGraphic extends GraphicComponent {
         }
         return image;
     }
+
+    public void changePath(String path) {
+        image = null;
+        this.path = path;
+    }
 }

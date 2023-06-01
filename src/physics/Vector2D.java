@@ -57,6 +57,10 @@ public class Vector2D {
         return new Vector2D( -y, x);
     }
 
+    public float getAngle() {
+        return (float) Math.acos(-x / magnitude()) * Math.signum(y);
+    }
+
     public boolean isNullVector() {
         return x == 0 && y == 0;
     }

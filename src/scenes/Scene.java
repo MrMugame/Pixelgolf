@@ -14,8 +14,9 @@ public abstract class Scene {
     private UIRenderer uiRenderer = new UIRenderer();
     private Physics physics = new Physics();
     private Camera camera;
+    private ArrayList<GameObject> pendingDelete = new ArrayList<>();
+    private ArrayList<GameObject> pendingAdd = new ArrayList<>();
     private ArrayList<GameObject> objects = new ArrayList<>();
-    private ArrayList<GameObject> waiting = new ArrayList<>();
 
     private boolean paused = false;
 
@@ -24,8 +25,13 @@ public abstract class Scene {
     }
 
     public void addGameObject(GameObject go) {
-        if (waiting.contains(go) || objects.contains(go)) return;
-        waiting.add(go);
+        if (pendingAdd.contains(go) || objects.contains(go)) return;
+        pendingAdd.add(go);
+    }
+
+    public void removeGameObject(GameObject go) {
+        if (pendingDelete.contains(go)) return;
+        pendingDelete.add(go);
     }
 
     public GameObject getGameObject(String name) {
@@ -45,13 +51,21 @@ public abstract class Scene {
             object.update(dt);
         }
 
-        for (GameObject object : waiting) {
+        for (GameObject object : pendingDelete) {
+            renderer.remove(object);
+            physics.remove(object);
+
+            objects.remove(object);
+        }
+        pendingDelete.clear();
+
+        for (GameObject object : pendingAdd) {
             renderer.add(object);
             physics.add(object);
 
             objects.add(object);
         }
-        waiting.clear();
+        pendingAdd.clear();
     }
 
     public void render(Graphics2D g) {

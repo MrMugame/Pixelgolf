@@ -10,7 +10,7 @@ public class Transform {
     public float rotation; // Radians / Bogenmaß
     public Vector2D size;
     public int Zindex;
-    public boolean rotateCenter = false;
+    public Vector2D origin = new Vector2D(0, 0); // TODO : not handled by physics
 
     public Transform(Vector2D position, Vector2D size, float rotation, int Zindex) {
         this.position = position;

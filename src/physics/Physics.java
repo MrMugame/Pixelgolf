@@ -20,6 +20,16 @@ public class Physics {
         if (passiv != null) staticComponents.add(passiv);
     }
 
+    public void remove(GameObject object) {
+        if (object == null) return;
+
+        ActivePhysicsComponent active = object.get(ActivePhysicsComponent.class);
+        if (active != null) activeComponents.remove(active);
+
+        StaticPhysicsComponent passiv = object.get(StaticPhysicsComponent.class);
+        if (passiv != null) staticComponents.remove(passiv);
+    }
+
     public void update() {
         ArrayList<Collider> colliders = new ArrayList<>();
         for (StaticPhysicsComponent passive : staticComponents) {

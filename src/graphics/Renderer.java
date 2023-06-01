@@ -7,11 +7,20 @@ import game.GameObject;
 import game.graphics.GraphicComponent;
 
 public class Renderer {
+    // TODO: Maybe use a map
     private ArrayList<LayerRenderer> layers = new ArrayList<LayerRenderer>();
 
     public Renderer() {}
 
-    // TODO: REMOVE
+    public void remove(GameObject go) {
+        if (go == null) return;
+        for (LayerRenderer layer : layers) {
+            if (go.getTransform().Zindex == layer.Zindex) {
+                layer.remove(go);
+                return;
+            }
+        }
+    }
 
     public void add(GameObject go) {
         if (go.get(GraphicComponent.class) == null) return;

@@ -34,7 +34,7 @@ public class BallPhysics extends ActivePhysicsComponent {
 
     @Override
     public void testCollision(ArrayList<Collider> colliders) {
-        Vector2D center = parent.getTransform().getCenter();
+        Vector2D center = parent.getTransform().position;
         // TODO: URGH
         ArrayList<Collision> currentCollisions = new ArrayList<>();
         for (Collider c : colliders) {
