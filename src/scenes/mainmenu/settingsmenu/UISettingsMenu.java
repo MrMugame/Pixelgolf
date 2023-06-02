@@ -54,7 +54,19 @@ public class UISettingsMenu extends UIComponent {
         });
         container.add(buttonScreen);
 
-
+        UISelectButton buttonFPS = new UISelectButton(GameWindow.get().FPS_LIMIT == 60 ? 0 : GameWindow.get().FPS_LIMIT == 120 ? 1 : 2, "Framerate: 60", "Framerate: 120", "Framerate: MAX");
+        buttonFPS.getConstraints().addX(new UIUnitConstraint(0));
+        buttonFPS.getConstraints().addY(new UIUnitConstraint(5));
+        buttonFPS.getConstraints().addWidth(new UIUnitConstraint(15));
+        buttonFPS.getConstraints().addHeight(new UIPassthroughConstraint());
+        buttonFPS.addListener((i) -> {
+            switch (i) {
+                case 0 -> GameWindow.get().FPS_LIMIT = 60;
+                case 1 -> GameWindow.get().FPS_LIMIT = 120;
+                case 2 -> GameWindow.get().FPS_LIMIT = 999999999;
+            }
+        });
+        container.add(buttonFPS);
 
 
         add(block);

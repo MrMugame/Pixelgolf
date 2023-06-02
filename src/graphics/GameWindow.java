@@ -65,7 +65,6 @@ public class GameWindow {
 
 
         while (true) {
-            //TODO: Only do this on size change
             Rectangle size = window.getBounds();
             Insets insets = window.getInsets();
             WIDTH = size.width - insets.left - insets.right;
@@ -103,7 +102,7 @@ public class GameWindow {
             g.dispose();
             if (!strategy.contentsLost()) strategy.show();
 
-            // TODO: Get rid of sleep call
+            // Sleep call macht die Bildrate inakkurat aufgrund von Thread timings (Sleep call dauert meist länger als er soll), alle anderen Lösungen sind jedoch Mord an der CPU
             long sleepTime = (long) 1e9/FPS_LIMIT - frameTime;
             if (sleepTime > 0) {
                 try {
