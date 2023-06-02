@@ -90,13 +90,6 @@ public class LevelLoader {
 
             GameObject object = new GameObject(name, new Vector2D(x, y), new Vector2D(width, height), (float)(rotation * Math.PI), z);
 
-            try {
-                float originX = Float.parseFloat(element.getAttribute("ox"));
-                float originY = Float.parseFloat(element.getAttribute("oy"));
-                object.getTransform().origin = new Vector2D(originX, originY);
-            } catch (NullPointerException | NumberFormatException ignored) {}
-
-
             NodeList components = element.getChildNodes();
             for (int j = 0; j < components.getLength(); j++) {
                 if (!(components.item(j) instanceof Element)) continue;
@@ -105,6 +98,13 @@ public class LevelLoader {
                     case "StaticGraphic":
                         String path = component.getAttribute("path");
                         StaticGraphic graphic = new StaticGraphic(path);
+
+                        try {
+                            float originX = Float.parseFloat(component.getAttribute("ox"));
+                            float originY = Float.parseFloat(component.getAttribute("oy"));
+                            graphic.setAnchor(new Vector2D(originX, originY));
+                        } catch (NullPointerException | NumberFormatException ignored) {}
+
                         object.add(graphic);
                         break;
                     case "BallPhysics":

@@ -10,7 +10,6 @@ public class Transform {
     public float rotation; // Radians / Bogenmaß
     public Vector2D size;
     public int Zindex;
-    public Vector2D origin = new Vector2D(0, 0); // TODO : not handled by physics
 
     public Transform(Vector2D position, Vector2D size, float rotation, int Zindex) {
         this.position = position;
@@ -21,10 +20,6 @@ public class Transform {
 
     public void translate(Vector2D add) {
         position = position.add(add);
-    }
-
-    public Vector2D getCenter() {
-        return position.add(size.scale(0.5f).invertY());
     }
 
     public static Vector2D toScreenSize(Vector2D size) {

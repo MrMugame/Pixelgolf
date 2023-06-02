@@ -19,11 +19,11 @@ public class BallInput extends InputComponent {
     public BallInput() {
         arrow = new GameObject("drag", new Vector2D(), new Vector2D(1, 1*(13.0f/14)), 0, 3);
         arrow.add(new StaticGraphic("game/drag_arrow.png"));
-        arrow.getTransform().origin = new Vector2D(0.5f, -0.25f);
+        arrow.get(StaticGraphic.class).setAnchor(new Vector2D(0.5f, 0.25f));
 
         drag = new GameObject("drag", new Vector2D(), new Vector2D(2, 2), 0, 3);
         drag.add(new StaticGraphic("game/drag_1.png"));
-        drag.getTransform().origin = new Vector2D(1, -0.25f);
+        drag.get(StaticGraphic.class).setAnchor(new Vector2D(1, 0.25f));
     }
 
     @Override

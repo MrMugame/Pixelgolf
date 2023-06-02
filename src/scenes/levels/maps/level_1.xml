@@ -11,8 +11,8 @@
     </Track>
     <Static x="6" y="-2" tex="flower.png"/>
     <Static x="3.28" y="-2" tex="start.png"/>
-    <Dynamic name="ball" x="4" y="-2.75" w="0.5" h="0.5" r="0" z="2" ox="0.25" oy="0.25">
-        <StaticGraphic path="game/ball.png"/>
+    <Dynamic name="ball" x="4" y="-2.75" w="0.5" h="0.5" r="0" z="2">
+        <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
         <BallInput/>
     </Dynamic>

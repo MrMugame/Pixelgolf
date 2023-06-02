@@ -34,8 +34,9 @@ public class LayerRenderer {
         Camera camera = GameWindow.get().getScene().getCamera();
         for (GraphicComponent component : components) {
             Transform transform = component.parent.getTransform();
-            Vector2D pos = Transform.toScreenPosition(transform.position.add(camera.getTranslation()).sub(transform.origin.invertY()));
             Vector2D size = Transform.toScreenSize(transform.size);
+
+            Vector2D pos = Transform.toScreenPosition(transform.position.add(camera.getTranslation()).sub(component.getAnchor()));
 
             // Fälle separieren aufgrund von Performance Problemen
             if (transform.rotation == 0) {
