@@ -6,7 +6,7 @@ import gui.UIConstraint;
 public class UIEndAlignContstraint extends UIConstraint {
     // TODO: In Hindsight something like an add(constraints...) constraint would have probably made more sense but its to late now i think
     // So you could do stuff like this: new AddConstraint(new UIRelativeConstraint(1), new UIUnitConstraint(-2));
-    // TODO: Maybe add that it would make the code a lot cleaner mhm
+
     private UIConstraint constraint;
 
     public UIEndAlignContstraint() {

@@ -11,7 +11,6 @@ public class Polygon {
 
     private Vector2D translation = new Vector2D();
     private float rotation = 0;
-    // TODO: Rename cause of awt polygon
 
     public Polygon() {}
 

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class UIComponent {
-    private ArrayList<UIComponent> childs = new ArrayList<>();
+    private ArrayList<UIComponent> children = new ArrayList<>();
 
     private UIConstraints constraints = new UIConstraints();
 
@@ -12,7 +12,7 @@ public abstract class UIComponent {
     private boolean initialized = false;
 
     public void add(UIComponent component) {
-        if (childs.contains(component)) return; // TODO: Changing to a set would make this obsolete (atleast i think)
+        if (children.contains(component)) return;
 
         if (!component.initialized) {
             component.init();
@@ -20,28 +20,24 @@ public abstract class UIComponent {
         }
 
         component.parent = this;
-        childs.add(component);
+        children.add(component);
     }
 
     public void remove(UIComponent component) {
-        childs.remove(component);
-    }
-
-    public void removeAll() {
-        childs = new ArrayList<>();
+        children.remove(component);
     }
 
     protected void updateInternally() {
         constraints.calculate(this);
         update();
-        for (UIComponent child : childs) {
+        for (UIComponent child : children) {
             child.updateInternally();
         }
     }
 
     protected void renderInternally(Graphics2D g) {
         render(g);
-        for (UIComponent child : childs) {
+        for (UIComponent child : children) {
             child.renderInternally(g);
         }
     }
@@ -58,7 +54,7 @@ public abstract class UIComponent {
     }
 
     public UIComponent getChild(int index) {
-        return childs.get(index);
+        return children.get(index);
     }
 
     public UIConstraints getConstraints() {

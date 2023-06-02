@@ -34,7 +34,7 @@ public class ConstraintFactory {
         return constraints;
     }
 
-    public static UIConstraints fullscreenAspect() {
+    public static UIConstraints fullscreenFitImage() {
         UIConstraints constraints = new UIConstraints();
         constraints.addX(new UICenterConstraint());
         constraints.addY(new UICenterConstraint());

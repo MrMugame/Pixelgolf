@@ -31,20 +31,19 @@ public class LayerRenderer {
     }
 
     public void render(Graphics2D g) {
-        Camera camera = GameWindow.get().getScene().getCamera();
         for (GraphicComponent component : components) {
             Transform transform = component.parent.getTransform();
             Vector2D size = Transform.toScreenSize(transform.size);
 
-            Vector2D pos = Transform.toScreenPosition(transform.position.add(camera.getTranslation()).sub(component.getAnchor()));
+            Vector2D pos = Transform.toScreenPosition(transform.position.sub(component.getAnchor()));
 
-            // Fälle separieren aufgrund von Performance Problemen
+            // Fälle separieren aufgrund von Performance
             if (transform.rotation == 0) {
                 g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);
             } else {
                 AffineTransform backup =  g.getTransform();
 
-                Vector2D origin = Transform.toScreenPosition(transform.position.add(camera.getTranslation()));
+                Vector2D origin = Transform.toScreenPosition(transform.position);
                 g.rotate(transform.rotation, (int) origin.x, (int) origin.y);
 
                 g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);

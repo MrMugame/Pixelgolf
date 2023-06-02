@@ -14,8 +14,6 @@ import scenes.mainmenu.levelmenu.components.UILevel;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +25,7 @@ public class UILevelMenu extends UIComponent {
     @Override
     protected void init() {
         UIComponent background = new UIImage("ui/background_2.png");
-        background.setConstraints(ConstraintFactory.fullscreenAspect());
+        background.setConstraints(ConstraintFactory.fullscreenFitImage());
         add(background);
 
         UIBackButton backButton = new UIBackButton();

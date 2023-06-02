@@ -8,8 +8,6 @@ import gui.constraints.*;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
 import scenes.mainmenu.settingsmenu.components.UISelectButton;
 
-import java.awt.*;
-
 public class UISettingsMenu extends UIComponent {
 
     public UISettingsMenu() {}
@@ -17,7 +15,7 @@ public class UISettingsMenu extends UIComponent {
     @Override
     protected void init() {
         UIComponent background = new UIImage("ui/background_2.png");
-        background.setConstraints(ConstraintFactory.fullscreenAspect());
+        background.setConstraints(ConstraintFactory.fullscreenFitImage());
         add(background);
 
         UIBackButton backButton = new UIBackButton();

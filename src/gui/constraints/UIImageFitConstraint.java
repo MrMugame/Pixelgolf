@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 public class UIImageFitConstraint extends UIConstraint {
     @Override
     public int getValue(UIComponent component, boolean vertical) {
-        // TODO: Don't like this solution but whatever
         BufferedImage image = ((UIImage) component).getImage();
         float aspectImage = (float) image.getWidth() / image.getHeight();
         float aspectParent = (float) component.getParent().getConstraints().width / component.getParent().getConstraints().height;

@@ -11,15 +11,15 @@ public class UIText extends UIComponent {
     private String text;
     private Color color;
     private int fontSize;
-    private String path;
+    private String fontPath;
 
     private boolean center;
 
-    public UIText(String text, Color color, String path, int fontSize, boolean center) {
+    public UIText(String text, Color color, String fontPath, int fontSize, boolean center) {
         this.text = text;
         this.color = color;
         this.fontSize = fontSize;
-        this.path = path;
+        this.fontPath = fontPath;
         this.center = center;
     }
 
@@ -28,7 +28,7 @@ public class UIText extends UIComponent {
         g.setColor(color);
 
         try {
-            g.setFont(Objects.requireNonNull(Assets.loadFont(path)).deriveFont((float) fontSize));
+            g.setFont(Objects.requireNonNull(Assets.loadFont(fontPath)).deriveFont((float) fontSize));
         } catch (NullPointerException ignored) {}
 
 
@@ -48,19 +48,18 @@ public class UIText extends UIComponent {
         ArrayList<String> lines = new ArrayList<>();
 
         String[] words = text.split(" ");
-        String line = "";
-        // TODO: Add support for explicit line breaks
+        StringBuilder line = new StringBuilder();
         for (String word : words) {
             if (metrics.stringWidth(line + word) >= getWidth()) {
-                lines.add(line);
-                line = "";
+                lines.add(line.toString());
+                line = new StringBuilder();
             }
 
-            line += line.length() == 0 ? word : " " + word;
+            line.append(line.length() == 0 ? word : " " + word);
         }
 
-        if(line.trim().length() > 0) {
-            lines.add(line);
+        if(line.toString().trim().length() > 0) {
+            lines.add(line.toString());
         }
 
         return lines;

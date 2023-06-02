@@ -18,7 +18,7 @@ public class UIMainScreen extends UIComponent {
     @Override
     protected void init() {
         UIComponent background = new UIImage("ui/background_1.png");
-        background.setConstraints(ConstraintFactory.fullscreenAspect());
+        background.setConstraints(ConstraintFactory.fullscreenFitImage());
         add(background);
 
 

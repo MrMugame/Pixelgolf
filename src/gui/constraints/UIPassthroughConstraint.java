@@ -7,10 +7,9 @@ public class UIPassthroughConstraint extends UIConstraint {
 
     public UIPassthroughConstraint() {}
 
-    // TODO: Change to somehow get specific child
-
     @Override
     public int getValue(UIComponent component, boolean vertical) {
+        // In den meisten Fällen will man eh nur die erste Komponente. Ist jedoch etwas obskur
         UIComponent child = component.getChild(0);
         if (vertical) {
             return child.getConstraints().heightCt.getValue(child, true);

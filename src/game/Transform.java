@@ -1,5 +1,6 @@
 package game;
 
+import graphics.Camera;
 import graphics.GameWindow;
 import physics.Vector2D;
 
@@ -27,15 +28,15 @@ public class Transform {
     }
 
     public static Vector2D toScreenPosition(Vector2D position) {
+        Camera camera = GameWindow.get().getScene().getCamera();
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
-        Vector2D pos = position.scale(GameWindow.get().getScene().getCamera().getZoom()).invertY().scale(SCALE_FACTOR).add(w);
-        return pos;
+        return position.add(camera.getTranslation()).scale(camera.getZoom()).invertY().scale(SCALE_FACTOR).add(w);
     }
 
     public static Vector2D fromScreenPosition(Vector2D position) {
+        Camera camera = GameWindow.get().getScene().getCamera();
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
-        Vector2D pos = position.sub(w).scale((float) 1/SCALE_FACTOR).invertY().scale(1.0f/GameWindow.get().getScene().getCamera().getZoom()).add(GameWindow.get().getScene().getCamera().getPosition());
-        return pos;
+        return position.sub(w).scale((float) 1/SCALE_FACTOR).invertY().scale(1.0f/camera.getZoom()).sub(camera.getTranslation());
     }
 
     public static Vector2D rotateVector(Vector2D input, float radians) {
