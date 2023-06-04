@@ -73,7 +73,9 @@ public class Level extends Scene {
 
         pause();
 
-        GameState.get().setLevel(loader.getNumber(), new LevelState(logic.getStars()));
+        if (GameState.get().getLevel(loader.getNumber()).getStars() < logic.getStars()) {
+            GameState.get().setLevel(loader.getNumber(), new LevelState(logic.getStars()));
+        }
 
         UIComponent winScreen = new UIWinScreen(logic.getStars(), loader.getNumber());
         winScreen.setConstraints(ConstraintFactory.fullscreen());
