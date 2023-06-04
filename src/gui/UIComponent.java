@@ -48,6 +48,9 @@ public abstract class UIComponent {
 
     protected void init() {}
 
+    public void removeAll() {
+        children.clear();
+    }
 
     public UIComponent getParent() {
         return parent;

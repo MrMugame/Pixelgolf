@@ -4,18 +4,21 @@ import assets.Assets;
 import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
+import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.components.UIText;
 import gui.constraints.UIEndAlignContstraint;
 import gui.constraints.UIImageAspectConstraint;
 import gui.constraints.UIUnitConstraint;
 import scenes.levels.Level;
+import state.GameState;
 
 import java.awt.*;
 
 public class UIHUD extends UIComponent {
-    private int strokes = 0;
+    private int strokes, stars = 0;
     private UIComponent text;
+    private UIComponent hud;
 
     public UIHUD() {}
 
@@ -26,18 +29,32 @@ public class UIHUD extends UIComponent {
             strokes = currentStrokes;
             strokeText(strokes);
         }
+
+        int currentStars = ((Level) GameWindow.get().getScene()).getLogic().getStars();
+        if (currentStars != stars) {
+            stars = currentStars;
+            updateHUD(stars);
+        }
     }
 
     @Override
     protected void init() {
-        UIImage image = new UIImage("ui/hud_star_0.png");
+        hud = new UIContainer();
+        hud.setConstraints(ConstraintFactory.fullscreen());
+        add(hud);
+
+        strokeText(strokes);
+        updateHUD(stars);
+    }
+
+    private void updateHUD(int stars) {
+        hud.removeAll();
+        UIImage image = new UIImage("ui/hud_star_" + stars + ".png");
         image.getConstraints().addX(new UIEndAlignContstraint());
         image.getConstraints().addY(new UIUnitConstraint(0));
         image.getConstraints().addWidth(new UIUnitConstraint(10));
         image.getConstraints().addHeight(new UIImageAspectConstraint());
-        add(image);
-
-        strokeText(strokes);
+        hud.add(image);
     }
 
     private void strokeText(int number) {
