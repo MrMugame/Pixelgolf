@@ -9,6 +9,7 @@ import gui.constraints.*;
 import scenes.levels.Level;
 import scenes.levels.LevelLoader;
 import scenes.mainmenu.MainMenu;
+import state.GameState;
 
 public class UIWinScreen extends UIComponent {
 
@@ -101,8 +102,8 @@ public class UIWinScreen extends UIComponent {
         });
         containerTwo.add(buttonRetry);
 
-        // Überprüft nicht, ob es Level gibt die z.B. 2 größer sind aber die sollte es eigentlich eh nicht geben
         boolean next = Assets.getFile(LevelLoader.class, Assets.getLevelPath(self + 1)) != null;
+        if (next) next = stars != 0;
 
         UIWinButton buttonNext = new UIWinButton(next ? "ui/win_next_button.png" : "ui/win_next_button_off.png", !next);
         buttonNext.getConstraints().addX(new UIEndAlignContstraint());

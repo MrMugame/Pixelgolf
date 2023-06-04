@@ -145,7 +145,7 @@ public class LevelLoader {
 
         BufferedImage outsideTexture = Assets.loadImage(map.outsideTexture);
         g.setPaint(new TexturePaint(outsideTexture, new Rectangle(0, 0, outsideTexture.getWidth(), outsideTexture.getHeight())));
-        g.fillRect(0, 0, texture.getWidth(), (int) texture.getHeight());
+        g.fillRect(0, 0, texture.getWidth(), texture.getHeight());
 
         g.translate(margin*TILESIZE, margin*TILESIZE);
 
