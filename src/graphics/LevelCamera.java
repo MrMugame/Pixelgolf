@@ -64,9 +64,14 @@ public class LevelCamera extends Camera {
                 endPosition = ball.getTransform().position;
                 endZoom = 1;
 
-                time = 0;
+                position = startPosition;
+                zoom = startZoom;
 
-                state = CameraState.ZOOMING_IN;
+                // TODO: Don't know if im keeping this
+                if (time > 2000)  {
+                    state = CameraState.ZOOMING_IN;
+                    time = 0;
+                }
                 break;
             case ZOOMING_IN:
                 if (time >= duration) state = CameraState.FOLLOWING;

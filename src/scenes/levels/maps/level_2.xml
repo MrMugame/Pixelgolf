@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Map width="20" height="10">
-    <Track insideTex="stone.png" outsideTex="grass.png">
+    <Track insideTex="game/grass_1.png" outsideTex="game/grass_2.png">
         <p>2;0</p>
         <p>2;-6</p>
         <p>4;-8</p>

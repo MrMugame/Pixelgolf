@@ -50,7 +50,8 @@ public class BallInput extends InputComponent {
 
         } else if (dragging && !listener.isPressed(BUTTON1)) {
             BallPhysics physics = (BallPhysics) parent.get(ActivePhysicsComponent.class);
-            physics.velocity = parent.getTransform().position.sub(listener.getMousePosition());
+            Vector2D mouseVector = parent.getTransform().position.sub(listener.getMousePosition());
+            physics.velocity = mouseVector.normalize().scale(mouseVector.magnitudeSquared());
 
             GameWindow.get().getScene().removeGameObject(drag);
             GameWindow.get().getScene().removeGameObject(arrow);
