@@ -14,18 +14,30 @@ public class LevelCamera extends Camera {
         CENTERING,
         FOLLOWING,
         START_ANIMATION,
-        ZOOMING_IN
+        ZOOMING_IN,
+        ZOOMING_OUT,
+        START_BIRDVIEW,
+        END_BIRDVIEW
     }
     private CameraState state = CameraState.FOLLOWING;
 
-    private Vector2D startPosition = new Vector2D();
-    private float startZoom = 0;
+    private Vector2D startPosition = new Vector2D(), endPosition = new Vector2D();
+    private float startZoom, endZoom = 0;
+
+    private float duration = 1000;
 
 
     public LevelCamera() {}
 
     @Override
     public void update(float dt) {
+        KeyboardListener listener = KeyboardListener.get();
+        if (state != CameraState.ZOOMING_OUT && listener.isPressed(VK_C)) {
+            state = CameraState.START_BIRDVIEW;
+        } else if (state == CameraState.ZOOMING_OUT && !listener.isPressed(VK_C)) {
+            state = CameraState.END_BIRDVIEW;
+        }
+
         GameObject ball = GameWindow.get().getScene().getGameObject("ball");
         if (ball == null) return;
         Vector2D distance = ball.getTransform().position.sub(position);
@@ -49,17 +61,49 @@ public class LevelCamera extends Camera {
 
                 startPosition = diagonal.scale(0.5f);
                 startZoom = 1/diagonal.magnitude()*10; // TODO: Proper way of calculating this
+                endPosition = ball.getTransform().position;
+                endZoom = 1;
+
                 time = 0;
 
                 state = CameraState.ZOOMING_IN;
                 break;
             case ZOOMING_IN:
-                float duration = 3500;
-                position = cubicBezier(startPosition, ball.getTransform().position, time/duration, 0.5f, 0, 0.5f, 1);
-                zoom = cubicBezier(startZoom, 1, time/duration, 0.5f, 0, 0.5f, 1);
-
                 if (time >= duration) state = CameraState.FOLLOWING;
+            case ZOOMING_OUT:
+                if (time >= duration) break;
+
+                position = cubicBezier(startPosition, endPosition, time/duration, 0.5f, 0, 0.5f, 1);
+                zoom = cubicBezier(startZoom, endZoom, time/duration, 0.5f, 0, 0.5f, 1);
+
                 break;
+            case START_BIRDVIEW:
+                diagonal = new Vector2D();
+                diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
+                diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
+
+                endPosition = diagonal.scale(0.5f);
+                endZoom = 1/diagonal.magnitude()*10; // TODO: Proper way of calculating this
+
+                startPosition = position;
+                startZoom = zoom;
+
+                time = 0;
+
+                state = CameraState.ZOOMING_OUT;
+                break;
+            case END_BIRDVIEW:
+                startPosition = position;
+                startZoom = zoom;
+
+                endPosition = ball.getTransform().position;
+                endZoom = 1;
+
+                time = 0;
+
+                state = CameraState.ZOOMING_IN;
+                break;
+
         }
 
     }
