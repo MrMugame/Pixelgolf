@@ -12,6 +12,10 @@ import physics.Vector2D;
 import static java.awt.event.MouseEvent.BUTTON1;
 
 public class BallInput extends InputComponent {
+    private static final float VISUAL_FACTOR = 0.60f;
+    private static final float POWER_FACTOR = 0.65f;
+    private static final int MAX = 6;
+
     private boolean dragging = false;
 
     private GameObject drag, arrow;
@@ -34,7 +38,7 @@ public class BallInput extends InputComponent {
             Vector2D dragVector = parent.getTransform().position.sub(listener.getMousePosition());
             drag.getTransform().rotation = dragVector.getAngle() - 0.5f * (float) Math.PI;
 
-            drag.get(StaticGraphic.class).changePath("game/drag_" + (int) Math.max(1, Math.min(Math.floor(dragVector.magnitude() / 0.75), 6)) + ".png");
+            drag.get(StaticGraphic.class).changePath("game/drag_" + (int) Math.max(1, Math.min(Math.floor(dragVector.magnitude() / VISUAL_FACTOR), MAX)) + ".png");
 
             arrow.getTransform().rotation = (float) Math.PI + (dragVector.getAngle() - 0.5f * (float) Math.PI);
         }
@@ -51,7 +55,14 @@ public class BallInput extends InputComponent {
         } else if (dragging && !listener.isPressed(BUTTON1)) {
             BallPhysics physics = (BallPhysics) parent.get(ActivePhysicsComponent.class);
             Vector2D mouseVector = parent.getTransform().position.sub(listener.getMousePosition());
-            physics.velocity = mouseVector.normalize().scale(mouseVector.magnitudeSquared());
+            if (mouseVector.magnitude()/VISUAL_FACTOR >= MAX) {
+                // mag/factor = max
+                // mag = max*factor
+                // mag^2 * 0.65 = (max*factor)^2 * 0.65
+                physics.velocity = mouseVector.normalize().scale((MAX*VISUAL_FACTOR)*(MAX*VISUAL_FACTOR) * POWER_FACTOR);
+            } else {
+                physics.velocity = mouseVector.normalize().scale(mouseVector.magnitudeSquared() * POWER_FACTOR);
+            }
 
             GameWindow.get().getScene().removeGameObject(drag);
             GameWindow.get().getScene().removeGameObject(arrow);
