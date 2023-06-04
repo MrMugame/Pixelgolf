@@ -30,11 +30,11 @@ public class LevelLoader {
     // Anzahl der Pixel pro Ingame-Einheit auf dem Hintergrundbild
     private static final int TILESIZE = 10;
 
-    private final String filepath;
+    private final int number;
     private Map map;
 
-    public LevelLoader(String filepath) {
-        this.filepath = filepath;
+    public LevelLoader(int number) {
+        this.number = number;
     }
 
     // TODO: Make the Exceptions nice && Cleanup
@@ -42,7 +42,7 @@ public class LevelLoader {
         map = new Map();
 
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();;
-        Document document = builder.parse(Assets.getFile(LevelLoader.class, filepath));
+        Document document = builder.parse(Assets.getFile(LevelLoader.class, Assets.getLevelPath(number)));
         document.getDocumentElement().normalize();
 
         // Check for correct root element
@@ -172,23 +172,7 @@ public class LevelLoader {
         return map;
     }
 
-    public String getPath() {
-        return filepath;
-    }
-
-    public String getNextPath() {
-        // TODO: Don't really like this
-        int number = Integer.parseInt(filepath.split("_")[1].split("\\.")[0]);
-        String nextPath = "maps/level_" + (number + 1) + ".xml";
-        try {
-            File file = new File(new URI(Objects.requireNonNull(LevelLoader.class.getResource(nextPath)).toString()).getPath());
-            if(file.exists() && !file.isDirectory()) {
-                return nextPath;
-            } else {
-                return null;
-            }
-        } catch (URISyntaxException | NullPointerException e) {
-            return null;
-        }
+    public int getNumber() {
+        return number;
     }
 }

@@ -1,5 +1,6 @@
 package scenes.levels.components;
 
+import assets.Assets;
 import graphics.GameWindow;
 import gui.UIComponent;
 import gui.components.UIContainer;
@@ -14,12 +15,11 @@ public class UIWinScreen extends UIComponent {
     private static String OFF = "ui/win_star_off.png";
 
     private int stars;
-    private String next, self;
+    private int self;
 
-    public UIWinScreen(int stars, String self, String next) {
+    public UIWinScreen(int stars, int self) {
         this.stars = stars;
         this.self = self;
-        this.next = next;
     }
 
     @Override
@@ -100,16 +100,21 @@ public class UIWinScreen extends UIComponent {
         });
         containerTwo.add(buttonRetry);
 
-        UIWinButton buttonNext = new UIWinButton(next != null ? "ui/win_next_button.png" : "ui/win_next_button_off.png", next == null);
+        // Überprüft nicht, ob es Level gibt die z.B. 2 größer sind aber die sollte es eigentlich eh nicht geben
+        boolean next = Assets.fileExists(Assets.getLevelPath(self + 1));
+
+        UIWinButton buttonNext = new UIWinButton(next ? "ui/win_next_button.png" : "ui/win_next_button_off.png", !next);
         buttonNext.getConstraints().addX(new UIEndAlignContstraint());
         buttonNext.getConstraints().addY(new UICenterConstraint());
         buttonNext.getConstraints().addWidth(new UIPassthroughConstraint());
         buttonNext.getConstraints().addHeight(new UIUnitConstraint(4.5f));
-        if (next != null) {
+        if (next) {
             buttonNext.addListener(() -> {
-                GameWindow.get().changeScene(new Level(next));
+                GameWindow.get().changeScene(new Level(self+1));
             });
         }
         containerTwo.add(buttonNext);
     }
+
+
 }

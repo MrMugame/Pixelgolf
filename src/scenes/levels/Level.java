@@ -18,9 +18,9 @@ public class Level extends Scene {
     private UIContainer container;
     private final LevelLoader loader;
 
-    public Level(String path) {
+    public Level(int number) {
         super(new LevelCamera());
-        loader = new LevelLoader(path);
+        loader = new LevelLoader(number);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Level extends Scene {
         // TODO: Maybe do this with an event system
         pause();
 
-        UIComponent winScreen = new UIWinScreen(2, loader.getPath(), loader.getNextPath());
+        UIComponent winScreen = new UIWinScreen(2, loader.getNumber());
         winScreen.setConstraints(ConstraintFactory.fullscreen());
         container.add(winScreen);
     }

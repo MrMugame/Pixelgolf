@@ -55,7 +55,7 @@ public class UILevelMenu extends UIComponent {
             level.getConstraints().addHeight(new UIPassthroughConstraint());
 
             level.addListener(() -> {
-                GameWindow.get().changeScene(new Level("maps/" + path));
+                GameWindow.get().changeScene(new Level(number));
             });
 
 

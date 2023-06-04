@@ -50,4 +50,17 @@ public class Assets {
             return null;
         }
     }
+
+    public static String getLevelPath(int number) {
+        return "maps/level_" + number + ".xml";
+    }
+
+    public static boolean fileExists(String path) {
+        try {
+            File file = new File(new URI(Objects.requireNonNull(LevelLoader.class.getResource(path)).toString()).getPath());
+            return file.exists() && !file.isDirectory();
+        } catch (URISyntaxException | NullPointerException e) {
+            return false;
+        }
+    }
 }
