@@ -8,6 +8,7 @@ import graphics.GameWindow;
 import input.MouseListener;
 import physics.CollisionMath;
 import physics.Vector2D;
+import scenes.levels.Level;
 
 import static java.awt.event.MouseEvent.BUTTON1;
 
@@ -63,6 +64,9 @@ public class BallInput extends InputComponent {
             } else {
                 physics.velocity = mouseVector.normalize().scale(mouseVector.magnitudeSquared() * POWER_FACTOR);
             }
+
+            // AHAHDHAHDAHDHAHDHAHD HAH AH H HAH HH SINGLETON (SOGAR NOCH BE... TYPE CASTS) ICH HASSE SINGLETONS ABER JOA NE. ein observer pattern wäre hier geiler aber joa ne ... aufwändig
+            ((Level) GameWindow.get().getScene()).getLogic().addStroke();
 
             GameWindow.get().getScene().removeGameObject(drag);
             GameWindow.get().getScene().removeGameObject(arrow);

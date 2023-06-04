@@ -1,7 +1,6 @@
 package scenes.levels;
 
 import game.GameObject;
-import game.graphics.StaticGraphic;
 import game.physics.Wall;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
@@ -17,10 +16,12 @@ public class Level extends Scene {
 
     private UIContainer container;
     private final LevelLoader loader;
+    private final LevelLogic logic;
 
     public Level(int number) {
         super(new LevelCamera());
         loader = new LevelLoader(number);
+        logic = new LevelLogic();
     }
 
     @Override
@@ -40,7 +41,6 @@ public class Level extends Scene {
 
         for (GameObject object : loader.getDynamicObjects()) {
             addGameObject(object);
-            //if (object.getName().equals("ball")) getCamera().setPosition(object.getTransform().position.scale(1));
         }
 
         ((LevelCamera) getCamera()).startAnimation();
@@ -59,7 +59,6 @@ public class Level extends Scene {
     }
 
     public void won() {
-        // TODO: Maybe do this with an event system
         pause();
 
         UIComponent winScreen = new UIWinScreen(2, loader.getNumber());
@@ -73,5 +72,9 @@ public class Level extends Scene {
 
     public float getMapHeight() {
         return loader.getMap().height;
+    }
+
+    public LevelLogic getLogic() {
+        return logic;
     }
 }
