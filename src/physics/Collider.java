@@ -2,7 +2,7 @@ package physics;
 
 import game.GameObject;
 
-public class Collider {
+public class Collider { // TODO: Clean this and collision code up (maybe make this a generic tuple)
     public GameObject gameObject;
     public Polygon polygon;
 
