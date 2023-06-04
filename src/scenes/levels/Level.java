@@ -2,6 +2,7 @@ package scenes.levels;
 
 import game.GameObject;
 import game.physics.Wall;
+import graphics.GameWindow;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
 import gui.UIComponent;
@@ -11,12 +12,15 @@ import scenes.Scene;
 import scenes.levels.components.UIEscapeMenu;
 import scenes.levels.components.UIHUD;
 import scenes.levels.components.UIWinScreen;
+import scenes.mainmenu.MainMenu;
+import state.GameState;
+import state.LevelState;
 
 public class Level extends Scene {
-
     private UIContainer container;
     private final LevelLoader loader;
     private final LevelLogic logic;
+    private boolean finished = false;
 
     public Level(int number) {
         super(new LevelCamera());
@@ -29,7 +33,10 @@ public class Level extends Scene {
         try {
             loader.load();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            System.err.println("Konnte Level nicht laden!");
+            GameWindow.get().changeScene(new MainMenu());
+            return;
         }
 
         logic.setStarBoundaries(loader.getMap().oneStar, loader.getMap().twoStar, loader.getMap().threeStar);
@@ -61,7 +68,12 @@ public class Level extends Scene {
     }
 
     public void won() {
+        if (finished) return; // Bei der Kollision kann es leicht passieren, dass der Ball mehrere Wände des Lochs berührt und dann würde diese Funktion mehrmals aufgerufen werden
+        finished = true;
+
         pause();
+
+        GameState.get().setLevel(loader.getNumber(), new LevelState(logic.getStars()));
 
         UIComponent winScreen = new UIWinScreen(logic.getStars(), loader.getNumber());
         winScreen.setConstraints(ConstraintFactory.fullscreen());

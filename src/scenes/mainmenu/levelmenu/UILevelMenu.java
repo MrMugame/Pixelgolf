@@ -12,12 +12,9 @@ import scenes.levels.Level;
 import scenes.levels.LevelLoader;
 import scenes.mainmenu.levelmenu.components.UILevel;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
+import state.GameState;
 
-import java.io.File;
 import java.io.InputStream;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class UILevelMenu extends UIComponent {
 
@@ -47,15 +44,18 @@ public class UILevelMenu extends UIComponent {
             InputStream stream = Assets.getFile(LevelLoader.class, Assets.getLevelPath(i+1));
             if (stream == null) break;
 
-            UILevel level = new UILevel(i+1, 0);
+
+            boolean locked = i != 0 && GameState.get().getLevel(i).getStars() == 0;
+            UILevel level = new UILevel(i+1, GameState.get().getLevel(i+1).getStars(), locked);
             level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());
 
             int finalI = i+1;
-            level.addListener(() -> {
-                GameWindow.get().changeScene(new Level(finalI));
-            });
-
+            if (!locked) {
+                level.addListener(() -> {
+                    GameWindow.get().changeScene(new Level(finalI));
+                });
+            }
 
             if (i % 3 == 0) {
                 // left

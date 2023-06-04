@@ -17,19 +17,22 @@ public class UILevel extends UIClickable {
 
     private int stars;
     private int number;
+    private boolean locked = false;
 
     private UIComponent selecter;
 
-    public UILevel(int number, int stars) {
+    public UILevel(int number, int stars, boolean locked) {
         this.number = number;
         this.stars = stars;
+        this.locked = locked;
     }
 
     @Override
     protected void init() {
         String path = "";
-
-        if (stars == 0) {
+        if (locked) {
+            path = "ui/level_locked.png";
+        } else if (stars == 0) {
             path = "ui/level_unplayed.png";
         } else if (stars == 1) {
             path = "ui/level_onestar.png";
@@ -46,6 +49,13 @@ public class UILevel extends UIClickable {
         img.getConstraints().addHeight(new UIImageAspectConstraint());
         add(img);
 
+        if (locked) {
+            // Dummy
+            selecter = new UIContainer();
+            selecter.setConstraints(ConstraintFactory.fullscreen());
+            return;
+        }
+
         UIText text = new UIText(Integer.toString(number), new Color(0,0,0), Assets.DEFAULT_FONT, 34, true);
         text.getConstraints().addX(new UIPixelConstraint(0));
         text.getConstraints().addY(new UIPixelConstraint(0));
@@ -53,17 +63,11 @@ public class UILevel extends UIClickable {
         text.getConstraints().addHeight(new UIRelativeConstraint(0.7f));
         add(text);
 
-        selecter = new UIContainer();
+        selecter = new UIImage(stars == 0 ? "ui/level_selector_unplayed.png" : "ui/level_selector_played.png");
         selecter.getConstraints().addX(new UICenterConstraint());
-        selecter.getConstraints().addY(new UIUnitConstraint(0));
+        selecter.getConstraints().addY(new UIUnitConstraint(-1.5f));
         selecter.getConstraints().addWidth(new UIRelativeConstraint(1.1f));
-        selecter.getConstraints().addHeight(new UIPassthroughConstraint());
-
-        UIImage selectorImg = new UIImage(stars == 0 ? "ui/level_selector_unplayed.png" : "ui/level_selector_played.png");
-        selectorImg.setConstraints(ConstraintFactory.fullscreen());
-        selectorImg.getConstraints().addY(new UIRelativeConstraint(-0.8f));
-        selectorImg.getConstraints().addHeight(new UIImageAspectConstraint());
-        selecter.add(selectorImg);
+        selecter.getConstraints().addHeight(new UIImageAspectConstraint());
 
     }
 
