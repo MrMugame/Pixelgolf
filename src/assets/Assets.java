@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class Assets {
     public static Font loadFont(String path) {
         if (!fonts.containsKey(path)) {
             try {
-                Font font = Font.createFont(Font.TRUETYPE_FONT, Assets.class.getResource(path).openStream());
+                Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(Assets.class.getResourceAsStream(path)));
                 GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
                 fonts.put(path, font);
             } catch(IOException | FontFormatException | NullPointerException e) {
@@ -41,26 +42,12 @@ public class Assets {
         return fonts.get(path);
     }
 
-    public static File getFile(Class<?> c, String path) {
-        try {
-            // Zu URI konvertieren um komisches Escaping von z.B. Leerzeichen zu vermeiden
-            return new File(new URI(Objects.requireNonNull(c.getResource(path)).toString()).getPath());
-        } catch (URISyntaxException e) {
-            System.err.println("Konnte Datei nicht Finden: " + path);
-            return null;
-        }
+    // TODO: Maybe merge both functions into one; idk how sound is working tho
+    public static InputStream getFile(Class<?> c, String path) {
+        return c.getResourceAsStream(path);
     }
 
     public static String getLevelPath(int number) {
         return "maps/level_" + number + ".xml";
-    }
-
-    public static boolean fileExists(String path) {
-        try {
-            File file = new File(new URI(Objects.requireNonNull(LevelLoader.class.getResource(path)).toString()).getPath());
-            return file.exists() && !file.isDirectory();
-        } catch (URISyntaxException | NullPointerException e) {
-            return false;
-        }
     }
 }

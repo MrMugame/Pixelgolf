@@ -7,6 +7,7 @@ import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.constraints.*;
 import scenes.levels.Level;
+import scenes.levels.LevelLoader;
 import scenes.mainmenu.MainMenu;
 
 public class UIWinScreen extends UIComponent {
@@ -101,7 +102,7 @@ public class UIWinScreen extends UIComponent {
         containerTwo.add(buttonRetry);
 
         // Überprüft nicht, ob es Level gibt die z.B. 2 größer sind aber die sollte es eigentlich eh nicht geben
-        boolean next = Assets.fileExists(Assets.getLevelPath(self + 1));
+        boolean next = Assets.getFile(LevelLoader.class, Assets.getLevelPath(self + 1)) != null;
 
         UIWinButton buttonNext = new UIWinButton(next ? "ui/win_next_button.png" : "ui/win_next_button_off.png", !next);
         buttonNext.getConstraints().addX(new UIEndAlignContstraint());

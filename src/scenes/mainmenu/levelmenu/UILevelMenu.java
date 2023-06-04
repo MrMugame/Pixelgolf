@@ -14,6 +14,7 @@ import scenes.mainmenu.levelmenu.components.UILevel;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,20 +43,17 @@ public class UILevelMenu extends UIComponent {
         container.getConstraints().addWidth(new UIUnitConstraint(40));
         container.getConstraints().addHeight(new UIAspectConstraint(1));
 
-        List<String> levels = scanLevels();
+        for (int i = 0; i < 9; i++) { // Momentan werden nicht mehr als 9 Level unterstützt
+            InputStream stream = Assets.getFile(LevelLoader.class, Assets.getLevelPath(i+1));
+            if (stream == null) break;
 
-        int i = 0;
-        for (String path : levels) {
-            if (i == 9) break; // Momentan werden nicht mehr als 9 Level unterstützt
-            if (!path.matches("^level_\\d+\\.xml$")) continue;
-            int number = Integer.parseInt(path.split("_")[1].split("\\.")[0]);
-
-            UILevel level = new UILevel(number, 0);
+            UILevel level = new UILevel(i+1, 0);
             level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());
 
+            int finalI = i+1;
             level.addListener(() -> {
-                GameWindow.get().changeScene(new Level(number));
+                GameWindow.get().changeScene(new Level(finalI));
             });
 
 
@@ -71,27 +69,19 @@ public class UILevelMenu extends UIComponent {
             }
 
             if (i / 3 == 0) {
+                // top
                 level.getConstraints().addY(new UIUnitConstraint(0));
             } else if (i / 3 == 1) {
                 // middle
                 level.getConstraints().addY(new UICenterConstraint());
             } else if (i / 3 == 2) {
-                // right
+                // bottom
                 level.getConstraints().addY(new UIEndAlignContstraint());
             }
 
             container.add(level);
-            i += 1;
         }
 
         add(container);
-    }
-
-    private List<String> scanLevels() {
-        return Stream.of(Assets.getFile(LevelLoader.class, "maps/").listFiles())
-                .filter(file -> !file.isDirectory())
-                .map(File::getName)
-                .sorted()
-                .collect(Collectors.toList());
     }
 }

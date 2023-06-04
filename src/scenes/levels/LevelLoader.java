@@ -41,7 +41,7 @@ public class LevelLoader {
     public void load() throws Exception {
         map = new Map();
 
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();;
+        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document document = builder.parse(Assets.getFile(LevelLoader.class, Assets.getLevelPath(number)));
         document.getDocumentElement().normalize();
 
