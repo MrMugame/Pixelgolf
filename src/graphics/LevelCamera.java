@@ -68,7 +68,7 @@ public class LevelCamera extends Camera {
                 zoom = startZoom;
 
                 // TODO: Don't know if im keeping this
-                if (time > 2000)  {
+                if (time > 1000)  {
                     state = CameraState.ZOOMING_IN;
                     time = 0;
                 }
