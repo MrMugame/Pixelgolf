@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Map width="25" height="35">
+<Map width="30" height="20">
     <Track insideTex="game/grass_1.png" outsideTex="game/grass_2.png">
         <p>2;-2</p>
         <p>2;-9</p>
@@ -9,7 +9,6 @@
         <p>6;-8</p>
         <p>6;-2</p>
     </Track>
-    <Static x="6" y="-2" tex="flower.png"/>
     <Dynamic name="ball" x="4" y="-2.75" w="0.5" h="0.5" r="0" z="2">
         <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
