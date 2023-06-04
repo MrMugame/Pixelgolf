@@ -66,6 +66,19 @@ public class UISettingsMenu extends UIComponent {
         });
         container.add(buttonFPS);
 
+        UISelectButton buttonDebug = new UISelectButton(GameWindow.get().DEBUG ? 0 : 1, "Debug: On", "Debug: Off");
+        buttonDebug.getConstraints().addX(new UIUnitConstraint(0));
+        buttonDebug.getConstraints().addY(new UIUnitConstraint(10));
+        buttonDebug.getConstraints().addWidth(new UIUnitConstraint(15));
+        buttonDebug.getConstraints().addHeight(new UIPassthroughConstraint());
+        buttonDebug.addListener((i) -> {
+            switch (i) {
+                case 0 -> GameWindow.get().DEBUG = true;
+                case 1 -> GameWindow.get().DEBUG = false;
+            }
+        });
+        container.add(buttonDebug);
+
 
         add(block);
     }
