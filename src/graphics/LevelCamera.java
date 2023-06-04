@@ -8,69 +8,80 @@ import scenes.levels.Level;
 import static java.awt.event.KeyEvent.*;
 
 public class LevelCamera extends Camera {
-    private Vector2D velocity = new Vector2D();
-    private boolean centering = false;
-    private boolean startAnimation = false;
+    private float time = 0;
+
+    private enum CameraState {
+        CENTERING,
+        FOLLOWING,
+        START_ANIMATION,
+        ZOOMING_IN
+    }
+    private CameraState state = CameraState.FOLLOWING;
+
+    private Vector2D startPosition = new Vector2D();
+    private float startZoom = 0;
+
 
     public LevelCamera() {}
 
     @Override
     public void update(float dt) {
-/*        if (startAnimation) {
-            Vector2D diagonal = new Vector2D();
-            diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
-            diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
-            if (velocity.isNullVector()) position = diagonal.scale(0.5f);
-
-
-            zoom = 1/diagonal.magnitude()*10;
-        }*/
-
         GameObject ball = GameWindow.get().getScene().getGameObject("ball");
         if (ball == null) return;
-
         Vector2D distance = ball.getTransform().position.sub(position);
-        if (distance.magnitude() > 2f || centering) {
-            centering = true;
-            velocity = distance.scale(2f);
-        }
-        if (centering && distance.magnitude() < 0.1f) {
-            centering = false;
-            velocity = new Vector2D();
+
+        time += dt;
+
+        switch (state) {
+            case FOLLOWING:
+                if (distance.magnitude() > 2f) state = CameraState.CENTERING;
+                break;
+            case CENTERING:
+                Vector2D velocity = distance.scale(2f);
+                position = position.add(velocity.scale(dt/1000));
+
+                if (distance.magnitude() < 0.1f) state = CameraState.FOLLOWING;
+                break;
+            case START_ANIMATION:
+                Vector2D diagonal = new Vector2D();
+                diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
+                diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
+
+                startPosition = diagonal.scale(0.5f);
+                startZoom = 1/diagonal.magnitude()*10; // TODO: Proper way of calculating this
+                time = 0;
+
+                state = CameraState.ZOOMING_IN;
+                break;
+            case ZOOMING_IN:
+                float duration = 3500;
+                position = cubicBezier(startPosition, ball.getTransform().position, time/duration, 0.5f, 0, 0.5f, 1);
+                zoom = cubicBezier(startZoom, 1, time/duration, 0.5f, 0, 0.5f, 1);
+
+                if (time >= duration) state = CameraState.FOLLOWING;
+                break;
         }
 
-        position = position.add(velocity.scale(dt/1000));
+    }
 
-/*        float offset = 0.005f * dt;
-        Vector2D movement = new Vector2D();
+    public static Vector2D cubicBezier(Vector2D a, Vector2D b, float t, float p1x, float p1y, float p2x, float p2y) {
+        float Bt = cubicBezier(0, 1, t, p1x, p1y, p2x, p2y);
+        return a.add(b.sub(a).scale(Bt));
+    }
 
-        if (listener.isPressed(VK_W)) {
-            movement = movement.add(new Vector2D(0, 1));
-        }
-        if (listener.isPressed(VK_S)) {
-            movement = movement.add(new Vector2D(0, -1));
-        }
-        if (listener.isPressed(VK_A)) {
-            movement = movement.add(new Vector2D(-1, 0));
-        }
-        if (listener.isPressed(VK_D)) {
-            movement = movement.add(new Vector2D(1, 0));
-        }*/
+    public static float cubicBezier(float a, float b, float t, float p1x, float p1y, float p2x, float p2y) {
+        // p0 und p3 festsetzen ähnlich wie in CSS // https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function#using_the_cubic-bezier_function
+        Vector2D p0 = new Vector2D(0, 0);
+        Vector2D p1 = new Vector2D(p1x, p1y);
+        Vector2D p2 = new Vector2D(p2x, p2y);
+        Vector2D p3 = new Vector2D(1, 1);
 
-/*        if (movement.isNullVector()) return;*/
-
-/*        Vector2D oldPosition = position.scale(1);
-        position = position.add(movement.normalize().scale(offset));*/
-
-/*        if (-position.y > ((Level) GameWindow.get().getScene()).getMapHeight() || -position.y < 0) {
-            position.y = oldPosition.y;
-        }
-        if (position.x > ((Level) GameWindow.get().getScene()).getMapWidth() || position.x < 0) {
-            position.x = oldPosition.x;
-        }*/
+        // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
+        float Bt = p0.scale((1 - t) * (1 - t) * (1 - t)).add(p1.scale(3 * (1 - t) * (1 - t) * t)).add(p2.scale(3 * (1 - t) * t * t)).add(p3.scale(t * t * t)).y;
+        return a + Bt * (b - a);
     }
 
     public void startAnimation() {
-        startAnimation = true;
+        state = CameraState.START_ANIMATION;
     }
 }

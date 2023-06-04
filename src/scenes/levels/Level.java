@@ -40,7 +40,7 @@ public class Level extends Scene {
 
         for (GameObject object : loader.getDynamicObjects()) {
             addGameObject(object);
-            if (object.getName().equals("ball")) getCamera().setPosition(object.getTransform().position.scale(1));
+            //if (object.getName().equals("ball")) getCamera().setPosition(object.getTransform().position.scale(1));
         }
 
         ((LevelCamera) getCamera()).startAnimation();

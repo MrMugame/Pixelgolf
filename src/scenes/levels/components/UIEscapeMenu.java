@@ -16,7 +16,7 @@ import java.awt.event.KeyEvent;
 public class UIEscapeMenu extends UIComponent {
     private boolean pressed = false;
 
-    private enum State { // TODO: Come up with a better idea because this many flag variables is just insane
+    private enum State {
         OFF,
         PENDING_ACTIVE,
         PENDING_OFF,

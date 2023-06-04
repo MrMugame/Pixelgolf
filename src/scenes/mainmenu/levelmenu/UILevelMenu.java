@@ -44,10 +44,9 @@ public class UILevelMenu extends UIComponent {
 
         List<String> levels = scanLevels();
 
-        // TODO: Paging
         int i = 0;
         for (String path : levels) {
-            if (i == 8) break;
+            if (i == 9) break; // Momentan werden nicht mehr als 9 Level unterstützt
             if (!path.matches("^level_\\d+\\.xml$")) continue;
             int number = Integer.parseInt(path.split("_")[1].split("\\.")[0]);
 
