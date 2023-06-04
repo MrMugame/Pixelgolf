@@ -14,9 +14,14 @@
         <BallPhysics mass="10"/>
         <BallInput/>
     </Dynamic>
-    <Dynamic name="flagpole" x="14" y="-9.75" w="0.5" h="0.5" r="0" z="1" >
-        <StaticGraphic path="img.png"/>
+    <Dynamic name="flagpole" x="13.5" y="-9.75" w="0.65" h="0.65" r="0" z="10">
         <Flagpole/>
+    </Dynamic>
+    <Dynamic name="flag" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="3">
+        <StaticGraphic path="game/flag.png" ox="0.2" oy="-0.65"/>
+    </Dynamic>
+    <Dynamic name="hole" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="1">
+        <StaticGraphic path="game/hole.png" ox="0.2" oy="-0.65"/>
     </Dynamic>
 
 </Map>
