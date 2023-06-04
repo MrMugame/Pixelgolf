@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class Map {
     public float width, height;
+
+    public int oneStar, twoStar, threeStar;
+
     public Polygon track;
     public String trackTexture;
     public String outsideTexture;

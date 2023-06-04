@@ -32,6 +32,8 @@ public class Level extends Scene {
             throw new RuntimeException(e);
         }
 
+        logic.setStarBoundaries(loader.getMap().oneStar, loader.getMap().twoStar, loader.getMap().threeStar);
+
         GameObject background = loader.renderBackground();
         addGameObject(background);
 
@@ -61,7 +63,7 @@ public class Level extends Scene {
     public void won() {
         pause();
 
-        UIComponent winScreen = new UIWinScreen(2, loader.getNumber());
+        UIComponent winScreen = new UIWinScreen(logic.getStars(), loader.getNumber());
         winScreen.setConstraints(ConstraintFactory.fullscreen());
         container.add(winScreen);
     }

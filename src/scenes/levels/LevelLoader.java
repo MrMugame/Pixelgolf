@@ -50,6 +50,11 @@ public class LevelLoader {
         map.width = Float.parseFloat(root.getAttribute("width"));
         map.height = Float.parseFloat(root.getAttribute("height"));
 
+        map.oneStar = Integer.parseInt(root.getAttribute("oneStar"));
+        map.twoStar = Integer.parseInt(root.getAttribute("twoStar"));
+        map.threeStar = Integer.parseInt(root.getAttribute("threeStar"));
+
+
         // Check for multiple Tracks
         Element track = (Element) root.getElementsByTagName("Track").item(0);
         map.trackTexture = track.getAttribute("insideTex");

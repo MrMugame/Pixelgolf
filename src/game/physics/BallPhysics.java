@@ -34,11 +34,9 @@ public class BallPhysics extends ActivePhysicsComponent {
 
     @Override
     public void testCollision(ArrayList<Collider> colliders) {
-        Vector2D center = parent.getTransform().position;
-        // TODO: URGH
         ArrayList<Collision> currentCollisions = new ArrayList<>();
         for (Collider c : colliders) {
-            ArrayList<Collision> newCollisions = c.polygon.collisionCircle(center, parent.getTransform().size.x / 2);
+            ArrayList<Collision> newCollisions = c.polygon.collisionCircle(parent.getTransform().position, parent.getTransform().size.x / 2);
 
             for (Collision collision : newCollisions) {
                 if (!collisions.contains(collision)) {
