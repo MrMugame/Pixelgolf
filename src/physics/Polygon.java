@@ -17,8 +17,8 @@ public class Polygon {
     public ArrayList<Collision> collisionCircle(Vector2D c, float radius) {
         ArrayList<Collision> collisions = new ArrayList<>();
         for (int i = 0; i < points.size(); i++) {
-            Vector2D a = rotateVector(points.get(i), rotation).add(translation);
-            Vector2D b = rotateVector(points.get(i+1 >= points.size() ? 0 : i+1), rotation).add(translation);
+            Vector2D a = rotateVector(points.get(i), -rotation).add(translation);
+            Vector2D b = rotateVector(points.get(i+1 >= points.size() ? 0 : i+1), -rotation).add(translation);
             if (CollisionMath.lineCircle(a, b, c, radius)) collisions.add(new Collision(this, i));
         }
         return collisions;
@@ -26,8 +26,8 @@ public class Polygon {
 
     // TODO: Make behaviour at convex corners a little better
     public Vector2D getLineNormal(int index) {
-        Vector2D a = points.get(index);
-        Vector2D b = points.get(index+1 >= points.size() ? 0 : index+1);
+        Vector2D a = rotateVector(points.get(index), -rotation);
+        Vector2D b = rotateVector(points.get(index+1 >= points.size() ? 0 : index+1), -rotation);
         return b.sub(a).normal();
     }
 

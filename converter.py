@@ -1,13 +1,14 @@
 
 
 def main():
-    path = "M0.147411 10.6996V7.72331L7.86897 7.70225V1.02661H25.2495V6.88798H28.296V10.4118H25.6075V9.48523H22.2732V3.91167H11.3998V10.6996H0.147411Z"
-    offsetx = 0.15
-    offsety = 7.2
+    #level_1 = "M0.147411 10.6996V7.72331L7.86897 7.70225V1.02661H25.2495V6.88798H28.296V10.4118H25.6075V9.48523H22.2732V3.91167H11.3998V10.6996H0.147411Z"
+    path = "M1.47552 11.3693V14.375H9.37101V11.0553H15.7323V7.60996H22.3986V4.48765H33.7573V1.15898H17.3024V4.47868H12.2062V7.80734H6.36534V11.3513H1.47552"
+    offsetx = -1.05
+    offsety = 3.2
 
-    scalar = 1.07
+    scalar = 0.958 #1.07
 
-    height = 18
+    height = 17
     
     
     path = path.replace("M", " M");
@@ -19,11 +20,13 @@ def main():
 
     list = path.split(" ");
 
+    print(list)
+
     x = 0
     y = 0
 
     #for i in range(0, len(list)):
-    i = -1
+    i = 0
     while i < len(list):
         if len(list[i]) == 0:
             i += 1
@@ -43,7 +46,6 @@ def main():
             y = float(list[i])
         
         i += 1
-        
         
         print("<p>" + str(round(x*scalar+offsetx, 1)) + ";" + str(-round(height-(height-(y+offsety))*scalar, 1)) + "</p>")
 

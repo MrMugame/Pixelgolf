@@ -1,27 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Map width="30" height="20" oneStar="15" twoStar="10" threeStar="5">
+<Map width="32" height="18" oneStar="15" twoStar="10" threeStar="5">
     <Track insideTex="game/grass_1.png" outsideTex="game/grass_2.png">
-        <p>2;-2</p>
-        <p>2;-9</p>
-        <p>5;-12</p>
-        <p>15;-12</p>
-        <p>15;-8</p>
-        <p>6;-8</p>
-        <p>6;-2</p>
+        <p>0.4;-14.7</p>
+        <p>0.4;-17.6</p>
+        <p>7.9;-17.6</p>
+        <p>7.9;-14.4</p>
+        <p>14.0;-14.4</p>
+        <p>14.0;-11.1</p>
+        <p>20.4;-11.1</p>
+        <p>20.4;-8.1</p>
+        <p>31.3;-8.1</p>
+        <p>31.3;-4.9</p>
+        <p>15.5;-4.9</p>
+        <p>15.5;-8.1</p>
+        <p>10.6;-8.1</p>
+        <p>10.6;-11.3</p>
+        <p>5.0;-11.3</p>
+        <p>5.0;-14.7</p>
+        <p>0.4;-14.7</p>
     </Track>
-    <Dynamic name="ball" x="4" y="-2.75" w="0.5" h="0.5" r="0" z="2">
+    <Static x="0" y="0" tex="game/level_2_assets.png"/>
+    <Dynamic name="ball" x="2" y="-16.2" w="0.5" h="0.5" r="0" z="2">
         <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
         <BallInput/>
     </Dynamic>
-    <Dynamic name="flagpole" x="13.5" y="-9.75" w="0.65" h="0.65" r="0" z="10">
+    <Dynamic name="flagpole" x="29.8" y="-6.25" w="0.65" h="0.65" r="0" z="10">
         <Flagpole/>
     </Dynamic>
-    <Dynamic name="flag" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="3">
+    <Dynamic name="flag" x="29.8" y="-6.25" w="1.5" h="1.5" r="0" z="3">
         <StaticGraphic path="game/flag.png" ox="0.2" oy="-0.65"/>
     </Dynamic>
-    <Dynamic name="hole" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="1">
+    <Dynamic name="hole" x="29.8" y="-6.25" w="1.5" h="1.5" r="0" z="1">
         <StaticGraphic path="game/hole.png" ox="0.2" oy="-0.65"/>
     </Dynamic>
+    <!--10/44  <p>10.6;-11.3</p>-->
+    <Dynamic name="woodwall_1" x="7.9" y="-12.2" w="0.5" h="2.22" r="0" z="1">
+        <Rectangle/>
+        <StaticGraphic path="game/wood_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="woodwall_2" x="10.6" y="-11.3" w="0.5" h="2.22" r="-0.5" z="1">
+        <Rectangle/>
+        <StaticGraphic path="game/wood_wall_1.png"/>
+    </Dynamic>
 
+    <Dynamic name="woodwall_3" x="20.45" y="-11.15" w="3.5" h="3.5" r="0" z="1">
+        <StaticGraphic ox="3.5" oy="-3.5" path="game/wood_wall_2.png"/>
+    </Dynamic>
+    <Dynamic name="woodwall_3_physics" x="20.8" y="-11.05" w="0.6" h="5" r="0.75" z="5">
+        <Rectangle/>
+    </Dynamic>
+
+    <Dynamic name="woodwall_4" x="20.4" y="-5.9" w="0.5" h="2.22" r="0" z="1">
+        <Rectangle/>
+        <StaticGraphic path="game/wood_wall_1.png"/>
+    </Dynamic>
 </Map>

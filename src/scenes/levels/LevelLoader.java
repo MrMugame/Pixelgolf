@@ -125,6 +125,9 @@ public class LevelLoader {
                     case "Flagpole":
                         object.add(new Flagpole());
                         break;
+                    case "Rectangle":
+                        object.add(new game.physics.Rectangle());
+                        break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());
                 }
