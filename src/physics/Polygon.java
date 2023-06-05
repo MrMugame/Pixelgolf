@@ -1,10 +1,6 @@
 package physics;
 
-import java.awt.*;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
-
-import static game.Transform.rotateVector;
 
 public class Polygon {
     private ArrayList<Vector2D> points = new ArrayList<>();;
@@ -51,5 +47,14 @@ public class Polygon {
         }
 
         return poly;
+    }
+
+    public static Vector2D rotateVector(Vector2D input, float radians) {
+        float cos = (float) Math.cos(radians);
+        float sin = (float) Math.sin(radians);
+
+        // https://en.wikipedia.org/wiki/Rotation_matrix
+        return new Vector2D(input.x * cos - input.y * sin,
+                input.x * sin + input.y * cos);
     }
 }

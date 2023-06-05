@@ -57,7 +57,7 @@ public class GameWindow {
 
     public void run() {
         BufferStrategy strategy = window.getBufferStrategy();
-        Graphics2D g = null;
+        Graphics2D g;
 
         long lastTime = System.nanoTime();
         long timeElapsed = 0;
@@ -66,7 +66,8 @@ public class GameWindow {
 
 
         while (true) {
-            Rectangle size = window.getBounds(); // TODO: Rerender new Level background on size change
+            // TODO: Rerender Level background on size change
+            Rectangle size = window.getBounds();
             Insets insets = window.getInsets();
             WIDTH = size.width - insets.left - insets.right;
             HEIGHT = size.height - insets.bottom - insets.top;
@@ -100,7 +101,11 @@ public class GameWindow {
                 g.setFont(new Font("Calibri", Font.PLAIN, 12));
                 g.setColor(Color.RED);
                 g.drawString(String.format("FPS: %.0f", fps), 0, 10);
-                g.drawString(String.format("Mouse: %f, %f", MouseListener.get().getMousePosition().x, MouseListener.get().getMousePosition().y), 0, 20);
+                g.drawString(String.format("Mouse: %f; %f", MouseListener.get().getMousePosition().x, MouseListener.get().getMousePosition().y), 0, 20);
+                long totalMemroy = Runtime.getRuntime().totalMemory();
+                long freeMemory = Runtime.getRuntime().freeMemory();
+                g.drawString(String.format("Memory: %.0f/%.0fMB",(totalMemroy - freeMemory)/1e6, totalMemroy/1e6), 0, 30);
+
             }
 
             g.dispose();

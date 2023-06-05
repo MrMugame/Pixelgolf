@@ -34,7 +34,7 @@ public class Transform {
     }
 
     public static float fromPositionToZoom(Vector2D position) {
-        // Geht von der Kamera bei (0, 0) aus und rechnet den Zoom aus der nötig ist, dass der Punkt position noch im Bild ist
+        // Geht von der Kamera bei (0, 0) aus und rechnet den Zoom aus der nötig ist, dass der Punkt position in der oberen linken Ecke liegt (0, 0)
 
         // position.scale(camera.getZoom()).invertY().scale(SCALE_FACTOR).add(w) = new Vector(0, 0);
         // position.scale(camera.getZoom()) = new Vector(0, 0).sub(w).scale(1f/SCALE_FACTOR).invertY();
@@ -48,14 +48,5 @@ public class Transform {
         Camera camera = GameWindow.get().getScene().getCamera();
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
         return position.sub(w).scale((float) 1/SCALE_FACTOR).invertY().scale(1.0f/camera.getZoom()).sub(camera.getTranslation());
-    }
-
-    public static Vector2D rotateVector(Vector2D input, float radians) {
-        float cos = (float) Math.cos(radians);
-        float sin = (float) Math.sin(radians);
-
-        // https://en.wikipedia.org/wiki/Rotation_matrix
-        return new Vector2D(input.x * cos - input.y * sin,
-                input.x * sin + input.y * cos);
     }
 }
