@@ -7,6 +7,7 @@ import game.Transform;
 import game.graphics.DynamicGraphic;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
+import game.physics.Angle;
 import game.physics.BallPhysics;
 import game.physics.Flagpole;
 import game.physics.Wall;
@@ -127,6 +128,9 @@ public class LevelLoader {
                         break;
                     case "Rectangle":
                         object.add(new game.physics.Rectangle());
+                        break;
+                    case "Angle":
+                        object.add(new Angle());
                         break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());

@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Map width="30" height="20" oneStar="15" twoStar="10" threeStar="5">
-    <Track insideTex="game/grass_1.png" outsideTex="game/grass_2.png">
-        <p>2;-2</p>
-        <p>2;-9</p>
-        <p>5;-12</p>
-        <p>15;-12</p>
-        <p>15;-8</p>
-        <p>6;-8</p>
-        <p>6;-2</p>
+<Map width="32" height="18" oneStar="15" twoStar="10" threeStar="5">
+    <Track insideTex="game/grass_1.png" outsideTex="game/stone_1.png">
+        <p>3.2;-8.4</p>
+        <p>3.2;-15.7</p>
+        <p>6.4;-15.7</p>
+        <p>6.4;-11.1</p>
+        <p>20.8;-11.1</p>
+        <p>20.8;-4.2</p>
+        <p>5.2;-4.2</p>
+        <p>5.2;-2.9</p>
+        <p>21.8;-2.9</p>
+        <p>21.8;-17.2</p>
+        <p>29.1;-17.2</p>
+        <p>29.1;-14.7</p>
+        <p>24.9;-14.7</p>
+        <p>24.9;-0.4</p>
+        <p>2.3;-0.4</p>
+        <p>2.3;-6.9</p>
+        <p>17.6;-6.9</p>
+        <p>17.6;-8.4</p>
+        <p>3.2;-8.4</p>
+        <p>3.2;-8.4</p>
     </Track>
-    <Dynamic name="ball" x="4" y="-2.75" w="0.5" h="0.5" r="0" z="2">
+    <Static x="0" y="0" tex="game/level_3_assets.png"/>
+    <Dynamic name="ball" x="4.8" y="-14.8" w="0.5" h="0.5" r="0" z="2">
         <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
         <BallInput/>
     </Dynamic>
-    <Dynamic name="flagpole" x="13.5" y="-9.75" w="0.65" h="0.65" r="0" z="10">
+    <Dynamic name="flagpole" x="27.6" y="-15.7" w="0.65" h="0.65" r="0" z="10">
         <Flagpole/>
     </Dynamic>
-    <Dynamic name="flag" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="3">
+    <Dynamic name="flag" x="27.6" y="-15.7" w="1.5" h="1.5" r="0" z="3">
         <StaticGraphic path="game/flag.png" ox="0.2" oy="-0.65"/>
     </Dynamic>
-    <Dynamic name="hole" x="13.5" y="-9.75" w="1.5" h="1.5" r="0" z="1">
+    <Dynamic name="hole" x="27.6" y="-15.7" w="1.5" h="1.5" r="0" z="1">
         <StaticGraphic path="game/hole.png" ox="0.2" oy="-0.65"/>
     </Dynamic>
 
+    <Dynamic name="slope_1" x="3.2" y="-8.38" w="1.8" h="1.8" r="-0.5" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_2" x="20.82" y="-11.12" w="1.8" h="1.8" r="0.5" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_3" x="20.82" y="-4.18" w="1.8" h="1.8" r="0" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_4" x="2.28" y="-6.92" w="1.8" h="1.8" r="1" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_5" x="2.28" y="-0.38" w="1.8" h="1.8" r="-0.5" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_6" x="24.92" y="-0.38" w="1.8" h="1.8" r="0" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
+
+    <Dynamic name="slope_7" x="21.78" y="-17.22" w="1.8" h="1.8" r="1" z="1">
+        <StaticGraphic path="game/angle_1.png" ox="1.8" oy="0"/>
+        <Angle/>
+    </Dynamic>
 </Map>
