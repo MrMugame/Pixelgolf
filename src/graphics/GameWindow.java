@@ -116,18 +116,21 @@ public class GameWindow {
         }
     }
 
-    // TODO: Doesnt work on windows
     public void setFullscreen() {
         if (fullscreen) return;
 
         GraphicsDevice gd = getLocalGraphicsEnvironment().getDefaultScreenDevice();
         if (gd.isFullScreenSupported()) {
             window.setVisible(false);
+            window.dispose();
+            window.setUndecorated(true);
             gd.setFullScreenWindow(window);
 
             DisplayMode mode = gd.getDisplayMode();
             window.setPreferredSize(new Dimension(mode.getWidth(), mode.getHeight()));
             window.setVisible(true);
+            window.pack();
+            window.createBufferStrategy(2);
             MouseListener.get().reset();
 
             fullscreen = true;
@@ -139,11 +142,13 @@ public class GameWindow {
         if (!fullscreen) return;
 
         window.setVisible(false);
+        window.dispose();
 
         GraphicsDevice gd = getLocalGraphicsEnvironment().getDefaultScreenDevice();
         if (gd.getFullScreenWindow() == window) gd.setFullScreenWindow(null);
 
         window.setPreferredSize(new Dimension(1200, 800));
+        window.setUndecorated(false);
         window.setVisible(true);
         // Regestriert sonst die Knopfdrücke nicht richtig da beim wechsel ja die Maus zwangsweise gedrückt ist (vielleicht wegen window.setvisible?)
         MouseListener.get().reset();
