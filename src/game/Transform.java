@@ -33,6 +33,17 @@ public class Transform {
         return position.add(camera.getTranslation()).scale(camera.getZoom()).invertY().scale(SCALE_FACTOR).add(w);
     }
 
+    public static float fromPositionToZoom(Vector2D position) {
+        // Geht von der Kamera bei (0, 0) aus und rechnet den Zoom aus der nötig ist, dass der Punkt position noch im Bild ist
+
+        // position.scale(camera.getZoom()).invertY().scale(SCALE_FACTOR).add(w) = new Vector(0, 0);
+        // position.scale(camera.getZoom()) = new Vector(0, 0).sub(w).scale(1f/SCALE_FACTOR).invertY();
+        // camera.getZoom() = new Vector(0, 0).sub(w).scale(1f/SCALE_FACTOR).invertY().magnitude() / position.magnitude();
+        Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
+        return new Vector2D(0, 0).sub(w).scale(1f/SCALE_FACTOR).invertY().magnitude() / position.magnitude();
+    }
+
+
     public static Vector2D fromScreenPosition(Vector2D position) {
         Camera camera = GameWindow.get().getScene().getCamera();
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);

@@ -1,6 +1,7 @@
 package graphics;
 
 import game.GameObject;
+import game.Transform;
 import input.KeyboardListener;
 import physics.Vector2D;
 import scenes.levels.Level;
@@ -55,12 +56,9 @@ public class LevelCamera extends Camera {
                 if (distance.magnitude() < 0.1f) state = CameraState.FOLLOWING;
                 break;
             case START_ANIMATION:
-                Vector2D diagonal = new Vector2D();
-                diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
-                diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
+                startPosition = getBirdviewPosition();
+                startZoom = getBirdviewZoom();
 
-                startPosition = diagonal.scale(0.5f);
-                startZoom = 1/diagonal.magnitude()*10; // TODO: Proper way of calculating this
                 endPosition = ball.getTransform().position;
                 endZoom = 1;
 
@@ -83,12 +81,8 @@ public class LevelCamera extends Camera {
 
                 break;
             case START_BIRDVIEW:
-                diagonal = new Vector2D();
-                diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
-                diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
-
-                endPosition = diagonal.scale(0.5f);
-                endZoom = 1/diagonal.magnitude()*10; // TODO: Proper way of calculating this
+                endPosition = getBirdviewPosition();
+                endZoom = getBirdviewZoom();
 
                 startPosition = position;
                 startZoom = zoom;
@@ -128,6 +122,22 @@ public class LevelCamera extends Camera {
         // https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B%C3%A9zier_curves
         float Bt = p0.scale((1 - t) * (1 - t) * (1 - t)).add(p1.scale(3 * (1 - t) * (1 - t) * t)).add(p2.scale(3 * (1 - t) * t * t)).add(p3.scale(t * t * t)).y;
         return a + Bt * (b - a);
+    }
+
+    private Vector2D getBirdviewPosition() {
+        Vector2D diagonal = new Vector2D();
+        diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
+        diagonal.y = -((Level) GameWindow.get().getScene()).getMapHeight();
+
+        return diagonal.scale(0.5f);
+    }
+
+    private float getBirdviewZoom() {
+        Vector2D diagonal = new Vector2D();
+        diagonal.x = ((Level) GameWindow.get().getScene()).getMapWidth();
+        diagonal.y = ((Level) GameWindow.get().getScene()).getMapHeight();
+
+        return Transform.fromPositionToZoom(diagonal.scale(0.5f).invertX()) - 0.01f; // 0.01 Puffer
     }
 
     public void startAnimation() {

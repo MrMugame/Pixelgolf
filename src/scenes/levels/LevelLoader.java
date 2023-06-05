@@ -3,12 +3,14 @@ package scenes.levels;
 import assets.Assets;
 import game.Component;
 import game.GameObject;
+import game.Transform;
 import game.graphics.DynamicGraphic;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
 import game.physics.BallPhysics;
 import game.physics.Flagpole;
 import game.physics.Wall;
+import graphics.GameWindow;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -133,21 +135,37 @@ public class LevelLoader {
     }
 
     public GameObject renderBackground() {
-        // TODO: Make Margin Camera dependent somehow dont ask me how pls
-        float margin = 8;
-        //         ^ (+)
-        // (-) <---|---> (+)
-        //         v (-)
+        Vector2D margin = Transform.fromScreenPosition(new Vector2D(0, 0)).invertX();
+
+        margin = margin.scale(1.05f); // Ein bisschen Puffer
+
+        float worldAspect = (float) GameWindow.get().WIDTH / GameWindow.get().HEIGHT;
+        float mapAspect = map.width / map.height;
+
+        if (mapAspect < worldAspect) {
+            // width is smaller
+            // (map.width + margin.x) / (map.height + margin.y) = worldAspect
+            // map.width + margin.x = worldAspect * (map.height + margin.y)
+            // margin.x = worldAspect * (map.height + margin.y) - map.width
+            margin.x = worldAspect * (map.height + margin.y) - map.width;
+        } else {
+            // height is smaller
+            // (map.width + margin.x) / (map.height + margin.y) = worldAspect
+            // (map.width + margin.x) / worldAspect = map.height + margin.y
+            // (map.width + margin.x) / worldAspect - map.height = margin.y
+            margin.y = (map.width + margin.x) / worldAspect - map.height;
+        }
+
         Polygon polygon = map.track.toAWTPolygon(TILESIZE);
 
-        BufferedImage texture = new BufferedImage((int) (map.width+margin*2)*TILESIZE, (int) (map.height+margin*2)*TILESIZE, TYPE_INT_RGB);
+        BufferedImage texture = new BufferedImage((int) ((map.width+margin.x*2)*TILESIZE), (int) ((map.height+margin.y*2)*TILESIZE), TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) texture.getGraphics();
 
         BufferedImage outsideTexture = Assets.loadImage(map.outsideTexture);
         g.setPaint(new TexturePaint(outsideTexture, new Rectangle(0, 0, outsideTexture.getWidth(), outsideTexture.getHeight())));
         g.fillRect(0, 0, texture.getWidth(), texture.getHeight());
 
-        g.translate(margin*TILESIZE, margin*TILESIZE);
+        g.translate(margin.x*TILESIZE, margin.y*TILESIZE);
 
         g.setColor(new Color(0, 0, 0));
         g.setStroke(new BasicStroke(2));
@@ -163,10 +181,15 @@ public class LevelLoader {
 
         g.dispose();
 
-        GameObject go = new GameObject("background", new Vector2D(-margin, margin), new Vector2D(map.width+2*margin, map.height+2*margin), 0, 0);
+        GameObject go = new GameObject("background", margin.invertX(), new Vector2D(map.width+(2*margin.x), map.height+(2*margin.y)), 0, 0);
         go.add(new DynamicGraphic(texture));
 
         return go;
+    }
+
+    private static double roundAvoid(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
     }
 
     public ArrayList<GameObject> getDynamicObjects() {
