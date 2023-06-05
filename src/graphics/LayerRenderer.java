@@ -41,7 +41,7 @@ public class LayerRenderer {
             if (transform.rotation == 0) {
                 g.drawImage(component.getTexture(), (int) pos.x, (int) pos.y, (int) size.x, (int) size.y, null);
             } else {
-                AffineTransform backup =  g.getTransform();
+                AffineTransform backup = g.getTransform();
 
                 Vector2D origin = Transform.toScreenPosition(transform.position);
                 g.rotate(transform.rotation, (int) origin.x, (int) origin.y);

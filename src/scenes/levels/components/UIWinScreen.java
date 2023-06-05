@@ -103,7 +103,7 @@ public class UIWinScreen extends UIComponent {
         containerTwo.add(buttonRetry);
 
         boolean next = Assets.getFile(LevelLoader.class, Assets.getLevelPath(self + 1)) != null;
-        if (next) next = stars != 0;
+        next = next && stars != 0;
 
         UIWinButton buttonNext = new UIWinButton(next ? "ui/win_next_button.png" : "ui/win_next_button_off.png", !next);
         buttonNext.getConstraints().addX(new UIEndAlignContstraint());
