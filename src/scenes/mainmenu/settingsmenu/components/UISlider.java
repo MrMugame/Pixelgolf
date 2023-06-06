@@ -1,31 +1,36 @@
 package scenes.mainmenu.settingsmenu.components;
 
+import assets.Assets;
 import gui.ConstraintFactory;
 import gui.SliderListener;
 import gui.UIComponent;
 import gui.UIConstraints;
 import gui.components.UIClickable;
 import gui.components.UIImage;
+import gui.components.UIText;
 import gui.constraints.*;
 import input.MouseListener;
 import physics.Vector2D;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class UISlider extends UIComponent {
-    private static float USABLE_BAR = 0.97f;
+    private static final float USABLE_BAR = 0.97f;
     private ArrayList<SliderListener> listeners = new ArrayList<>();
     private float min, max, value;
     private boolean dragging = false;
     private boolean setup = true;
+    private String name;
 
     private UIClickable knob;
     private UIComponent bar;
 
-    public UISlider(float initial, float min, float max) {
+    public UISlider(String name, float initial, float min, float max) {
         this.value = (initial - min) / (max - min);
         this.min = min;
         this.max = max;
+        this.name = name;
     }
 
     @Override
@@ -76,6 +81,11 @@ public class UISlider extends UIComponent {
         bar.setConstraints(ConstraintFactory.fullscreen());
         bar.getConstraints().addHeight(new UIImageAspectConstraint());
         add(bar);
+
+        UIText text = new UIText(name, Color.BLACK, Assets.DEFAULT_FONT, 14, false);
+        text.setConstraints(ConstraintFactory.fullscreen());
+        text.getConstraints().addX(new UIRelativeConstraint(0.1f));
+        add(text);
 
         knob = new UIClickable() {
             @Override

@@ -81,7 +81,7 @@ public class UISettingsMenu extends UIComponent {
         });
         container.add(buttonDebug);
 
-        UISlider sliderSFX = new UISlider(SoundSystem.get().getSFXVolume(), 0, 2);
+        UISlider sliderSFX = new UISlider("Effects", SoundSystem.get().getSFXVolume(), 0, 2);
         sliderSFX.getConstraints().addX(new UIEndAlignContstraint());
         sliderSFX.getConstraints().addY(new UIUnitConstraint(0));
         sliderSFX.getConstraints().addWidth(new UIUnitConstraint(15));
@@ -91,7 +91,7 @@ public class UISettingsMenu extends UIComponent {
         }));
         container.add(sliderSFX);
 
-        UISlider sliderMusic = new UISlider(SoundSystem.get().getMusicVolume(), 0, 2);
+        UISlider sliderMusic = new UISlider("Music", SoundSystem.get().getMusicVolume(), 0, 2);
         sliderMusic.getConstraints().addX(new UIEndAlignContstraint());
         sliderMusic.getConstraints().addY(new UIUnitConstraint(5));
         sliderMusic.getConstraints().addWidth(new UIUnitConstraint(15));
