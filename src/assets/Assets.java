@@ -47,7 +47,7 @@ public class Assets {
         return c.getResourceAsStream(path);
     }
 
-    public static String getLevelPath(int number) {
-        return "maps/level_" + number + ".xml";
+    public static InputStream loadLevel(int number) {
+        return LevelLoader.class.getResourceAsStream("maps/level_" + number + ".xml");
     }
 }

@@ -45,7 +45,7 @@ public class LevelLoader {
         map = new Map();
 
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = builder.parse(Assets.getFile(LevelLoader.class, Assets.getLevelPath(number)));
+        Document document = builder.parse(Assets.loadLevel(number));
         document.getDocumentElement().normalize();
 
         // Check for correct root element

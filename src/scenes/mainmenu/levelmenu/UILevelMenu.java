@@ -41,7 +41,7 @@ public class UILevelMenu extends UIComponent {
         container.getConstraints().addHeight(new UIAspectConstraint(1));
 
         for (int i = 0; i < 9; i++) { // Momentan werden nicht mehr als 9 Level unterstützt
-            InputStream stream = Assets.getFile(LevelLoader.class, Assets.getLevelPath(i+1));
+            InputStream stream = Assets.loadLevel(i+1);
             if (stream == null) break;
 
 
