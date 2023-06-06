@@ -1,5 +1,6 @@
 package scenes.mainmenu;
 
+import assets.Assets;
 import graphics.Camera;
 import gui.UIComponent;
 import gui.components.UIPage;
@@ -9,6 +10,8 @@ import scenes.Scene;
 import scenes.mainmenu.levelmenu.UILevelMenu;
 import scenes.mainmenu.startmenu.UIMainScreen;
 import scenes.mainmenu.settingsmenu.UISettingsMenu;
+import sound.Playlist;
+import sound.SoundSystem;
 
 public class MainMenu extends Scene {
 
@@ -24,5 +27,7 @@ public class MainMenu extends Scene {
         page.getConstraints().addWidth(new UIRelativeConstraint(1));
         page.getConstraints().addHeight(new UIRelativeConstraint(1));
         getUiRenderer().getContainer().add(page);
+
+        SoundSystem.get().play(new Playlist("sound/output.wav"));
     }
 }

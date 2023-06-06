@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import input.MouseListener;
 import scenes.Scene;
 import scenes.mainmenu.MainMenu;
+import sound.SoundSystem;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
@@ -110,6 +111,8 @@ public class GameWindow {
 
             g.dispose();
             if (!strategy.contentsLost()) strategy.show();
+
+            SoundSystem.get().update();
 
             // Sleep call macht die Bildrate inakkurat aufgrund von Thread timings (Sleep call dauert meist länger als er soll), alle anderen Lösungen sind jedoch Mord an der CPU
             long sleepTime = (long) 1e9/FPS_LIMIT - frameTime;

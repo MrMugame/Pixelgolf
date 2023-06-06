@@ -6,23 +6,21 @@ import java.io.InputStream;
 
 public class Sound {
     private AudioInputStream inputStream;
+    private Clip clip;
 
     public Sound(InputStream file) throws UnsupportedAudioFileException, IOException {
         inputStream = AudioSystem.getAudioInputStream(file);
     }
 
-    public void play() {
-        // TODO: See if I need to close the clips because of memory
-        try {
-            Clip clip = SoundSystem.get().getSFXClip();
-            clip.open(inputStream);
+    public AudioInputStream getInputStream() {
+        return inputStream;
+    }
 
-            FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gain.setValue(Math.max(gain.getMinimum(), Math.min(gain.getMaximum(), SoundSystem.percentVolumeToDB(SoundSystem.get().getSFXVolume()))));
+    public void setClip(Clip clip) {
+        this.clip = clip;
+    }
 
-            clip.start();
-        } catch (LineUnavailableException | IOException e) {
-            System.err.println("Konnte Sound nicht laden!");
-        }
+    public Clip getClip() {
+        return clip;
     }
 }
