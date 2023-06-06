@@ -1,8 +1,10 @@
 package assets;
 
 import scenes.levels.LevelLoader;
+import sound.Sound;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -42,9 +44,14 @@ public class Assets {
         return fonts.get(path);
     }
 
-    // TODO: Maybe merge both functions into one; idk how sound is working tho
-    public static InputStream getFile(Class<?> c, String path) {
-        return c.getResourceAsStream(path);
+    public static Sound loadSound(String path) {
+        try {
+            return new Sound(Assets.class.getResourceAsStream(path));
+        } catch (UnsupportedAudioFileException | IOException e) {
+            System.err.println("Konnte Sound nicht laden!");
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 
     public static InputStream loadLevel(int number) {
