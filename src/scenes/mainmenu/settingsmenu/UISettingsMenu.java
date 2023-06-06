@@ -7,6 +7,8 @@ import gui.components.*;
 import gui.constraints.*;
 import scenes.mainmenu.settingsmenu.components.UIBackButton;
 import scenes.mainmenu.settingsmenu.components.UISelectButton;
+import scenes.mainmenu.settingsmenu.components.UISlider;
+import sound.SoundSystem;
 
 public class UISettingsMenu extends UIComponent {
 
@@ -35,7 +37,7 @@ public class UISettingsMenu extends UIComponent {
         UIContainer container = new UIContainer();
         container.getConstraints().addX(new UICenterConstraint());
         container.getConstraints().addY(new UICenterConstraint());
-        container.getConstraints().addWidth(new UIRelativeConstraint(0.85f));
+        container.getConstraints().addWidth(new UIRelativeConstraint(0.7f));
         container.getConstraints().addHeight(new UIRelativeConstraint(0.80f));
         block.add(container);
 
@@ -79,6 +81,25 @@ public class UISettingsMenu extends UIComponent {
         });
         container.add(buttonDebug);
 
+        UISlider sliderSFX = new UISlider(SoundSystem.get().getSFXVolume(), 0, 2);
+        sliderSFX.getConstraints().addX(new UIEndAlignContstraint());
+        sliderSFX.getConstraints().addY(new UIUnitConstraint(0));
+        sliderSFX.getConstraints().addWidth(new UIUnitConstraint(15));
+        sliderSFX.getConstraints().addHeight(new UIPassthroughConstraint());
+        sliderSFX.addListener((value -> {
+            SoundSystem.get().setSFXVolume(value);
+        }));
+        container.add(sliderSFX);
+
+        UISlider sliderMusic = new UISlider(SoundSystem.get().getMusicVolume(), 0, 2);
+        sliderMusic.getConstraints().addX(new UIEndAlignContstraint());
+        sliderMusic.getConstraints().addY(new UIUnitConstraint(5));
+        sliderMusic.getConstraints().addWidth(new UIUnitConstraint(15));
+        sliderMusic.getConstraints().addHeight(new UIPassthroughConstraint());
+        sliderMusic.addListener((value -> {
+            SoundSystem.get().setMusicVolume(value);
+        }));
+        container.add(sliderMusic);
 
         add(block);
     }

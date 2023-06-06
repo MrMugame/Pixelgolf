@@ -27,7 +27,9 @@ public class UIClickable extends UIComponent {
         boolean vertical = getY() < mouse.y && mouse.y < (getY() + getHeight());
         boolean horizontal = getX() < mouse.x && mouse.x < (getX() + getWidth());
 
-        if (vertical && horizontal && !isHovered) {
+        MouseListener listener = MouseListener.get();
+
+        if (vertical && horizontal && !isHovered && !listener.isPressed(BUTTON1)) {
             isHovered = true;
             onHoverEnter();
         } else if (!(vertical && horizontal) && isHovered) {
