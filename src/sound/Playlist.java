@@ -3,25 +3,25 @@ package sound;
 import assets.Assets;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Playlist {
-    private ArrayList<Sound> songs = new ArrayList<>();
+    private ArrayList<String> songs = new ArrayList<>();
+    private Sound current;
     private int index = 0;
 
     public Playlist(String... songs) {
-        for (int i = 0; i < songs.length; i++) {
-            this.songs.add(Assets.loadSound(songs[index]));
-        }
+       this.songs.addAll(Arrays.asList(songs));
     }
 
     public Sound getNext() {
-        Sound sound = songs.get(index);
+        current = Assets.loadSound(songs.get(index));
         index++;
         if (index == songs.size()) index = 0;
-        return sound;
+        return current;
     }
 
     public Sound getCurrent() {
-        return songs.get(index);
+        return current;
     }
 }

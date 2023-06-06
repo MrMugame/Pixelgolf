@@ -21,7 +21,7 @@ public class SoundSystem {
 
     public void update() {
         if (!playlist.getCurrent().getClip().isRunning()) {
-            play(playlist.getNext());
+            play(playlist.getNext(), volumeMusic);
         }
     }
 
@@ -33,7 +33,8 @@ public class SoundSystem {
         // TODO: See if I need to close the clips because of memory
         try {
             Clip clip = AudioSystem.getClip();
-            clip.open(sound.getInputStream());
+            AudioInputStream stream = sound.getInputStream();
+            clip.open(stream);
 
             FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gain.setValue(Math.max(gain.getMinimum(), Math.min(gain.getMaximum(), percentVolumeToDB(volume))));
@@ -48,7 +49,7 @@ public class SoundSystem {
     }
 
     public void play(Playlist playlist) {
-        if (this.playlist != null) playlist.getCurrent().getClip().stop();
+        if (this.playlist != null) this.playlist.getCurrent().getClip().stop();
 
         this.playlist = playlist;
         play(this.playlist.getNext(), volumeMusic);

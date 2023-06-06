@@ -47,7 +47,7 @@ public class Assets {
     public static Sound loadSound(String path) {
         try {
             return new Sound(Assets.class.getResourceAsStream(path));
-        } catch (UnsupportedAudioFileException | IOException e) {
+        } catch ( IOException e) {
             System.err.println("Konnte Sound nicht laden!");
             e.printStackTrace();
             throw new RuntimeException();
