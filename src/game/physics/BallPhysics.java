@@ -20,7 +20,7 @@ public class BallPhysics extends ActivePhysicsComponent {
 
     @Override
     public void update(float dt) {
-        // -- Patrick
+        // -- Patrick // TODO
         // Luftwiederstand
         applyForce(velocity.scale(-1 * 0.5f * 1.2f * velocity.magnitude() * 0.47f * 0.554f));
         // Reibung

@@ -59,13 +59,13 @@ public class BallInput extends InputComponent {
             if (mouseVector.magnitude()/VISUAL_FACTOR >= MAX) {
                 // mag/factor = max
                 // mag = max*factor
-                // mag^2 * 0.65 = (max*factor)^2 * 0.65
+                // mag^2 * power_factor = (max*factor)^2 * power_factor
                 physics.velocity = mouseVector.normalize().scale((MAX*VISUAL_FACTOR)*(MAX*VISUAL_FACTOR) * POWER_FACTOR);
             } else {
                 physics.velocity = mouseVector.normalize().scale(mouseVector.magnitudeSquared() * POWER_FACTOR);
             }
 
-            // AHAHDHAHDAHDHAHDHAHD HAH AH H HAH HH SINGLETON (SOGAR NOCH BE... TYPE CASTS) ICH HASSE SINGLETONS ABER JOA NE. ein observer pattern wäre hier geiler aber joa ne ... aufwändig
+            // TODO: AHAHDHAHDAHDHAHDHAHD HAH AH H HAH HH SINGLETON (SOGAR NOCH EIN... TYPE CASTS) ICH HASSE SINGLETONS ABER JOA NE. ein observer pattern wäre hier geiler aber joa ne ... aufwändig
             ((Level) GameWindow.get().getScene()).getLogic().addStroke();
 
             GameWindow.get().getScene().removeGameObject(drag);
