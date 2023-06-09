@@ -55,6 +55,6 @@ public class Assets {
     }
 
     public static InputStream loadLevel(int number) {
-        return LevelLoader.class.getResourceAsStream("maps/level_" + number + ".xml");
+        return Assets.class.getResourceAsStream("maps/level_" + number + ".xml");
     }
 }
