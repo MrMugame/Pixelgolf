@@ -61,6 +61,15 @@ public class Vector2D {
         return (float) Math.acos(-x / magnitude()) * Math.signum(y);
     }
 
+    public Vector2D rotate(float radians) {
+        float cos = (float) Math.cos(radians);
+        float sin = (float) Math.sin(radians);
+
+        // https://en.wikipedia.org/wiki/Rotation_matrix
+        return new Vector2D(x * cos - y * sin,
+                x * sin + y * cos);
+    }
+
     public boolean isNullVector() {
         return x == 0 && y == 0;
     }
