@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Map width="32" height="18" oneStar="15" twoStar="10" threeStar="5">
-    <!--- Finished Level just needs proper star bariers -->
     <Track insideTex="game/grass_1.png" outsideTex="game/grass_2.png">
         <p>0.3;-17.9</p>
         <p>0.3;-14.7</p>
