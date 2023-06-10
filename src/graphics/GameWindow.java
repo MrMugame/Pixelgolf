@@ -100,7 +100,7 @@ public class GameWindow {
 
             if (DEBUG) {
                 g.setFont(new Font("Calibri", Font.PLAIN, 12));
-                g.setColor(Color.RED);
+                g.setColor(Color.WHITE);
                 g.drawString(String.format("FPS: %.0f", fps), 0, 10);
                 g.drawString(String.format("Mouse: %f; %f", MouseListener.get().getMousePosition().x, MouseListener.get().getMousePosition().y), 0, 20);
                 long totalMemroy = Runtime.getRuntime().totalMemory();

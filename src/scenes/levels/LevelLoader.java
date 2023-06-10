@@ -76,6 +76,10 @@ public class LevelLoader {
             g.y = Float.parseFloat(element.getAttribute("y"));
             g.texture = element.getAttribute("tex");
 
+            g.top = false;
+            String top = element.getAttribute("top");
+            if (top.equals("true")) g.top = true;
+
             map.statics.add(g);
         }
 
@@ -195,6 +199,7 @@ public class LevelLoader {
         g.translate(margin.x*TILESIZE, margin.y*TILESIZE);
 
         for (Map.StaticGrpahic graphic : map.statics) {
+            if (graphic.top) continue;
             g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
         }
 
@@ -205,6 +210,11 @@ public class LevelLoader {
         BufferedImage insideTexture = Assets.loadImage(map.trackTexture);
         g.setPaint(new TexturePaint(insideTexture, new Rectangle(0, 0, insideTexture.getWidth(), insideTexture.getHeight())));
         g.fillPolygon(polygon);
+
+        for (Map.StaticGrpahic graphic : map.statics) {
+            if (!graphic.top) continue;
+            g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
+        }
 
         g.dispose();
 

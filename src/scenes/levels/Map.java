@@ -16,6 +16,7 @@ public class Map {
 
     public static class StaticGrpahic {
         public float x, y;
+        public boolean top;
         public String texture;
     }
 
