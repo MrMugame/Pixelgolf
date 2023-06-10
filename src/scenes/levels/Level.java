@@ -2,6 +2,8 @@ package scenes.levels;
 
 import game.GameObject;
 import game.physics.Custom;
+import game.physics.Material;
+import game.physics.MaterialType;
 import graphics.GameWindow;
 import graphics.LevelCamera;
 import gui.ConstraintFactory;
@@ -46,6 +48,7 @@ public class Level extends Scene {
 
         GameObject walls = new GameObject("walls", new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0, 0);
         walls.add(new Custom(loader.getMap().track));
+        walls.add(new Material(MaterialType.WALL));
         addGameObject(walls);
 
         for (GameObject object : loader.getDynamicObjects()) {

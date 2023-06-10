@@ -25,7 +25,7 @@
         <BallInput/>
     </Dynamic>
     <Dynamic name="flagpole" x="28.675" y="-16.4" w="0.65" h="0.65" r="0" z="10">
-        <Flagpole/>
+        <Collision material="FLAGPOLE" box="1 1" path="P 0.35 -0.65 P 0.35 -0.35 P 0.65 -0.35 P 0.65 -0.65" />
     </Dynamic>
     <Dynamic name="flag" x="28.675" y="-16.4" w="1.5" h="1.5" r="0" z="3">
         <StaticGraphic path="game/flag.png" ox="0.2" oy="-0.65"/>

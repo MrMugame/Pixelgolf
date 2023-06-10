@@ -41,9 +41,10 @@
         <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
         <BallInput/>
+        <Resetpoint x="2.1" y="-17.2"/>
     </Dynamic>
     <Dynamic name="flagpole" x="20.1" y="-9.5" w="0.65" h="0.65" r="0" z="10">
-        <Flagpole/>
+        <Collision material="FLAGPOLE" box="1 1" path="P 0.35 -0.65 P 0.35 -0.35 P 0.65 -0.35 P 0.65 -0.65" />
     </Dynamic>
     <Dynamic name="flag" x="20.1" y="-9.5" w="1.5" h="1.5" r="0" z="3">
         <StaticGraphic path="game/flag.png" ox="0.2" oy="-0.65"/>
@@ -54,38 +55,38 @@
 
     <Dynamic name="sinkhole_1" x="4.0" y="-3.4" w="1.2" h="2.2" r="-0.5" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_2" x="24.5" y="-3.5" w="1.2" h="2.2" r="0" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_3" x="24.4" y="-15.0" w="1.2" h="2.2" r="0.5" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_4" x="6" y="-14.8" w="1.2" h="2.2" r="1" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_5" x="6" y="-6.1" w="1.2" h="2.2" r="-0.5" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_6" x="21.75" y="-6.1" w="1.2" h="2.2" r="0" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_7" x="21.6" y="-12.52" w="1.2" h="2.2" r="0.5" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_8" x="8.4" y="-12.4" w="1.2" h="2.2" r="1" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
     <Dynamic name="sinkhole_9" x="8.5" y="-8.6" w="1.2" h="2.2" r="-0.5" z="1">
         <StaticGraphic path="game/sinkhole.png"/>
-        <Sinkhole x="2.1" y="-17.2"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
 </Map>

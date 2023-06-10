@@ -6,10 +6,7 @@ import game.Transform;
 import game.graphics.DynamicGraphic;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
-import game.physics.Sinkhole;
-import game.physics.Triangle;
-import game.physics.BallPhysics;
-import game.physics.Flagpole;
+import game.physics.*;
 import graphics.GameWindow;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,8 +16,11 @@ import physics.Vector2D;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
@@ -97,7 +97,7 @@ public class LevelLoader {
             for (int j = 0; j < components.getLength(); j++) {
                 if (!(components.item(j) instanceof Element)) continue;
                 Element component = (Element) components.item(j);
-                switch (component.getTagName()) {
+                switch (component.getTagName()) { // TODO: Better switch
                     case "StaticGraphic":
                         String path = component.getAttribute("path");
                         StaticGraphic graphic = new StaticGraphic(path);
@@ -118,18 +118,39 @@ public class LevelLoader {
                     case "BallInput":
                         object.add(new BallInput());
                         break;
-                    case "Flagpole":
-                        object.add(new Flagpole());
-                        break;
-                    case "Rectangle":
-                        object.add(new game.physics.Rectangle());
-                        break;
-                    case "Triangle":
-                        object.add(new Triangle());
-                    case "Sinkhole":
+                    case "Resetpoint":
                         float resetX = Float.parseFloat(component.getAttribute("x"));
                         float resetY = Float.parseFloat(component.getAttribute("y"));
-                        object.add(new Sinkhole(new Vector2D(resetX, resetY)));
+                        object.add(new Resetpoint(new Vector2D(resetX, resetY)));
+                        break;
+                    case "Collision":
+                        // P 1 5 P 5 2
+                        String[] box = component.getAttribute("box").split(" ");
+                        // assert box.len != 2
+                        float boxX = Float.parseFloat(box[0]);
+                        float boxY = Float.parseFloat(box[1]);
+
+                        String polygonPath = component.getAttribute("path");
+                        Iterator<String> tokens = Arrays.stream(polygonPath.split(" ")).iterator();
+
+                        physics.Polygon polygon = new physics.Polygon();
+
+                        while (tokens.hasNext()) {
+                            String token = tokens.next();
+                            if (token.equals("P")) {
+                                float pointX = Float.parseFloat(tokens.next()) / boxX * object.getTransform().size.x;
+                                float pointY = Float.parseFloat(tokens.next()) / boxY * object.getTransform().size.y;
+                                polygon.addPoint(new Vector2D(pointX, pointY));
+                            } else {
+                                // TODO: Exeption
+                            }
+                        }
+
+                        String material = component.getAttribute("material");
+                        MaterialType type = MaterialType.valueOf(material);
+
+                        object.add(new Material(type));
+                        object.add(new Custom(polygon));
                         break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());

@@ -40,15 +40,19 @@ public class BallPhysics extends ActivePhysicsComponent {
 
             for (Collision collision : newCollisions) {
                 if (!collisions.contains(collision)) {
-                    if (c.gameObject.get(Flagpole.class) != null) {
-                        ((Level) GameWindow.get().getScene()).won();
-                    } else if (c.gameObject.get(Sinkhole.class) != null) {
-                        velocity = new Vector2D();
-                        parent.getTransform().position = c.gameObject.get(Sinkhole.class).getReset();
-                    } else {
-                        Vector2D n = collision.getNormal().normalize();
-                        velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
-                        velocity = velocity.scale(0.75f); // -- Patrick
+                    switch (c.gameObject.get(Material.class).getMaterial()) {
+                        case WALL -> {
+                            Vector2D n = collision.getNormal().normalize();
+                            velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
+                            velocity = velocity.scale(0.75f); // -- Patrick
+                        }
+                        case FLAGPOLE -> {
+                            ((Level) GameWindow.get().getScene()).won();
+                        }
+                        case SINKHOLE -> {
+                            velocity = new Vector2D();
+                            parent.getTransform().position = parent.get(Resetpoint.class).getReset();
+                        }
                     }
                 }
                 currentCollisions.add(collision);
