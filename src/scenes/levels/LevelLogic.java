@@ -30,6 +30,10 @@ public class LevelLogic {
         strokes += 1;
     }
 
+    public void reset() {
+        strokes = 0;
+    }
+
     public int getStrokes() {
         return strokes;
     }

@@ -52,6 +52,7 @@ public class BallPhysics extends ActivePhysicsComponent {
                         case SINKHOLE -> {
                             velocity = new Vector2D();
                             parent.getTransform().position = parent.get(Resetpoint.class).getReset();
+                            ((Level) GameWindow.get().getScene()).getLogic().reset();
                         }
                         case ICEPUDDLE -> {
                             // TODO
