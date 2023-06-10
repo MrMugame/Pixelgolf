@@ -1,16 +1,15 @@
 package scenes.levels;
 
 import assets.Assets;
-import game.Component;
 import game.GameObject;
 import game.Transform;
 import game.graphics.DynamicGraphic;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
-import game.physics.Angle;
+import game.physics.Sinkhole;
+import game.physics.Triangle;
 import game.physics.BallPhysics;
 import game.physics.Flagpole;
-import game.physics.Wall;
 import graphics.GameWindow;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,11 +20,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
@@ -129,8 +124,12 @@ public class LevelLoader {
                     case "Rectangle":
                         object.add(new game.physics.Rectangle());
                         break;
-                    case "Angle":
-                        object.add(new Angle());
+                    case "Triangle":
+                        object.add(new Triangle());
+                    case "Sinkhole":
+                        float resetX = Float.parseFloat(component.getAttribute("x"));
+                        float resetY = Float.parseFloat(component.getAttribute("y"));
+                        object.add(new Sinkhole(new Vector2D(resetX, resetY)));
                         break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());
@@ -174,17 +173,17 @@ public class LevelLoader {
 
         g.translate(margin.x*TILESIZE, margin.y*TILESIZE);
 
+        for (Map.StaticGrpahic graphic : map.statics) {
+            g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
+        }
+
         g.setColor(new Color(0, 0, 0));
-        g.setStroke(new BasicStroke(2));
+        g.setStroke(new BasicStroke(2f));
         g.drawPolygon(polygon);
 
         BufferedImage insideTexture = Assets.loadImage(map.trackTexture);
         g.setPaint(new TexturePaint(insideTexture, new Rectangle(0, 0, insideTexture.getWidth(), insideTexture.getHeight())));
         g.fillPolygon(polygon);
-
-        for (Map.StaticGrpahic graphic : map.statics) {
-            g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
-        }
 
         g.dispose();
 

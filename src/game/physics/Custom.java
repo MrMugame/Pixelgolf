@@ -2,11 +2,11 @@ package game.physics;
 
 import physics.Polygon;
 
-public class Wall extends StaticPhysicsComponent {
+public class Custom extends StaticPhysicsComponent { // TODO: Rename
 
     private Polygon polygon;
 
-    public Wall(Polygon polygon) {
+    public Custom(Polygon polygon) {
         this.polygon = polygon;
     }
 

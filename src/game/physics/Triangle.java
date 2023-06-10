@@ -3,10 +3,10 @@ package game.physics;
 import physics.Polygon;
 import physics.Vector2D;
 
-public class Angle extends StaticPhysicsComponent {
+public class Triangle extends StaticPhysicsComponent {
     private Polygon polygon;
 
-    public Angle() {}
+    public Triangle() {}
 
     @Override
     public Polygon getPolygon() {

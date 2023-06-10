@@ -19,10 +19,10 @@ public class BallInput extends InputComponent {
 
     private boolean dragging = false;
 
-    private GameObject drag, arrow;
+    private GameObject drag, arrow; // TODO: Move to get by name instead of references
 
     public BallInput() {
-        arrow = new GameObject("drag", new Vector2D(), new Vector2D(1, 1*(13.0f/14)), 0, 3);
+        arrow = new GameObject("arrow", new Vector2D(), new Vector2D(1, 1*(13.0f/14)), 0, 3);
         arrow.add(new StaticGraphic("game/drag_arrow.png"));
         arrow.get(StaticGraphic.class).setAnchor(new Vector2D(0.5f, 0.25f));
 
