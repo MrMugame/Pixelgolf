@@ -53,6 +53,11 @@ public class BallPhysics extends ActivePhysicsComponent {
                             velocity = new Vector2D();
                             parent.getTransform().position = parent.get(Resetpoint.class).getReset();
                         }
+                        case ICEPUDDLE -> {
+                            // TODO
+                            float range = 0.125f * (float)Math.PI;
+                            velocity = velocity.rotate((float) Math.random() * (range*2) - range);
+                        }
                     }
                 }
                 currentCollisions.add(collision);

@@ -89,4 +89,82 @@
         <StaticGraphic path="game/sinkhole.png"/>
         <Collision material="SINKHOLE" box="1 1" path="P 0.5 -0.14 P 0.9f -0.57 P 0.46 -0.96 P 0.09 -0.77 P 0.09 -0.32"/>
     </Dynamic>
+
+    <Dynamic name="puddle_1" x="1.75" y="-3.5" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_2" x="21.0" y="-2.044" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_3" x="24.5" y="-13.3" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_4" x="5.4" y="-15.75" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_5" x="4.45" y="-6.3" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_6" x="19.9" y="-4.744" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_7" x="21.7" y="-10.8" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_8" x="8.55" y="-12.55" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_9" x="6.85" y="-8.8" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+    <Dynamic name="puddle_10" x="19.0" y="-7" w="1.55" h="1.356" r="0" z="1">
+        <StaticGraphic path="game/icepuddle.png"/>
+        <Collision material="ICEPUDDLE" box="10 8.75" path="P 2.72 -0.21 P 6.88 -0.21 P 9.68 -2.67 P 9.68 -5.58 P 7.3 -8.48 P 4 -8.48 P 0.21 -5.89 P 0.21 -2.67"/>
+    </Dynamic>
+
+    <Dynamic name="wall_1" x="3.3" y="-10" w="0.5" h="1.0" r="0.5" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_2" x="6.0" y="-10" w="0.5" h="1.0" r="0.5" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_3" x="13.8" y="-3.4" w="0.5" h="1.0" r="1" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_4" x="13.8" y="-6.1" w="0.5" h="1.0" r="1" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_5" x="13.8" y="-8.63" w="0.5" h="1.0" r="1" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_6" x="21.7" y="-9.3" w="0.5" h="1.0" r="-0.5" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_7" x="24.5" y="-9.3" w="0.5" h="1.0" r="-0.5" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_8" x="13.0" y="-17.3" w="0.5" h="1.0" r="1" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
+    <Dynamic name="wall_9" x="13.6" y="-12.53" w="0.5" h="1.0" r="0" z="1">
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
+        <StaticGraphic path="game/ice_wall_1.png"/>
+    </Dynamic>
 </Map>
