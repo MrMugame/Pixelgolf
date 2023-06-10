@@ -58,6 +58,9 @@ public class BallPhysics extends ActivePhysicsComponent {
                             float range = 0.125f * (float)Math.PI;
                             velocity = velocity.rotate((float) Math.random() * (range*2) - range);
                         }
+                        case SLOWPUDDLE -> {
+                            velocity = velocity.scale(0.85f);
+                        }
                     }
                 }
                 currentCollisions.add(collision);
