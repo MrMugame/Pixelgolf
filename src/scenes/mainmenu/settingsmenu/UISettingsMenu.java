@@ -9,6 +9,7 @@ import scenes.mainmenu.settingsmenu.components.UIBackButton;
 import scenes.mainmenu.settingsmenu.components.UISelectButton;
 import scenes.mainmenu.settingsmenu.components.UISlider;
 import sound.SoundSystem;
+import state.GameState;
 
 public class UISettingsMenu extends UIComponent {
 
@@ -80,6 +81,16 @@ public class UISettingsMenu extends UIComponent {
             }
         });
         container.add(buttonDebug);
+
+        UISelectButton tutorialDebug = new UISelectButton(0, "Reset Tutorial");
+        tutorialDebug.getConstraints().addX(new UIUnitConstraint(0));
+        tutorialDebug.getConstraints().addY(new UIUnitConstraint(15));
+        tutorialDebug.getConstraints().addWidth(new UIUnitConstraint(15));
+        tutorialDebug.getConstraints().addHeight(new UIPassthroughConstraint());
+        tutorialDebug.addListener((i) -> {
+            GameState.get().setProperty("tutorialPlayed", false);
+        });
+        container.add(tutorialDebug);
 
         UISlider sliderSFX = new UISlider("Effects", SoundSystem.get().getSFXVolume(), 0, 2);
         sliderSFX.getConstraints().addX(new UIEndAlignContstraint());

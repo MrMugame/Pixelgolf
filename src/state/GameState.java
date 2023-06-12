@@ -5,13 +5,16 @@ import graphics.GameWindow;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameState implements Serializable {
     private static GameState instance;
 
-    private HashMap<Integer, LevelState> levels = new HashMap<>();
+    private final HashMap<Integer, LevelState> levels = new HashMap<>();
+
+    private final HashMap<String, Boolean> property = new HashMap<>();
 
     private GameState() {}
 
@@ -32,9 +35,21 @@ public class GameState implements Serializable {
         save();
     }
 
-    public static GameState load() {
+    public boolean getProperty(String name) {
+        if (property.containsKey(name)) {
+            return property.get(name);
+        }
+        return false;
+    }
+
+    public void setProperty(String name, boolean value) {
+        property.put(name, value);
+        save();
+    }
+
+    private static GameState load() {
         try {
-            String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
+            String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8);
             File file = new File(path + "/savegame.txt");
             if (file.isDirectory() || !file.exists()) return new GameState();
 

@@ -24,14 +24,14 @@ public class Level extends Scene {
     private final LevelLoader loader;
     private final LevelLogic logic;
     private boolean finished = false;
-    private boolean tutorial;
+    private UITutorial tutorial;
 
     public Level(int number) {
         super(new LevelCamera());
         loader = new LevelLoader(number);
         logic = new LevelLogic();
 
-        tutorial = number == 1;
+        tutorial = number == 1 && !GameState.get().getProperty("tutorialPlayed") ? new UITutorial() : null; ;
     }
 
     @Override
@@ -69,8 +69,7 @@ public class Level extends Scene {
         HUD.setConstraints(ConstraintFactory.fullscreen());
         container.add(HUD);
 
-        if (tutorial) {
-            UIComponent tutorial = new UITutorial();
+        if (tutorial != null) {
             tutorial.setConstraints(ConstraintFactory.fullscreen());
             container.add(tutorial);
         }
@@ -83,6 +82,8 @@ public class Level extends Scene {
     public void won() {
         if (finished) return; // Bei der Kollision kann es leicht passieren, dass der Ball mehrere Wände des Lochs berührt und dann würde diese Funktion mehrmals aufgerufen werden
         finished = true;
+
+        if (tutorial != null) tutorial.finished();
 
         pause();
 
@@ -105,5 +106,9 @@ public class Level extends Scene {
 
     public LevelLogic getLogic() {
         return logic;
+    }
+
+    public UITutorial getTutorial() {
+        return tutorial;
     }
 }

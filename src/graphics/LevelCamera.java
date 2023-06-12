@@ -35,6 +35,7 @@ public class LevelCamera extends Camera {
         KeyboardListener listener = KeyboardListener.get();
         if (state != CameraState.ZOOMING_OUT && listener.isPressed(VK_C)) {
             state = CameraState.START_BIRDVIEW;
+            if (((Level) GameWindow.get().getScene()).getTutorial() != null) ((Level) GameWindow.get().getScene()).getTutorial().zoomOutHappend();
         } else if (state == CameraState.ZOOMING_OUT && !listener.isPressed(VK_C)) {
             state = CameraState.END_BIRDVIEW;
         }

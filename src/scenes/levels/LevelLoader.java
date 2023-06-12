@@ -187,6 +187,9 @@ public class LevelLoader {
             margin.y = (map.width + margin.x) / worldAspect - map.height;
         }
 
+        margin.y = (float) Math.floor(margin.y * 10) / 10;
+        margin.x = (float) Math.floor(margin.x * 10) / 10;
+
         Polygon polygon = map.track.toAWTPolygon(TILESIZE);
 
         BufferedImage texture = new BufferedImage((int) ((map.width+margin.x*2)*TILESIZE), (int) ((map.height+margin.y*2)*TILESIZE), TYPE_INT_RGB);

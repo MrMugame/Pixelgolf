@@ -1,5 +1,7 @@
 package scenes.levels;
 
+import graphics.GameWindow;
+
 public class LevelLogic {
     private int strokes = 0;
     private int oneStar = 10, twoStar = 5, threeStar = 1;
@@ -28,6 +30,7 @@ public class LevelLogic {
 
     public void addStroke() {
         strokes += 1;
+        if (strokes == 1 && ((Level) GameWindow.get().getScene()).getTutorial() != null) ((Level) GameWindow.get().getScene()).getTutorial().firstStrokeHappend();
     }
 
     public void reset() {
