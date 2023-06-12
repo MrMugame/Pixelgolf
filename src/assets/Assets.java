@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +47,7 @@ public class Assets {
 
     public static Sound loadSound(String path) {
         try {
-            return new Sound(Assets.class.getResourceAsStream(path));
+            return new Sound(new BufferedInputStream(Objects.requireNonNull(Assets.class.getResourceAsStream(path))));
         } catch ( IOException e) {
             System.err.println("Konnte Sound nicht laden!");
             e.printStackTrace();
