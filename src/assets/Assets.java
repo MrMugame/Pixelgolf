@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Assets {
 
     public static final String DEFAULT_FONT = "pixelgold.ttf";
-    private static HashMap<String, Font> fonts = new HashMap<>();
+    private static final HashMap<String, Font> fonts = new HashMap<>();
 
     public static BufferedImage loadImage(String path) {
         try {
