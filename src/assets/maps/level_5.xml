@@ -117,57 +117,54 @@
         <Collision material="SINKHOLE" box="11 1" path="P 0.2 -0.2 P 10.8 -0.2 P 10.8 -0.8 P 0.2 -0.8"/>
     </Dynamic>
 
-    <Dynamic name="lava_7" x="38" y="-3.7" w="1.1" h="4.9" r="0" z="1">
+    <Dynamic name="lava_7" x="37.8" y="-3.7" w="1.1" h="4.9" r="0" z="1">
         <Collision material="WALL" box="11 49" path="P 6.0 -14.0 P 11.0 -14.0 P 11.0 -35.0 P 6.0 -35.0"/>
     </Dynamic>
-    <Dynamic name="lava_7_1" x="38" y="-3.7" w="1.1" h="4.9" r="0" z="1">
-        <Collision material="SINKHOLE" box="11 49" path="P 0 0 P 6.6 -8.5 P 6.6 -40.4 P 0 -49.0 P 11 -49.0 P 11 0"/>
+    <Dynamic name="lava_7_1" x="37.8" y="-3.7" w="1.1" h="4.9" r="0" z="1">
+        <Collision material="SINKHOLE" box="11 49" path="P 0.5 0 P 7 -8.5 P 7 -12.8 P 11.0 -12.8 P 11.0 -36.0 P 7.0 -36.0 P 7 -41 P 0.5 -49 P 11 -49 P 11 0"/>
     </Dynamic>
-    <Dynamic name="lava_8" x="38" y="-12.13" w="1.1" h="4.9" r="0" z="1">
+    <Dynamic name="lava_8" x="37.8" y="-12.13" w="1.1" h="4.9" r="0" z="1">
         <Collision material="WALL" box="11 49" path="P 6.0 -14.0 P 11.0 -14.0 P 11.0 -35.0 P 6.0 -35.0"/>
     </Dynamic>
-    <Dynamic name="lava_8_1" x="38" y="-12.13" w="1.1" h="4.9" r="0" z="1">
-        <Collision material="SINKHOLE" box="11 49" path="P 0 0 P 6.6 -8.5 P 6.6 -40.4 P 0 -49.0 P 11 -49.0 P 11 0"/>
+    <Dynamic name="lava_8_1" x="37.8" y="-12.13" w="1.1" h="4.9" r="0" z="1">
+        <Collision material="SINKHOLE" box="11 49" path="P 0.5 0 P 7 -8.5 P 7 -12.8 P 11.0 -12.8 P 11.0 -36.0 P 7.0 -36.0 P 7 -41 P 0.5 -49 P 11 -49 P 11 0"/>
     </Dynamic>
     <Dynamic name="lava_9" x="1.41" y="-10.82" w="1.1" h="4.9" r="1" z="1">
         <Collision material="WALL" box="11 49" path="P 6.0 -14.0 P 11.0 -14.0 P 11.0 -35.0 P 6.0 -35.0"/>
     </Dynamic>
     <Dynamic name="lava_9_1" x="1.41" y="-10.82" w="1.1" h="4.9" r="1" z="1">
-        <Collision material="SINKHOLE" box="11 49" path="P 0 0 P 6.6 -8.5 P 6.6 -40.4 P 0 -49.0 P 11 -49.0 P 11 0"/>
+        <Collision material="SINKHOLE" box="11 49" path="P 0.5 0 P 7 -8.5 P 7 -12.8 P 11.0 -12.8 P 11.0 -36.0 P 7.0 -36.0 P 7 -41 P 0.5 -49 P 11 -49 P 11 0"/>
     </Dynamic>
     <Dynamic name="lava_10" x="1.41" y="-19.12" w="1.1" h="4.9" r="1" z="1">
         <Collision material="WALL" box="11 49" path="P 6.0 -14.0 P 11.0 -14.0 P 11.0 -35.0 P 6.0 -35.0"/>
     </Dynamic>
     <Dynamic name="lava_10_1" x="1.41" y="-19.12" w="1.1" h="4.9" r="1" z="1">
-        <Collision material="SINKHOLE" box="11 49" path="P 0 0 P 6.6 -8.5 P 6.6 -40.4 P 0 -49.0 P 11 -49.0 P 11 0"/>
-    </Dynamic>
-    <Dynamic name="lava_10_1" x="1.41" y="-19.12" w="1.1" h="4.9" r="1" z="1">
-        <Collision material="SINKHOLE" box="11 49" path="P 0 0 P 6.6 -8.5 P 6.6 -40.4 P 0 -49.0 P 11 -49.0 P 11 0"/>
+        <Collision material="SINKHOLE" box="11 49" path="P 0.5 0 P 7 -8.5 P 7 -12.8 P 11.0 -12.8 P 11.0 -36.0 P 7.0 -36.0 P 7 -41 P 0.5 -49 P 11 -49 P 11 0"/>
     </Dynamic>
 
-    <Dynamic name="pole_1" x="14" y="-2.5" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_1" x="14" y="-2.5" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
-    <Dynamic name="pole_2" x="14" y="-11" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_2" x="14" y="-11" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
-    <Dynamic name="pole_3" x="14" y="-19.4" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_3" x="14" y="-19.4" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
-    <Dynamic name="pole_4" x="25.3" y="-3.5" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_4" x="25.3" y="-3.5" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
-    <Dynamic name="pole_5" x="25.3" y="-7.7" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_5" x="25.3" y="-7.7" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
-    <Dynamic name="pole_6" x="25.3" y="-11.95" w="0.5" h="0.5" r="0" z="1">
+    <Dynamic name="pole_6" x="25.3" y="-11.95" w="0.4" h="0.4" r="0" z="1">
         <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.5 0.5 P 0.5 0.5 P 0.5 -0.5 P -0.5 -0.5"/>
+        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
     </Dynamic>
 
     <Dynamic name="puddle_1" x="8.1" y="-2.02" w="2" h="1.4" r="0" z="1">
@@ -246,19 +243,19 @@
         <Collision material="WALL" box="13 13" path="P 0 0 P 3.5 0 P 13 -9.45 P 13 -13 P 9.45 -13 P 0 -3.5"/>
     </Dynamic>
 
-    <Dynamic name="wall_1" x="15.8" y="-17.07" w="0.5" h="1.3" r="1" z="1">
+    <Dynamic name="wall_9" x="15.8" y="-17.07" w="0.5" h="1.3" r="1" z="1">
         <StaticGraphic path="game/lava_wall_1.png"/>
         <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
     </Dynamic>
-    <Dynamic name="wall_2" x="20.3" y="-14.32" w="0.5" h="1.3" r="0" z="1">
+    <Dynamic name="wall_10" x="20.3" y="-14.32" w="0.5" h="1.3" r="0" z="1">
         <StaticGraphic path="game/lava_wall_1.png"/>
         <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
     </Dynamic>
-    <Dynamic name="wall_3" x="22.1" y="-14.32" w="2.2" h="0.5" r="0" z="1">
+    <Dynamic name="wall_11" x="22.1" y="-14.32" w="2.2" h="0.5" r="0" z="1">
         <StaticGraphic path="game/lava_wall_2.png"/>
         <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0"/>
     </Dynamic>
-    <Dynamic name="wall_4" x="17.2" y="-15.22" w="1.3" h="1.3" r="0" z="1">
+    <Dynamic name="wall_12" x="17.2" y="-15.22" w="1.3" h="1.3" r="0" z="1">
         <StaticGraphic path="game/lava_wall_3.png"/>
         <Collision material="WALL" box="13 13" path="P 0 0 P 3.5 0 P 13 -9.45 P 13 -13 P 9.45 -13 P 0 -3.5"/>
     </Dynamic>
