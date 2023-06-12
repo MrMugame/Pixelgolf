@@ -28,6 +28,7 @@ public class Polygon {
     public Vector2D getLineNormal(int index) {
         Vector2D a = points.get(index).rotate(-rotation);
         Vector2D b = points.get(index+1 >= points.size() ? 0 : index+1).rotate(-rotation);
+
         return b.sub(a).normal();
     }
 

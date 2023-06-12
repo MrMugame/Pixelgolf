@@ -196,7 +196,7 @@ public class LevelLoader {
         g.setPaint(new TexturePaint(outsideTexture, new Rectangle(0, 0, outsideTexture.getWidth(), outsideTexture.getHeight())));
         g.fillRect(0, 0, texture.getWidth(), texture.getHeight());
 
-        g.translate(margin.x*TILESIZE, margin.y*TILESIZE);
+        g.translate((int) (margin.x*TILESIZE), (int) (margin.y*TILESIZE));
 
         for (Map.StaticGrpahic graphic : map.statics) {
             if (graphic.top) continue;
