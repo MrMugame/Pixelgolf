@@ -80,8 +80,6 @@ public class GameWindow {
             g.setColor(Color.WHITE);
             g.fillRect(0, 0, WIDTH, HEIGHT);
 
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 
             frames += 1;
@@ -116,7 +114,7 @@ public class GameWindow {
 
             SoundSystem.get().update();
 
-            // Sleep call macht die Bildrate inakkurat aufgrund vom Kernel Scheduler unterscheidet sich somit auch von Betriebssystem zu Betriebssystem (Sleep call dauert meist länger als er soll), alle anderen Lösungen sind jedoch Mord an der CPU
+            // Sleep call macht die Bildrate inakkurat (Sleep call dauert meist länger als er soll) aufgrund vom Kernel Scheduler. Unterscheidet sich somit auch von Betriebssystem zu Betriebssystem. Alle anderen Lösungen sind jedoch Mord an der CPU
             long sleepTime = (long) 1e9/FPS_LIMIT - frameTime;
             if (sleepTime > 0) {
                 try {

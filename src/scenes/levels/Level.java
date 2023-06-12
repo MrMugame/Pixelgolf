@@ -13,6 +13,7 @@ import physics.Vector2D;
 import scenes.Scene;
 import scenes.levels.components.UIEscapeMenu;
 import scenes.levels.components.UIHUD;
+import scenes.levels.components.UITutorial;
 import scenes.levels.components.UIWinScreen;
 import scenes.mainmenu.MainMenu;
 import state.GameState;
@@ -23,11 +24,14 @@ public class Level extends Scene {
     private final LevelLoader loader;
     private final LevelLogic logic;
     private boolean finished = false;
+    private boolean tutorial;
 
     public Level(int number) {
         super(new LevelCamera());
         loader = new LevelLoader(number);
         logic = new LevelLogic();
+
+        tutorial = number == 1;
     }
 
     @Override
@@ -64,6 +68,12 @@ public class Level extends Scene {
         UIComponent HUD = new UIHUD();
         HUD.setConstraints(ConstraintFactory.fullscreen());
         container.add(HUD);
+
+        if (tutorial) {
+            UIComponent tutorial = new UITutorial();
+            tutorial.setConstraints(ConstraintFactory.fullscreen());
+            container.add(tutorial);
+        }
 
         UIComponent escapeMenu = new UIEscapeMenu();
         escapeMenu.setConstraints(ConstraintFactory.fullscreen());
