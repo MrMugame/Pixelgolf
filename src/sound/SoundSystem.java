@@ -21,6 +21,7 @@ public class SoundSystem {
 
     public void update() {
         if (!playlist.getCurrent().getClip().isRunning()) {
+            playlist.getCurrent().getClip().close();
             play(playlist.getNext(), volumeMusic);
         }
     }

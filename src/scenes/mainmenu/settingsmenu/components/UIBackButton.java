@@ -17,9 +17,11 @@ public class UIBackButton extends UIClickable {
         // TODO: Non-square hitbox (I really dont wanna do that so this is the last thing im gonna implement, if ever)
         hovered = new UIImage("ui/back_button_hover.png");
         hovered.setConstraints(ConstraintFactory.fullscreen());
+        hovered.getConstraints().addHeight(new UIImageAspectConstraint());
 
         pressed = new UIImage("ui/back_button_press.png");
         pressed.setConstraints(ConstraintFactory.fullscreen());
+        pressed.getConstraints().addHeight(new UIImageAspectConstraint());
 
         UIImage image = new UIImage("ui/back_button.png");
         image.setConstraints(ConstraintFactory.fullscreen());

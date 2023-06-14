@@ -19,7 +19,7 @@ import scenes.mainmenu.MainMenu;
 import state.GameState;
 import state.LevelState;
 
-public class Level extends Scene {
+public class Level extends Scene { // TODO: Level 2 fix little gap between wood wall and track wall
     private UIContainer container;
     private final LevelLoader loader;
     private final LevelLogic logic;

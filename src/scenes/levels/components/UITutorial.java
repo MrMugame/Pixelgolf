@@ -42,7 +42,7 @@ public class UITutorial extends UIComponent {
         box.getConstraints().addHeight(new UIImageAspectConstraint());
         add(box);
 
-        updateText("Press on the ball with your left mouse button to start your stroke and move the mouse to control the direction. Let go to hit.");
+        updateText("Press on the ball with your left mouse button and hold to start your stroke and move the mouse to control the direction. Let go to hit.");
     }
 
     private void updateText(String msg) {

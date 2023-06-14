@@ -99,8 +99,7 @@ public class LevelLoader {
 
             NodeList components = element.getChildNodes();
             for (int j = 0; j < components.getLength(); j++) {
-                if (!(components.item(j) instanceof Element)) continue;
-                Element component = (Element) components.item(j);
+                if (!(components.item(j) instanceof Element component)) continue;
                 switch (component.getTagName()) { // TODO: Better switch
                     case "StaticGraphic":
                         String path = component.getAttribute("path");
@@ -206,7 +205,7 @@ public class LevelLoader {
             g.drawImage(Assets.loadImage(graphic.texture), (int) (graphic.x*TILESIZE), (int) -(graphic.y*TILESIZE), null);
         }
 
-        g.setColor(new Color(0, 0, 0));
+        g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(2f));
         g.drawPolygon(polygon);
 
