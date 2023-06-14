@@ -49,8 +49,12 @@ public class UISettingsMenu extends UIComponent {
         buttonScreen.getConstraints().addHeight(new UIPassthroughConstraint());
         buttonScreen.addListener((i) -> {
             switch (i) {
-                case 0 -> GameWindow.get().setWindowed();
-                case 1 -> GameWindow.get().setFullscreen();
+                case 0:
+                    GameWindow.get().setWindowed();
+                    break;
+                case 1:
+                    GameWindow.get().setFullscreen();
+                    break;
             }
         });
         container.add(buttonScreen);
@@ -62,9 +66,15 @@ public class UISettingsMenu extends UIComponent {
         buttonFPS.getConstraints().addHeight(new UIPassthroughConstraint());
         buttonFPS.addListener((i) -> {
             switch (i) {
-                case 0 -> GameWindow.get().FPS_LIMIT = 60;
-                case 1 -> GameWindow.get().FPS_LIMIT = 120;
-                case 2 -> GameWindow.get().FPS_LIMIT = 999999999;
+                case 0:
+                    GameWindow.get().FPS_LIMIT = 60;
+                    break;
+                case 1:
+                    GameWindow.get().FPS_LIMIT = 120;
+                    break;
+                case 2:
+                    GameWindow.get().FPS_LIMIT = 999999999;
+                    break;
             }
         });
         container.add(buttonFPS);
@@ -76,8 +86,12 @@ public class UISettingsMenu extends UIComponent {
         buttonDebug.getConstraints().addHeight(new UIPassthroughConstraint());
         buttonDebug.addListener((i) -> {
             switch (i) {
-                case 0 -> GameWindow.get().DEBUG = true;
-                case 1 -> GameWindow.get().DEBUG = false;
+                case 0:
+                    GameWindow.get().DEBUG = true;
+                    break;
+                case 1:
+                    GameWindow.get().DEBUG = false;
+                    break;
             }
         });
         container.add(buttonDebug);

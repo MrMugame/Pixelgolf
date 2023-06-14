@@ -41,27 +41,27 @@ public class BallPhysics extends ActivePhysicsComponent {
             for (Collision collision : newCollisions) {
                 if (!collisions.contains(collision)) {
                     switch (c.gameObject.get(Material.class).getMaterial()) {
-                        case WALL -> {
+                        case WALL:
                             Vector2D n = collision.getNormal().normalize();
                             velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
                             velocity = velocity.scale(0.75f); // -- Patrick
-                        }
-                        case FLAGPOLE -> {
+                            break;
+                        case FLAGPOLE:
                             ((Level) GameWindow.get().getScene()).won();
-                        }
-                        case SINKHOLE -> {
+                            break;
+                        case SINKHOLE:
                             velocity = new Vector2D();
                             parent.getTransform().position = parent.get(Resetpoint.class).getReset();
                             ((Level) GameWindow.get().getScene()).getLogic().reset();
-                        }
-                        case ICEPUDDLE -> {
+                            break;
+                        case ICEPUDDLE:
                             // TODO
                             float range = 0.125f * (float)Math.PI;
                             velocity = velocity.rotate((float) Math.random() * (range*2) - range);
-                        }
-                        case SLOWPUDDLE -> {
+                            break;
+                        case SLOWPUDDLE:
                             velocity = velocity.scale(0.85f);
-                        }
+                            break;
                     }
                 }
                 currentCollisions.add(collision);

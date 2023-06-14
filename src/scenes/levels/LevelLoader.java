@@ -99,7 +99,8 @@ public class LevelLoader {
 
             NodeList components = element.getChildNodes();
             for (int j = 0; j < components.getLength(); j++) {
-                if (!(components.item(j) instanceof Element component)) continue;
+                if (!(components.item(j) instanceof Element)) continue;
+                Element component = (Element) components.item(j);
                 switch (component.getTagName()) { // TODO: Better switch
                     case "StaticGraphic":
                         String path = component.getAttribute("path");

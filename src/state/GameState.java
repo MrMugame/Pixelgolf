@@ -49,17 +49,17 @@ public class GameState implements Serializable {
 
     private static GameState load() {
         try {
-            String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8);
+            String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
             File file = new File(path + "/savegame.txt");
             if (file.isDirectory() || !file.exists()) return new GameState();
 
             FileInputStream stream = new FileInputStream(file);
-            try (stream) {
-                ObjectInputStream objectStream = new ObjectInputStream(stream);
-                GameState state = (GameState) objectStream.readObject();
-                objectStream.close();
-                return state;
-            }
+            ObjectInputStream objectStream = new ObjectInputStream(stream);
+
+            GameState state = (GameState) objectStream.readObject();
+            objectStream.close();
+
+            return state;
         } catch (IOException | ClassNotFoundException e) {
             return new GameState();
         }
@@ -70,13 +70,13 @@ public class GameState implements Serializable {
             String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
             File file = new File(path + "/savegame.txt");
             file.createNewFile();
+
             FileOutputStream stream = new FileOutputStream(file, false);
-            try (stream) {
-                ObjectOutputStream objectStream = new ObjectOutputStream(stream);
-                objectStream.writeObject(this);
-                objectStream.flush();
-                objectStream.close();
-            }
+            ObjectOutputStream objectStream = new ObjectOutputStream(stream);
+
+            objectStream.writeObject(this);
+            objectStream.flush();
+            objectStream.close();
         } catch (IOException e) {
             System.err.println("Konnte den Spielfortschritt nicht speichern!");
         }
