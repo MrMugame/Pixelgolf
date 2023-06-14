@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameState implements Serializable {
+    private static final String FILENAME = "savegame.txt";
     private static GameState instance;
 
     private final HashMap<Integer, LevelState> levels = new HashMap<>();
@@ -50,7 +51,7 @@ public class GameState implements Serializable {
     private static GameState load() {
         try {
             String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
-            File file = new File(path + "/savegame.txt");
+            File file = new File(path + "/" + FILENAME);
             if (file.isDirectory() || !file.exists()) return new GameState();
 
             FileInputStream stream = new FileInputStream(file);
@@ -68,7 +69,7 @@ public class GameState implements Serializable {
     public void save() {
         try {
             String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
-            File file = new File(path + "/savegame.txt");
+            File file = new File(path + "/" + FILENAME);
             file.createNewFile();
 
             FileOutputStream stream = new FileOutputStream(file, false);
