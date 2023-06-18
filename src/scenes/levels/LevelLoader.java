@@ -177,8 +177,10 @@ public class LevelLoader {
                     case "Door":
                         float ox = Float.parseFloat(component.getAttribute("ox"));
                         float oy = Float.parseFloat(component.getAttribute("oy"));
+                        boolean delay = component.getAttribute("delay").equals("true");
 
-                        object.add(new Door(ox, oy));
+
+                        object.add(new Door(ox, oy, delay));
                         break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());

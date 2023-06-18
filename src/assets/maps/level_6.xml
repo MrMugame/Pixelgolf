@@ -389,4 +389,41 @@
         <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
         <Door ox="-2.1" oy="0"/>
     </Dynamic>
+
+    <Dynamic name="door_3_1" x="9.2" y="-9.03" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door ox="0" oy="-1.52"/>
+    </Dynamic>
+    <Dynamic name="door_3_2" x="9.9" y="-10.55" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door delay="true" ox="0" oy="1.52"/>
+    </Dynamic>
+    <Dynamic name="knob_1" x="9.65" y="-10.20" w="0.3" h="0.4" r="0" z="1">
+        <StaticGraphic path="game/door_knob.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+
+    <Dynamic name="door_4_1" x="20.4" y="-14.4" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door ox="0" oy="-1.1"/>
+    </Dynamic>
+    <Dynamic name="door_4_2" x="21.0" y="-15.50" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door delay="true" ox="0" oy="1.1"/>
+    </Dynamic>
+
+    <Dynamic name="door_5_1" x="28.3" y="-13.55" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door ox="0" oy="-1.1"/>
+    </Dynamic>
+    <Dynamic name="door_5_2" x="28.8" y="-14.65" w="0.5" h="1.2" r="0" z="1">
+        <StaticGraphic path="game/gold_door_2.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door delay="true" ox="0" oy="1.1"/>
+    </Dynamic>
 </Map>
