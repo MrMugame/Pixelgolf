@@ -10,7 +10,7 @@ public class Map {
 
     public int oneStar, twoStar, threeStar;
 
-    public Polygon track;
+    public ArrayList<Polygon> tracks = new ArrayList<>();
     public String trackTexture;
     public String outsideTexture;
 

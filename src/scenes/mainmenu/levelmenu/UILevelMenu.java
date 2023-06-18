@@ -46,6 +46,8 @@ public class UILevelMenu extends UIComponent {
 
 
             boolean locked = i != 0 && GameState.get().getLevel(i).getStars() == 0;
+            //TODO
+            locked = false;
             UILevel level = new UILevel(i+1, GameState.get().getLevel(i+1).getStars(), locked);
             level.getConstraints().addWidth(new UIUnitConstraint(10));
             level.getConstraints().addHeight(new UIPassthroughConstraint());

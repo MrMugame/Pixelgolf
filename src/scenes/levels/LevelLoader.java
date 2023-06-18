@@ -10,6 +10,7 @@ import game.physics.*;
 import graphics.GameWindow;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import physics.Vector2D;
 
@@ -17,6 +18,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,13 +60,22 @@ public class LevelLoader {
         map.trackTexture = track.getAttribute("insideTex");
         map.outsideTexture = track.getAttribute("outsideTex");
 
-        map.track = new physics.Polygon();
+        int poly = 0;
+        map.tracks.add(new physics.Polygon());
         // Check that all childs are p and have correct formatting for point
-        NodeList points = track.getElementsByTagName("p");
+
+        NodeList points = track.getElementsByTagName("*");
         for (int i = 0; i < points.getLength(); i++) {
-            String point = points.item(i).getTextContent();
-            String[] xy = point.split(";");
-            map.track.addPoint(new Vector2D(Float.parseFloat(xy[0]), Float.parseFloat(xy[1])));
+            if (points.item(i).getNodeName().equals("p")) {
+                String point = points.item(i).getTextContent();
+                String[] xy = point.split(";");
+                map.tracks.get(poly).addPoint(new Vector2D(Float.parseFloat(xy[0]), Float.parseFloat(xy[1])));
+            } else if(points.item(i).getNodeName().equals("break")) {
+                map.tracks.add(new physics.Polygon());
+                poly += 1;
+            } else {
+                // TODO
+            }
         }
 
         NodeList statics = root.getElementsByTagName("Static");
@@ -101,7 +112,7 @@ public class LevelLoader {
             for (int j = 0; j < components.getLength(); j++) {
                 if (!(components.item(j) instanceof Element)) continue;
                 Element component = (Element) components.item(j);
-                switch (component.getTagName()) { // TODO: Better switch
+                switch (component.getTagName()) {
                     case "StaticGraphic":
                         String path = component.getAttribute("path");
                         StaticGraphic graphic = new StaticGraphic(path);
@@ -190,7 +201,16 @@ public class LevelLoader {
         margin.y = (float) Math.floor(margin.y * 10) / 10;
         margin.x = (float) Math.floor(margin.x * 10) / 10;
 
-        Polygon polygon = map.track.toAWTPolygon(TILESIZE);
+
+        // Very implicit behaviour //TODO
+        Area area = new Area();
+        for (int i = 0; i < map.tracks.size(); i++) {
+            if (i == 0) {
+                area.add(new Area(map.tracks.get(i).toAWTPolygon(TILESIZE)));
+            } else {
+                area.subtract(new Area(map.tracks.get(i).toAWTPolygon(TILESIZE)));
+            }
+        }
 
         BufferedImage texture = new BufferedImage((int) ((map.width+margin.x*2)*TILESIZE), (int) ((map.height+margin.y*2)*TILESIZE), TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) texture.getGraphics();
@@ -208,11 +228,11 @@ public class LevelLoader {
 
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(2f));
-        g.drawPolygon(polygon);
+        g.draw(area);
 
         BufferedImage insideTexture = Assets.loadImage(map.trackTexture);
         g.setPaint(new TexturePaint(insideTexture, new Rectangle(0, 0, insideTexture.getWidth(), insideTexture.getHeight())));
-        g.fillPolygon(polygon);
+        g.fill(area);
 
         for (Map.StaticGrpahic graphic : map.statics) {
             if (!graphic.top) continue;
@@ -225,11 +245,6 @@ public class LevelLoader {
         go.add(new DynamicGraphic(texture));
 
         return go;
-    }
-
-    private static double roundAvoid(double value, int places) {
-        double scale = Math.pow(10, places);
-        return Math.round(value * scale) / scale;
     }
 
     public ArrayList<GameObject> getDynamicObjects() {

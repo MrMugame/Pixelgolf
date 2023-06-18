@@ -50,10 +50,12 @@ public class Level extends Scene { // TODO: Level 2 fix little gap between wood 
         GameObject background = loader.renderBackground();
         addGameObject(background);
 
-        GameObject walls = new GameObject("walls", new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0, 0);
-        walls.add(new Custom(loader.getMap().track));
-        walls.add(new Material(MaterialType.WALL));
-        addGameObject(walls);
+        for (int i = 0; i < loader.getMap().tracks.size(); i++) {
+            GameObject walls = new GameObject("walls_" + i, new Vector2D(0, 0), new Vector2D(loader.getMap().width, loader.getMap().height), 0, 0);
+            walls.add(new Custom(loader.getMap().tracks.get(i)));
+            walls.add(new Material(MaterialType.WALL));
+            addGameObject(walls);
+        }
 
         for (GameObject object : loader.getDynamicObjects()) {
             addGameObject(object);

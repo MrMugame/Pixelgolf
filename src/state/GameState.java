@@ -66,7 +66,7 @@ public class GameState implements Serializable {
         }
     }
 
-    public void save() {
+    private void save() {
         try {
             String path = URLDecoder.decode(GameState.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
             File file = new File(path + "/" + FILENAME);
