@@ -23,6 +23,10 @@ public class Transform {
         position = position.add(add);
     }
 
+    public Vector2D getCenter() {
+        return position.add(size.scale(0.5f).invertY().rotate(-rotation));
+    }
+
     public static Vector2D toScreenSize(Vector2D size) {
         return size.scale(SCALE_FACTOR).scale(GameWindow.get().getScene().getCamera().getZoom());
     }
@@ -42,7 +46,6 @@ public class Transform {
         Vector2D w = new Vector2D((float) GameWindow.get().WIDTH/2, (float) GameWindow.get().HEIGHT/2);
         return new Vector2D(0, 0).sub(w).scale(1f/SCALE_FACTOR).invertY().magnitude() / position.magnitude();
     }
-
 
     public static Vector2D fromScreenPosition(Vector2D position) {
         Camera camera = GameWindow.get().getScene().getCamera();

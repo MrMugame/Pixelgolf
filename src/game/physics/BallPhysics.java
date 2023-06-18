@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();
+    private GameObject justTPd; // Hässlich
 
     public BallPhysics(float mass) {
         super(mass);
@@ -28,8 +29,11 @@ public class BallPhysics extends ActivePhysicsComponent {
             applyForce(velocity.normalize().scale(-5.5f));
         }
 
-        super.update(dt);
+        if (justTPd != null) {
+            justTPd = justTPd.getTransform().getCenter().sub(parent.getTransform().position).magnitudeSquared() > justTPd.getTransform().size.magnitudeSquared() * 0.3f ? null : justTPd;
+        }
 
+        super.update(dt);
     }
 
     @Override
@@ -61,6 +65,22 @@ public class BallPhysics extends ActivePhysicsComponent {
                             break;
                         case SLOWPUDDLE:
                             velocity = velocity.scale(0.85f);
+                            break;
+                        case PORTAL:
+                            if (justTPd == null) {
+                                // Sehr, alles sehr unschön
+
+                                ArrayList<GameObject> objects = GameWindow.get().getScene().getGameObjects(Portal.class);
+                                for (GameObject object : objects) {
+                                    if (object.get(Portal.class).getId() == c.gameObject.get(Portal.class).getId() && object != c.gameObject) {
+                                        parent.getTransform().position = object.getTransform().getCenter();
+                                        justTPd = object;
+                                        break;
+                                    }
+                                }
+
+                                velocity = new Vector2D();
+                            }
                             break;
                     }
                 }

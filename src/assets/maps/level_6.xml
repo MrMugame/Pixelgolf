@@ -123,6 +123,7 @@
         <StaticGraphic ox="0.25" oy="-0.25" path="game/ball.png"/>
         <BallPhysics mass="10"/>
         <BallInput/>
+        <Resetpoint x="2.7" y="-1.4"/>
     </Dynamic>
     <Dynamic name="flagpole" x="36.5" y="-23" w="0.65" h="0.65" r="0" z="10">
         <Collision material="FLAGPOLE" box="1 1" path="P 0.35 -0.65 P 0.35 -0.35 P 0.65 -0.35 P 0.65 -0.65" />
@@ -132,5 +133,260 @@
     </Dynamic>
     <Dynamic name="hole" x="36.5" y="-23" w="1.5" h="1.5" r="0" z="1">
         <StaticGraphic path="game/hole.png" ox="0.2" oy="-0.65"/>
+    </Dynamic>
+
+    <Dynamic name="wall_1_1" x="1.0" y="-4.25" w="1.5" h="1.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_1.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_1_2" x="6.7" y="-2.0" w="1.5" h="1.5" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_1.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_1_3" x="12.0" y="-0.55" w="1.5" h="1.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_1.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_1_4" x="21.45" y="-7.55" w="1.5" h="1.5" r="1" z="1">
+        <StaticGraphic path="game/gold_wall_1.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_1_5" x="25.95" y="-11.95" w="1.5" h="1.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_1.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+
+
+    <Dynamic name="wall_2_1" x="11.5" y="-9.70" w="1" h="1" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_2.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_2_2" x="16.0" y="-9.7" w="1" h="1" r="0.5" z="1">
+        <StaticGraphic path="game/gold_wall_2.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_2_3" x="19.45" y="-12.45" w="1" h="1" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_2.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_2_4" x="20.3" y="-4.4" w="1" h="1" r="0.5" z="1">
+        <StaticGraphic path="game/gold_wall_2.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+    <Dynamic name="wall_2_5" x="20.2" y="-0.75" w="1" h="1" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_2.png"/>
+        <Collision material="WALL" box="1.5 1.5" path="P 0 0 P 0 -0.4 P 1.1 -1.5 P 1.5 -1.5 P 1.5 -1.1 P 0.4 0" />
+    </Dynamic>
+
+    <Dynamic name="wall_3_1" x="35.3" y="-21.9" w="0.5" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_3.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_3_2" x="33.1" y="-18.8" w="0.5" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_3.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+
+    <Dynamic name="wall_4_1" x="16.0" y="-4.8" w="0.8" h="0.4" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_2" x="16.0" y="-7.4" w="0.8" h="0.4" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_3" x="17.9" y="-1.2" w="0.8" h="0.4" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_4" x="25.3" y="-17.1" w="0.8" h="0.4" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_5" x="25.4" y="-18.8" w="0.8" h="0.4" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_6" x="26.8" y="-19.3" w="0.8" h="0.4" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_7" x="26.4" y="-18.0" w="0.8" h="0.4" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_4_8" x="26.8" y="-16.6" w="0.8" h="0.4" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_wall_4.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+
+    <Dynamic name="wall_5_1" x="32.2" y="-21.9" w="2.2" h="0.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_5.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_5_2" x="27.9" y="-19.6" w="2.2" h="0.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_5.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+    <Dynamic name="wall_5_3" x="8.4" y="-20.1" w="2.2" h="0.5" r="0" z="1">
+        <StaticGraphic path="game/gold_wall_5.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+    </Dynamic>
+
+    <Dynamic name="hole_1_1" x="1.3" y="-6.6" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_2" x="4.2" y="-7.8" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_3" x="5.52" y="-12.22" w="2.1" h="1.3" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_4" x="6.82" y="-12.22" w="2.1" h="1.3" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+
+    <Dynamic name="hole_1_5" x="13.05" y="-4.2" w="2.1" h="1.3" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_6" x="17.3" y="-1.6" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_7" x="29.6" y="-6.8" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_8" x="30.55" y="-17.93" w="2.1" h="1.3" r="-0.5" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_9" x="18.5" y="-17.43" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_10" x="15.2" y="-19.43" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_11" x="23.2" y="-12.83" w="2.1" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_1_12" x="21.0" y="-4.25" w="2.1" h="1.4" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_1.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+
+    <Dynamic name="hole_2_1" x="13.9" y="-16.05" w="2.1" h="0.7" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_2.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_2_2" x="17.3" y="-14.95" w="2.1" h="0.7" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_2.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+    <Dynamic name="hole_2_3" x="32.25" y="-23.35" w="2.1" h="0.7" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_2.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+
+    <Dynamic name="hole_3_1" x="16.5" y="-10.45" w="10.1" h="0.7" r="0" z="1">
+        <StaticGraphic path="game/gold_hole_3.png"/>
+        <Collision material="SINKHOLE" box="1 1" path="P 0.1 -0.1 P 0 -0.9 P 0.9 -0.9 P 0.9 -0.1" />
+    </Dynamic>
+
+    <Dynamic name="slow_1" x="7.25" y="-4.6" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_2" x="11.3" y="-7.2" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_3" x="0.7" y="-20.0" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_4" x="13.7" y="-19.4" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_5" x="11.75" y="-13.0" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_6" x="14.1" y="-12.9" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_7" x="20.05" y="-8.2" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_8" x="28.1" y="-1.5" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_9" x="26.0" y="-6.7" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_10" x="21.95" y="-19.95" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+    <Dynamic name="slow_11" x="33.9" y="-18.8" w="1.4" h="1.3" r="0" z="1">
+        <StaticGraphic path="game/gold_slow_1.png"/>
+        <Collision material="SLOWPUDDLE" box="14 13" path="P 6.2 -0.2 P 10 -0.2 P 13.7 -3.2 P 13.7 -11.6 P 3.5 -12.5 P 0.4 -9.5 P 0.4 -7.3" />
+    </Dynamic>
+
+    <Dynamic name="portal_green_1" x="8.55" y="-14.05" w="1.2" h="1.6" r="-0.5" z="1">
+        <StaticGraphic path="game/portal_green.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="0"/>
+    </Dynamic>
+    <Dynamic name="portal_green_2" x="27.9" y="-8.02" w="1.2" h="1.6" r="-0.5" z="1">
+        <StaticGraphic path="game/portal_green.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="0"/>
+    </Dynamic>
+
+    <Dynamic name="portal_red_1" x="15.4" y="-2.8" w="1.2" h="1.6" r="-0.5" z="1">
+        <StaticGraphic path="game/portal_red.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="1"/>
+    </Dynamic>
+    <Dynamic name="portal_red_2" x="25.1" y="-19.1" w="1.2" h="1.6" r="0" z="1">
+        <StaticGraphic path="game/portal_red.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="1"/>
+    </Dynamic>
+
+    <Dynamic name="portal_blue_1" x="11.85" y="-14.9" w="1.2" h="1.6" r="0" z="1">
+        <StaticGraphic path="game/portal_blue.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="2"/>
+    </Dynamic>
+    <Dynamic name="portal_blue_2" x="0.8" y="-7.9" w="1.2" h="1.6" r="0" z="1">
+        <StaticGraphic path="game/portal_blue.png"/>
+        <Collision material="PORTAL" box="12 16" path="P 4.6 -1.1 P 1.2 -4.1 P 1.2 -12.6 P 5.3 -14.8 P 9.8 -10.5 P 9.8 -4.1" />
+        <Portal id="2"/>
+    </Dynamic>
+
+    <Dynamic name="door_1" x="4.55" y="-6.0" w="2.1" h="0.5" r="0" z="1">
+        <StaticGraphic path="game/gold_door_1.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door ox="2.1" oy="0"/>
+    </Dynamic>
+    <Dynamic name="door_2" x="2.5" y="-6.0" w="2.1" h="0.5" r="0" z="1">
+        <StaticGraphic path="game/gold_door_1.png"/>
+        <Collision material="WALL" box="1 1" path="P 0 0 P 0 -1 P 1 -1 P 1 0" />
+        <Door ox="-2.1" oy="0"/>
     </Dynamic>
 </Map>

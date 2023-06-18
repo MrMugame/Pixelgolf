@@ -6,6 +6,7 @@ import game.Transform;
 import game.graphics.DynamicGraphic;
 import game.graphics.StaticGraphic;
 import game.input.BallInput;
+import game.input.Door;
 import game.physics.*;
 import graphics.GameWindow;
 import org.w3c.dom.Document;
@@ -164,8 +165,20 @@ public class LevelLoader {
                         String material = component.getAttribute("material");
                         MaterialType type = MaterialType.valueOf(material);
 
+                        // TODO: Make material own component in xml
                         object.add(new Material(type));
                         object.add(new Custom(polygon));
+                        break;
+                    case "Portal":
+                        int id = Integer.parseInt(component.getAttribute("id"));
+
+                        object.add(new Portal(id));
+                        break;
+                    case "Door":
+                        float ox = Float.parseFloat(component.getAttribute("ox"));
+                        float oy = Float.parseFloat(component.getAttribute("oy"));
+
+                        object.add(new Door(ox, oy));
                         break;
                     default:
                         System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());

@@ -1,5 +1,6 @@
 package scenes;
 
+import game.Component;
 import graphics.Camera;
 import game.GameObject;
 import graphics.Renderer;
@@ -39,6 +40,18 @@ public abstract class Scene {
             if (object.getName().equals(name)) return object;
         }
         return null;
+    }
+
+    public <T extends Component> ArrayList<GameObject> getGameObjects(Class<T> component) {
+        ArrayList<GameObject> list = new ArrayList<>();
+
+        for (GameObject object : objects) {
+            if (object.get(component) != null) {
+                list.add(object);
+            }
+        }
+
+        return list;
     }
 
     public void update(float dt) {

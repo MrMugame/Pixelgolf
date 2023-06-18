@@ -6,4 +6,5 @@ public enum MaterialType {
     SINKHOLE,
     ICEPUDDLE,
     SLOWPUDDLE,
+    PORTAL, // Rust oder Swift enums wären deutlich cooler
 }
