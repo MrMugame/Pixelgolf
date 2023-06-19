@@ -2,8 +2,8 @@ package gui;
 
 import gui.constraints.*;
 
+// Könnte man deutlich besser und fähiger machen, es fehlt jedoch wie immer die Zeit und irgendwo auch der Sinn
 public class ConstraintFactory {
-    // TODO: Real or better factory bettern
     public static UIConstraints unitConstrains(float x, float y, float width, float height) {
         UIConstraints constraints = new UIConstraints();
         constraints.addX(new UIUnitConstraint(x));
