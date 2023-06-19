@@ -2,8 +2,7 @@ package game.physics;
 
 import physics.Polygon;
 
-public class Custom extends StaticPhysicsComponent { // TODO: Rename
-
+public class Custom extends StaticPhysicsComponent {
     private Polygon polygon;
 
     public Custom(Polygon polygon) {

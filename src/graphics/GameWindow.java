@@ -69,7 +69,6 @@ public class GameWindow {
 
 
         while (true) {
-            // TODO: Rerender Level background on size change
             Rectangle size = window.getBounds();
             Insets insets = window.getInsets();
             WIDTH = size.width - insets.left - insets.right;

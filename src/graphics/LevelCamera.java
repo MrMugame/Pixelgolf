@@ -25,7 +25,7 @@ public class LevelCamera extends Camera {
     private Vector2D startPosition = new Vector2D(), endPosition = new Vector2D();
     private float startZoom, endZoom = 0;
 
-    private float duration = 1000;
+    private final float DURATION = 1000;
 
 
     public LevelCamera() {}
@@ -66,19 +66,18 @@ public class LevelCamera extends Camera {
                 position = startPosition;
                 zoom = startZoom;
 
-                // TODO: Don't know if im keeping this
-                if (time > 1000)  {
+                if (time > DURATION)  {
                     state = CameraState.ZOOMING_IN;
                     time = 0;
                 }
                 break;
             case ZOOMING_IN:
-                if (time >= duration) state = CameraState.FOLLOWING;
+                if (time >= DURATION) state = CameraState.FOLLOWING;
             case ZOOMING_OUT:
-                if (time >= duration) break;
+                if (time >= DURATION) break;
 
-                position = cubicBezier(startPosition, endPosition, time/duration, 0.5f, 0, 0.5f, 1);
-                zoom = cubicBezier(startZoom, endZoom, time/duration, 0.5f, 0, 0.5f, 1);
+                position = cubicBezier(startPosition, endPosition, time/DURATION, 0.5f, 0, 0.5f, 1);
+                zoom = cubicBezier(startZoom, endZoom, time/DURATION, 0.5f, 0, 0.5f, 1);
 
                 break;
             case START_BIRDVIEW:

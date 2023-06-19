@@ -4,12 +4,10 @@ import gui.UIComponent;
 import gui.UIConstraint;
 
 public class UIUnitConstraint extends UIConstraint {
-
-    // TODO: Maybe make this an option to scale the UI
     private static final float UNIT = 16;
 
     private float units;
-    private boolean full; // TODO: Another reason to add the add() constraint
+    private boolean full; // Hier wäre wieder ein UIAddConstraint hilfreich. Siehe Kommentar in UIEndAlignConstraint
 
     public UIUnitConstraint(float units, boolean full) {
         this.units = units;
