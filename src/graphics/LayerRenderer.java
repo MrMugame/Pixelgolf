@@ -1,14 +1,12 @@
 package graphics;
 
 import game.GameObject;
-import game.graphics.GraphicComponent;
 import game.Transform;
+import game.graphics.GraphicComponent;
 import physics.Vector2D;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class LayerRenderer {

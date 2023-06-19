@@ -12,7 +12,6 @@ import graphics.GameWindow;
 import input.MouseListener;
 import physics.CollisionMath;
 import physics.Vector2D;
-import scenes.levels.Level;
 import sound.SoundSystem;
 
 import static java.awt.event.MouseEvent.BUTTON1;

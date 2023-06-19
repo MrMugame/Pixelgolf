@@ -1,8 +1,5 @@
 package physics;
 
-import java.util.Formattable;
-import java.util.Formatter;
-
 public class Vector2D {
     public float x;
     public float y;

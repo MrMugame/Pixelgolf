@@ -1,6 +1,6 @@
 package physics;
 
-public class CollisionMath {
+public abstract class CollisionMath {
     public static boolean lineCircle(Vector2D point1, Vector2D point2, Vector2D circle, float radius) {
         if (pointCircle(circle, radius, point1) || pointCircle(circle, radius, point2)) return true;
 
