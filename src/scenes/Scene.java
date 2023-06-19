@@ -30,6 +30,11 @@ public abstract class Scene implements Observer {
 
     public void addGameObject(GameObject go) {
         if (pendingAdd.contains(go) || objects.contains(go)) return;
+        if (pendingAdd.stream().anyMatch(o -> o.getName().equals(go.getName())) || objects.stream().anyMatch(o -> o.getName().equals(go.getName()))) {
+            System.err.println("Kann keine zwei Gameobjekte mit gleichem Namen hinzufügen!");
+            return;
+        }
+
         pendingAdd.add(go);
     }
 

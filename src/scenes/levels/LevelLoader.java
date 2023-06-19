@@ -13,14 +13,18 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import physics.Vector2D;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -38,16 +42,31 @@ public class LevelLoader {
         this.number = number;
     }
 
-    // TODO: Make the Exceptions nice && Cleanup
     public void load() throws Exception {
         map = new Map();
 
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = builder.parse(Assets.loadLevel(number));
-        document.getDocumentElement().normalize();
+        DocumentBuilder builder;
+        try {
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException | FactoryConfigurationError ignored) {
+            throw new Exception("Konnte XML builder nicht erstellen!");
+        }
+
+        Document document;
+        try {
+            document = builder.parse(Assets.loadLevel(number));
+            document.getDocumentElement().normalize();
+        } catch (IOException | IllegalArgumentException ignored) {
+            throw new Exception("Konnte Level-Datei nicht finden!");
+        } catch (SAXException e) {
+            e.printStackTrace();
+            throw new Exception("Fehler in der XML-Datei!");
+        }
 
         // Check for correct root element
         Element root = document.getDocumentElement();
+        if(!root.getTagName().equals("Map")) throw new Exception("Konnte 'Map' in XML nicht finden");
+
         map.width = Float.parseFloat(root.getAttribute("width"));
         map.height = Float.parseFloat(root.getAttribute("height"));
 
@@ -56,28 +75,34 @@ public class LevelLoader {
         map.threeStar = Integer.parseInt(root.getAttribute("threeStar"));
 
         Element music = (Element) root.getElementsByTagName("Music").item(0);
-        map.music.add(music.getAttribute("track"));
+        if (music != null) map.music.add(music.getAttribute("track"));
 
-        // Check for multiple Tracks
+
+        if (root.getElementsByTagName("Track").getLength() > 1) throw new Exception("Mehr als ein Track sind nicht erlaubt!");
         Element track = (Element) root.getElementsByTagName("Track").item(0);
         map.trackTexture = track.getAttribute("insideTex");
         map.outsideTexture = track.getAttribute("outsideTex");
 
-        int poly = 0;
+        int polygonIndex = 0;
         map.tracks.add(new physics.Polygon());
         // Check that all childs are p and have correct formatting for point
 
         NodeList points = track.getElementsByTagName("*");
         for (int i = 0; i < points.getLength(); i++) {
-            if (points.item(i).getNodeName().equals("p")) {
+            String name = points.item(i).getNodeName();
+
+            if (name.equals("p")) {
                 String point = points.item(i).getTextContent();
+                if (!point.matches("^-?\\d+(\\.\\d+)?;(-?\\d+(\\.\\d+)?)$")) throw new Exception("Punkt kann nicht gelesen werden: " + point);
+
                 String[] xy = point.split(";");
-                map.tracks.get(poly).addPoint(new Vector2D(Float.parseFloat(xy[0]), Float.parseFloat(xy[1])));
-            } else if(points.item(i).getNodeName().equals("break")) {
+
+                map.tracks.get(polygonIndex).addPoint(new Vector2D(Float.parseFloat(xy[0]), Float.parseFloat(xy[1])));
+            } else if(name.equals("break")) {
                 map.tracks.add(new physics.Polygon());
-                poly += 1;
+                polygonIndex += 1;
             } else {
-                // TODO
+                throw new Exception("Tag ist im Track nicht erlaubt: " + name);
             }
         }
 
@@ -111,10 +136,10 @@ public class LevelLoader {
 
             GameObject object = new GameObject(name, new Vector2D(x, y), new Vector2D(width, height), (float)(rotation * Math.PI), z);
 
-            NodeList components = element.getChildNodes();
+            NodeList components = element.getElementsByTagName("*");
             for (int j = 0; j < components.getLength(); j++) {
-                if (!(components.item(j) instanceof Element)) continue;
                 Element component = (Element) components.item(j);
+
                 switch (component.getTagName()) {
                     case "StaticGraphic":
                         String path = component.getAttribute("path");
@@ -142,9 +167,8 @@ public class LevelLoader {
                         object.add(new Resetpoint(new Vector2D(resetX, resetY)));
                         break;
                     case "Collision":
-                        // P 1 5 P 5 2
                         String[] box = component.getAttribute("box").split(" ");
-                        // assert box.len != 2
+                        if (box.length > 2) throw new Exception("Falsche Box für Kollision gegeben: " + component.getAttribute("box"));
                         float boxX = Float.parseFloat(box[0]);
                         float boxY = Float.parseFloat(box[1]);
 
@@ -160,14 +184,13 @@ public class LevelLoader {
                                 float pointY = Float.parseFloat(tokens.next()) / boxY * object.getTransform().size.y;
                                 polygon.addPoint(new Vector2D(pointX, pointY));
                             } else {
-                                // TODO: Exeption
+                                throw new Exception("Verbotener Charakter in Pfad: " + token);
                             }
                         }
 
                         String material = component.getAttribute("material");
                         MaterialType type = MaterialType.valueOf(material);
 
-                        // TODO: Make material own component in xml
                         object.add(new Material(type));
                         object.add(new Custom(polygon));
                         break;
@@ -185,7 +208,7 @@ public class LevelLoader {
                         object.add(new Door(ox, oy, delay));
                         break;
                     default:
-                        System.err.println("Kann Component nicht verarbeiten: " + component.getTagName());
+                        throw new Exception("Kann Component nicht verarbeiten: " + component.getTagName());
                 }
             }
 
@@ -202,13 +225,13 @@ public class LevelLoader {
         float mapAspect = map.width / map.height;
 
         if (mapAspect < worldAspect) {
-            // width is smaller
+            // Breite der Karte ist kleiner als der Bildschirm -> Breite muss gefüllt werden
             // (map.width + margin.x) / (map.height + margin.y) = worldAspect
             // map.width + margin.x = worldAspect * (map.height + margin.y)
             // margin.x = worldAspect * (map.height + margin.y) - map.width
             margin.x = worldAspect * (map.height + margin.y) - map.width;
         } else {
-            // height is smaller
+            // Höhe der Karte ist kleiner als der Bildschirm -> Höhe muss gefüllt werden
             // (map.width + margin.x) / (map.height + margin.y) = worldAspect
             // (map.width + margin.x) / worldAspect = map.height + margin.y
             // (map.width + margin.x) / worldAspect - map.height = margin.y
@@ -218,8 +241,6 @@ public class LevelLoader {
         margin.y = (float) Math.floor(margin.y * 10) / 10;
         margin.x = (float) Math.floor(margin.x * 10) / 10;
 
-
-        // Very implicit behaviour //TODO
         Area area = new Area();
         for (int i = 0; i < map.tracks.size(); i++) {
             if (i == 0) {
