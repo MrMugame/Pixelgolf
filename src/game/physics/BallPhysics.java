@@ -23,7 +23,6 @@ public class BallPhysics extends ActivePhysicsComponent {
 
     @Override
     public void update(float dt) {
-        // -- Patrick // TODO
         // Luftwiederstand
         applyForce(velocity.scale(-1 * 0.5f * 1.2f * velocity.magnitude() * 0.47f * 0.554f));
         // Reibung
@@ -50,7 +49,7 @@ public class BallPhysics extends ActivePhysicsComponent {
                         case WALL:
                             Vector2D n = collision.getNormal().normalize();
                             velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
-                            velocity = velocity.scale(0.75f); // -- Patrick
+                            velocity = velocity.scale(0.75f);
 
                             SoundSystem.get().play(Assets.loadSound("sound/wall_bump.wav"));
                             break;
@@ -67,7 +66,6 @@ public class BallPhysics extends ActivePhysicsComponent {
                             SoundSystem.get().play(Assets.loadSound("sound/die_sound.wav"));
                             break;
                         case ICEPUDDLE:
-                            // TODO
                             float range = 0.075f * (float)Math.PI;
                             velocity = velocity.rotate((float) Math.random() * (range*2) - range);
                             break;
@@ -76,20 +74,19 @@ public class BallPhysics extends ActivePhysicsComponent {
                             break;
                         case PORTAL:
                             if (justTPd == null) {
-                                // Sehr, alles sehr unschön // TODO
-
                                 ArrayList<GameObject> objects = GameWindow.get().getScene().getGameObjects(Portal.class);
                                 for (GameObject object : objects) {
                                     if (object.get(Portal.class).getId() == c.gameObject.get(Portal.class).getId() && object != c.gameObject) {
                                         parent.getTransform().position = object.getTransform().getCenter();
-                                        justTPd = object;
 
                                         SoundSystem.get().play(Assets.loadSound("sound/die_sound.wav"));
+
+                                        justTPd = object;
+                                        velocity = new Vector2D();
                                         break;
                                     }
                                 }
 
-                                velocity = new Vector2D();
                             }
                             break;
                     }

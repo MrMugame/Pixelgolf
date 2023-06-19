@@ -17,18 +17,18 @@ import static java.awt.event.MouseEvent.BUTTON1;
 public class BallInput extends InputComponent {
     private static final float VISUAL_FACTOR = 0.60f;
     private static final float POWER_FACTOR = 0.65f;
-    private static final int MAX = 6;
+    private static final int MAX = 6; // Maximales Powerlevel (Balken)
 
     private boolean dragging = false;
 
-    private GameObject drag, arrow; // TODO: Move to get by name instead of references
+    private final GameObject drag, arrow;
 
     public BallInput() {
-        arrow = new GameObject("arrow", new Vector2D(), new Vector2D(1, 1*(13.0f/14)), 0, 3);
+        arrow = new GameObject("dragging_arrow", new Vector2D(), new Vector2D(1, 1*(13.0f/14)), 0, 3);
         arrow.add(new StaticGraphic("game/drag_arrow.png"));
         arrow.get(StaticGraphic.class).setAnchor(new Vector2D(0.5f, 0.25f));
 
-        drag = new GameObject("drag", new Vector2D(), new Vector2D(2, 2), 0, 3);
+        drag = new GameObject("dragging_power_indicator", new Vector2D(), new Vector2D(2, 2), 0, 3);
         drag.add(new StaticGraphic("game/drag_1.png"));
         drag.get(StaticGraphic.class).setAnchor(new Vector2D(1, 0.25f));
     }
