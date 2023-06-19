@@ -28,6 +28,6 @@ public class MainMenu extends Scene {
         page.getConstraints().addHeight(new UIRelativeConstraint(1));
         getUiRenderer().getContainer().add(page);
 
-        SoundSystem.get().play(new Playlist("sound/output.wav"));
+        SoundSystem.get().play(new Playlist("sound/level_1.wav"));
     }
 }

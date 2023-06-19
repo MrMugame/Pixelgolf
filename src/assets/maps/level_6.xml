@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Map width="43.5" height="24.5" oneStar="85" twoStar="10" threeStar="5">
+    <Music track="sound/level_6.wav"/>
     <Track insideTex="game/grass_1.png" outsideTex="game/bricks_1.png">
         <p>1.0;-5.7</p>
         <p>1.0;-0.5</p>

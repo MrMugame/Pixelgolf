@@ -1,5 +1,6 @@
 package game.physics;
 
+import assets.Assets;
 import game.GameObject;
 import graphics.GameWindow;
 import physics.Collider;
@@ -7,6 +8,7 @@ import physics.Collision;
 import physics.Polygon;
 import physics.Vector2D;
 import scenes.levels.Level;
+import sound.SoundSystem;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -49,18 +51,24 @@ public class BallPhysics extends ActivePhysicsComponent {
                             Vector2D n = collision.getNormal().normalize();
                             velocity = velocity.sub(n.scale(2.0f * velocity.dot(n)));
                             velocity = velocity.scale(0.75f); // -- Patrick
+
+                            SoundSystem.get().play(Assets.loadSound("sound/wall_bump.wav"));
                             break;
                         case FLAGPOLE:
+                            SoundSystem.get().play(Assets.loadSound("sound/win_sound.wav"));
+
                             ((Level) GameWindow.get().getScene()).won();
                             break;
                         case SINKHOLE:
                             velocity = new Vector2D();
                             parent.getTransform().position = parent.get(Resetpoint.class).getReset();
                             ((Level) GameWindow.get().getScene()).getLogic().reset();
+
+                            SoundSystem.get().play(Assets.loadSound("sound/die_sound.wav"));
                             break;
                         case ICEPUDDLE:
                             // TODO
-                            float range = 0.125f * (float)Math.PI;
+                            float range = 0.075f * (float)Math.PI;
                             velocity = velocity.rotate((float) Math.random() * (range*2) - range);
                             break;
                         case SLOWPUDDLE:
@@ -68,13 +76,15 @@ public class BallPhysics extends ActivePhysicsComponent {
                             break;
                         case PORTAL:
                             if (justTPd == null) {
-                                // Sehr, alles sehr unschön
+                                // Sehr, alles sehr unschön // TODO
 
                                 ArrayList<GameObject> objects = GameWindow.get().getScene().getGameObjects(Portal.class);
                                 for (GameObject object : objects) {
                                     if (object.get(Portal.class).getId() == c.gameObject.get(Portal.class).getId() && object != c.gameObject) {
                                         parent.getTransform().position = object.getTransform().getCenter();
                                         justTPd = object;
+
+                                        SoundSystem.get().play(Assets.loadSound("sound/die_sound.wav"));
                                         break;
                                     }
                                 }

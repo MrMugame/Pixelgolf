@@ -16,6 +16,8 @@ import scenes.levels.components.UIHUD;
 import scenes.levels.components.UITutorial;
 import scenes.levels.components.UIWinScreen;
 import scenes.mainmenu.MainMenu;
+import sound.Playlist;
+import sound.SoundSystem;
 import state.GameState;
 import state.LevelState;
 
@@ -46,6 +48,8 @@ public class Level extends Scene { // TODO: Level 2 fix little gap between wood 
         }
 
         logic.setStarBoundaries(loader.getMap().oneStar, loader.getMap().twoStar, loader.getMap().threeStar);
+
+        SoundSystem.get().play(new Playlist(loader.getMap().music.toArray(new String[0])));
 
         GameObject background = loader.renderBackground();
         addGameObject(background);

@@ -1,5 +1,6 @@
 package game.input;
 
+import assets.Assets;
 import game.GameObject;
 import game.graphics.StaticGraphic;
 import game.physics.ActivePhysicsComponent;
@@ -9,6 +10,7 @@ import input.MouseListener;
 import physics.CollisionMath;
 import physics.Vector2D;
 import scenes.levels.Level;
+import sound.SoundSystem;
 
 import static java.awt.event.MouseEvent.BUTTON1;
 
@@ -67,6 +69,8 @@ public class BallInput extends InputComponent {
 
             // TODO: AHAHDHAHDAHDHAHDHAHD HAH AH H HAH HH SINGLETON (SOGAR NOCH EIN... TYPE CASTS) ICH HASSE SINGLETONS ABER JOA NE. ein observer pattern wäre hier geiler aber joa ne ... aufwändig
             ((Level) GameWindow.get().getScene()).getLogic().addStroke();
+
+            SoundSystem.get().play(Assets.loadSound("sound/stroke_sound.wav"));
 
             GameWindow.get().getScene().removeGameObject(drag);
             GameWindow.get().getScene().removeGameObject(arrow);

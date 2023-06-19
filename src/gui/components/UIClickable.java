@@ -1,9 +1,11 @@
 package gui.components;
 
+import assets.Assets;
 import gui.ClickListener;
 import gui.UIComponent;
 import input.MouseListener;
 import physics.Vector2D;
+import sound.SoundSystem;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,10 @@ public class UIClickable extends UIComponent {
             onPressStart();
             debounce = true;
         } else if (!listener.isPressed(BUTTON1) && debounce) {
+            SoundSystem.get().play(Assets.loadSound("sound/menu_click.wav"));
+
             onPressEnd();
+
             for (ClickListener l : listeners) {
                 l.run();
             }

@@ -48,7 +48,7 @@ public class Assets {
     public static Sound loadSound(String path) {
         try {
             return new Sound(new BufferedInputStream(Objects.requireNonNull(Assets.class.getResourceAsStream(path))));
-        } catch ( IOException e) {
+        } catch (IOException | NullPointerException  e) {
             System.err.println("Konnte Sound nicht laden!");
             e.printStackTrace();
             throw new RuntimeException();

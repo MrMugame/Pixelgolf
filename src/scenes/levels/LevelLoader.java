@@ -55,6 +55,8 @@ public class LevelLoader {
         map.twoStar = Integer.parseInt(root.getAttribute("twoStar"));
         map.threeStar = Integer.parseInt(root.getAttribute("threeStar"));
 
+        Element music = (Element) root.getElementsByTagName("Music").item(0);
+        map.music.add(music.getAttribute("track"));
 
         // Check for multiple Tracks
         Element track = (Element) root.getElementsByTagName("Track").item(0);

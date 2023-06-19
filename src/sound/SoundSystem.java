@@ -20,7 +20,7 @@ public class SoundSystem {
     }
 
     public void update() {
-        if (!playlist.getCurrent().getClip().isRunning()) {
+        if (playlist != null && !playlist.getCurrent().getClip().isRunning()) {
             playlist.getCurrent().getClip().close();
             play(playlist.getNext(), volumeMusic);
         }
@@ -81,6 +81,13 @@ public class SoundSystem {
         if (playlist != null) {
             FloatControl gain = (FloatControl) playlist.getCurrent().getClip().getControl(FloatControl.Type.MASTER_GAIN);
             gain.setValue(Math.max(gain.getMinimum(), Math.min(gain.getMaximum(), percentVolumeToDB(volume))));
+        }
+    }
+
+    public void close() {
+        if (playlist != null) {
+            playlist.getCurrent().getClip().stop();
+            playlist.getCurrent().getClip().close();
         }
     }
 }

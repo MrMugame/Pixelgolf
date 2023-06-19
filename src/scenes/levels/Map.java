@@ -10,6 +10,8 @@ public class Map {
 
     public int oneStar, twoStar, threeStar;
 
+    public ArrayList<String> music = new ArrayList<>();
+
     public ArrayList<Polygon> tracks = new ArrayList<>();
     public String trackTexture;
     public String outsideTexture;

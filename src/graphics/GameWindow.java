@@ -165,6 +165,7 @@ public class GameWindow {
     }
 
     public void exit() {
+        SoundSystem.get().close();
         System.exit(0);
     }
 
