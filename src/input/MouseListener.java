@@ -13,7 +13,6 @@ import java.awt.event.MouseWheelListener;
 public class MouseListener implements java.awt.event.MouseListener, MouseWheelListener {
     private static MouseListener instance;
 
-    private boolean inWindow = false;
     private boolean[] buttons = new boolean[20];
 
     private MouseListener() {}
@@ -59,10 +58,6 @@ public class MouseListener implements java.awt.event.MouseListener, MouseWheelLi
         buttons = new boolean[20];
     }
 
-    public boolean isInWindow() {
-        return inWindow;
-    }
-
     public boolean isPressed(int code) {
         return buttons[code];
     }
@@ -78,19 +73,13 @@ public class MouseListener implements java.awt.event.MouseListener, MouseWheelLi
     }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        // TODO
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        inWindow = true;
-    }
+    public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        inWindow = false;
-    }
+    public void mouseWheelMoved(MouseWheelEvent e) {}
 
     @Override
     public void mouseClicked(MouseEvent e) {}
