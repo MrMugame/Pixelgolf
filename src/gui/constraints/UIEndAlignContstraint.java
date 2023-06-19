@@ -4,8 +4,10 @@ import gui.UIComponent;
 import gui.UIConstraint;
 
 public class UIEndAlignContstraint extends UIConstraint {
-    // TODO: In Hindsight something like an add(constraints...) constraint would have probably made more sense but its to late now i think
-    // So you could do stuff like this: new AddConstraint(new UIRelativeConstraint(1), new UIUnitConstraint(-2));
+    // Rückblickend hätte man sowas Ähnliches, wie z.B. ein add(constraints...) Constraint machen können.
+    // Dann könnte man anstatt so: new UIEndAlignConstraint(new UIUnitConstraint(2))
+    // so machen: new UIAddConstraint(new UIRelativeConstraint(1), new UIUnitConstraint(-2))
+    // dann wäre auch der UIUnitConstraint schöner, welcher gerade ja ein bisschen ein Chaos ist
 
     private UIConstraint constraint;
 
