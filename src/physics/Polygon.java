@@ -24,11 +24,11 @@ public class Polygon {
         return collisions;
     }
 
-    // TODO: Make behaviour at convex corners a little better
     public Vector2D getLineNormal(int index) {
         Vector2D a = points.get(index).rotate(-rotation);
         Vector2D b = points.get(index+1 >= points.size() ? 0 : index+1).rotate(-rotation);
 
+        // Komisches Verhalten an convexen Ecken, wenn der Ball quasi mit beiden Linien gleichzeitig kollidiert und somit in die gleiche Richtung zurückgespiegelt wird. Könnte man fixen, ist jedoch nervig und kostet Zeit (Deswegen: Niemals selber Physik implementieren)
         return b.sub(a).normal();
     }
 
