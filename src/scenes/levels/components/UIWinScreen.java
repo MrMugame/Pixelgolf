@@ -91,7 +91,7 @@ public class UIWinScreen extends UIComponent {
         });
         containerTwo.add(buttonMenu);
 
-        // TODO: Also calls retry than pressing exit in escape menu because the two buttons lie on top of each other (Works out because of traversal order isnt great tho)
+        // Retry-Button wird auch gedrückt, wenn man Exit-Button drückt, weil die zwei Knöpfe übereinanderliegen. Das ist jedoch kein Problem, da der UIComponent-Baum so durchlaufen wird, dass der Exit-Button zuerst gedrückt wird. Sollte also gefixt werden, aber da es hier nirgends ein Problem ist, kann ich das auch lassen.
         UIWinButton buttonRetry = new UIWinButton("ui/win_retry_button.png", false);
         buttonRetry.getConstraints().addX(new UICenterConstraint());
         buttonRetry.getConstraints().addY(new UICenterConstraint());
