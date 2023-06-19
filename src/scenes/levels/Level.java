@@ -21,7 +21,7 @@ import sound.SoundSystem;
 import state.GameState;
 import state.LevelState;
 
-public class Level extends Scene { // TODO: Level 2 fix little gap between wood wall and track wall
+public class Level extends Scene {
     private UIContainer container;
     private final LevelLoader loader;
     private final LevelLogic logic;
