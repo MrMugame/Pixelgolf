@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Map width="32" height="18" oneStar="15" twoStar="10" threeStar="5">
+<Map width="32" height="18" oneStar="45" twoStar="10" threeStar="5">
     <Track insideTex="game/grass_1.png" outsideTex="game/snow_1.png">
         <p>0.9;-17.7</p>
         <p>3.3;-17.7</p>
