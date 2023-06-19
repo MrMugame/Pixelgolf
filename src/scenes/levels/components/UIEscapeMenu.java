@@ -1,5 +1,8 @@
 package scenes.levels.components;
 
+import event.Event;
+import event.EventSystem;
+import event.EventType;
 import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
@@ -48,11 +51,13 @@ public class UIEscapeMenu extends UIComponent {
 
         if (state == State.PENDING_ACTIVE) {
             add(pages);
-            GameWindow.get().getScene().pause();
+            EventSystem.notify(new Event<>(EventType.GAME, "pause"));
+
             state = State.ACTIVE;
         } else if (state == State.PENDING_OFF) {
             remove(pages);
-            GameWindow.get().getScene().pursue();
+            EventSystem.notify(new Event<>(EventType.GAME, "pursue"));
+
             state = State.OFF;
         }
     }

@@ -1,5 +1,8 @@
 package scenes;
 
+import event.Event;
+import event.EventType;
+import event.Observer;
 import game.Component;
 import graphics.Camera;
 import game.GameObject;
@@ -10,7 +13,7 @@ import physics.Physics;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Scene {
+public abstract class Scene implements Observer {
     private Renderer renderer = new Renderer();
     private UIRenderer uiRenderer = new UIRenderer();
     private Physics physics = new Physics();
@@ -88,19 +91,19 @@ public abstract class Scene {
 
     public abstract void init();
 
+    @Override
+    public void onNotify(Event<?> e) {
+        if (e.getType() == EventType.GAME) {
+            if (e.getData().equals("pause")) paused = true;
+            else if (e.getData().equals("pursue")) paused = false;
+        }
+    }
+
     public Camera getCamera() {
         return camera;
     }
 
     public UIRenderer getUiRenderer() {
         return uiRenderer;
-    }
-
-    public void pause() {
-        this.paused = true;
-    }
-
-    public void pursue() {
-        this.paused = false;
     }
 }

@@ -1,5 +1,9 @@
 package scenes.levels;
 
+import event.Event;
+import event.EventSystem;
+import event.EventType;
+import event.Observer;
 import game.GameObject;
 import game.physics.Custom;
 import game.physics.Material;
@@ -21,7 +25,7 @@ import sound.SoundSystem;
 import state.GameState;
 import state.LevelState;
 
-public class Level extends Scene {
+public class Level extends Scene implements Observer {
     private UIContainer container;
     private final LevelLoader loader;
     private final LevelLogic logic;
@@ -32,6 +36,8 @@ public class Level extends Scene {
         super(new LevelCamera());
         loader = new LevelLoader(number);
         logic = new LevelLogic();
+
+        EventSystem.addObserver(this);
 
         tutorial = number == 1 && !GameState.get().getProperty("tutorialPlayed") ? new UITutorial() : null; ;
     }
@@ -89,9 +95,9 @@ public class Level extends Scene {
         if (finished) return; // Bei der Kollision kann es leicht passieren, dass der Ball mehrere Wände des Lochs berührt und dann würde diese Funktion mehrmals aufgerufen werden
         finished = true;
 
-        if (tutorial != null) tutorial.finished();
+        EventSystem.notify(new Event<>(EventType.TUTORIAL, "finished"));
 
-        pause();
+        EventSystem.notify(new Event<>(EventType.GAME, "pause"));
 
         if (GameState.get().getLevel(loader.getNumber()).getStars() < logic.getStars()) {
             GameState.get().setLevel(loader.getNumber(), new LevelState(logic.getStars()));
@@ -100,6 +106,24 @@ public class Level extends Scene {
         UIComponent winScreen = new UIWinScreen(logic.getStars(), loader.getNumber());
         winScreen.setConstraints(ConstraintFactory.fullscreen());
         container.add(winScreen);
+    }
+
+    @Override
+    public void onNotify(Event<?> e) {
+        if (e.getType() == EventType.GAME_LOGIC) {
+            switch ((String) e.getData()) {
+                case "stroke":
+                    logic.addStroke();
+                    break;
+                case "reset":
+                    logic.reset();
+                    break;
+                case "win":
+                    won();
+                    break;
+            }
+        }
+        super.onNotify(e);
     }
 
     public float getMapWidth() {
@@ -117,4 +141,5 @@ public class Level extends Scene {
     public UITutorial getTutorial() {
         return tutorial;
     }
+
 }

@@ -1,6 +1,9 @@
 package game.physics;
 
 import assets.Assets;
+import event.Event;
+import event.EventSystem;
+import event.EventType;
 import game.GameObject;
 import graphics.GameWindow;
 import physics.Collider;
@@ -56,12 +59,12 @@ public class BallPhysics extends ActivePhysicsComponent {
                         case FLAGPOLE:
                             SoundSystem.get().play(Assets.loadSound("sound/win_sound.wav"));
 
-                            ((Level) GameWindow.get().getScene()).won();
+                            EventSystem.notify(new Event<>(EventType.GAME_LOGIC, "win"));
                             break;
                         case SINKHOLE:
                             velocity = new Vector2D();
                             parent.getTransform().position = parent.get(Resetpoint.class).getReset();
-                            ((Level) GameWindow.get().getScene()).getLogic().reset();
+                            EventSystem.notify(new Event<>(EventType.GAME_LOGIC, "reset"));
 
                             SoundSystem.get().play(Assets.loadSound("sound/die_sound.wav"));
                             break;
@@ -74,6 +77,7 @@ public class BallPhysics extends ActivePhysicsComponent {
                             break;
                         case PORTAL:
                             if (justTPd == null) {
+                                // Unschön
                                 ArrayList<GameObject> objects = GameWindow.get().getScene().getGameObjects(Portal.class);
                                 for (GameObject object : objects) {
                                     if (object.get(Portal.class).getId() == c.gameObject.get(Portal.class).getId() && object != c.gameObject) {

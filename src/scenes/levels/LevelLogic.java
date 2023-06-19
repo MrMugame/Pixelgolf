@@ -1,5 +1,8 @@
 package scenes.levels;
 
+import event.Event;
+import event.EventSystem;
+import event.EventType;
 import graphics.GameWindow;
 
 public class LevelLogic {
@@ -29,8 +32,8 @@ public class LevelLogic {
     }
 
     public void addStroke() {
+        if (strokes == 0) EventSystem.notify(new Event<>(EventType.TUTORIAL, "firststroke"));
         strokes += 1;
-        if (strokes == 1 && ((Level) GameWindow.get().getScene()).getTutorial() != null) ((Level) GameWindow.get().getScene()).getTutorial().firstStrokeHappend();
     }
 
     public void reset() {
