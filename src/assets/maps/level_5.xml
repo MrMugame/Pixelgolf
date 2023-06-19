@@ -144,28 +144,28 @@
     </Dynamic>
 
     <Dynamic name="pole_1" x="14" y="-2.5" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
     <Dynamic name="pole_2" x="14" y="-11" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
     <Dynamic name="pole_3" x="14" y="-19.4" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
     <Dynamic name="pole_4" x="25.3" y="-3.5" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
     <Dynamic name="pole_5" x="25.3" y="-7.7" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
     <Dynamic name="pole_6" x="25.3" y="-11.95" w="0.4" h="0.4" r="0" z="1">
-        <StaticGraphic path="game/pole_1.png" ox="0.25" oy="-0.25"/>
-        <Collision material="WALL" box="1 1" path="P -0.4 0.4 P 0.4 0.4 P 0.4 -0.4 P -0.4 -0.4"/>
+        <StaticGraphic path="game/pole_1.png" ox="0.2" oy="-0.2"/>
+        <Collision material="WALL" box="1 1" path="P -0.2 0.2 P 0.2 0.2 P 0.2 -0.2 P -0.2 -0.2"/>
     </Dynamic>
 
     <Dynamic name="puddle_1" x="8.1" y="-2.02" w="2" h="1.4" r="0" z="1">
