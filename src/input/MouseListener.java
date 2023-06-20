@@ -1,8 +1,8 @@
 package input;
 
 import game.Transform;
-import physics.Vector2D;
 import graphics.GameWindow;
+import physics.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;

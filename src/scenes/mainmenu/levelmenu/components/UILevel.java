@@ -1,7 +1,6 @@
 package scenes.mainmenu.levelmenu.components;
 
 import assets.Assets;
-import graphics.GameWindow;
 import gui.ConstraintFactory;
 import gui.UIComponent;
 import gui.components.UIClickable;
@@ -9,7 +8,6 @@ import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.components.UIText;
 import gui.constraints.*;
-import scenes.levels.Level;
 
 import java.awt.*;
 

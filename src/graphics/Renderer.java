@@ -1,10 +1,11 @@
 package graphics;
 
-import java.awt.*;
-import java.util.*;
-
 import game.GameObject;
 import game.graphics.GraphicComponent;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Renderer {
     private final HashMap<Integer, LayerRenderer> layers = new HashMap<>();

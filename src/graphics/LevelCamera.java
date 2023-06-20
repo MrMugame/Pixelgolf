@@ -9,7 +9,7 @@ import input.KeyboardListener;
 import physics.Vector2D;
 import scenes.levels.Level;
 
-import static java.awt.event.KeyEvent.*;
+import static java.awt.event.KeyEvent.VK_C;
 
 public class LevelCamera extends Camera {
     private float time = 0;

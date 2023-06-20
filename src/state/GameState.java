@@ -1,12 +1,7 @@
 package state;
 
-import graphics.GameWindow;
-
 import java.io.*;
-import java.net.URISyntaxException;
 import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameState implements Serializable {

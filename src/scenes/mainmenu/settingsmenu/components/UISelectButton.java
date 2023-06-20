@@ -4,12 +4,10 @@ import assets.Assets;
 import gui.ConstraintFactory;
 import gui.SelectListener;
 import gui.UIComponent;
-import gui.components.UIBlock;
 import gui.components.UIClickable;
 import gui.components.UIImage;
 import gui.components.UIText;
 import gui.constraints.UIImageAspectConstraint;
-import gui.constraints.UIUnitConstraint;
 
 import java.awt.*;
 import java.util.ArrayList;

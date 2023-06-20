@@ -5,7 +5,6 @@ import gui.UIComponent;
 import gui.components.UIClickable;
 import gui.components.UIImage;
 import gui.constraints.UIImageAspectConstraint;
-import gui.constraints.UIPassthroughConstraint;
 
 public class UIWinButton extends UIClickable {
 

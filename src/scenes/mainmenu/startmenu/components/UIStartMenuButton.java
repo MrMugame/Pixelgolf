@@ -2,7 +2,6 @@ package scenes.mainmenu.startmenu.components;
 
 import gui.UIComponent;
 import gui.components.UIClickable;
-import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.constraints.*;
 

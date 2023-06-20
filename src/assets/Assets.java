@@ -1,18 +1,13 @@
 package assets;
 
-import scenes.levels.LevelLoader;
 import sound.Sound;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Objects;
 

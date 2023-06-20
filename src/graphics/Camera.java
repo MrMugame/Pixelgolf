@@ -1,9 +1,6 @@
 package graphics;
 
-import input.KeyboardListener;
 import physics.Vector2D;
-
-import static java.awt.event.KeyEvent.*;
 
 public class Camera {
     protected Vector2D position;

@@ -1,7 +1,5 @@
 package game.graphics;
 
-import game.Component;
-
 import java.awt.image.BufferedImage;
 
 public class DynamicGraphic extends GraphicComponent {

@@ -1,10 +1,11 @@
 package sound;
 
-import javax.sound.sampled.*;
-import java.io.ByteArrayInputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 public class Sound {
     private InputStream stream;

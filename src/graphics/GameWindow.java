@@ -1,14 +1,14 @@
 package graphics;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-
 import assets.Assets;
 import input.MouseListener;
 import scenes.Scene;
 import scenes.mainmenu.MainMenu;
 import sound.SoundSystem;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 

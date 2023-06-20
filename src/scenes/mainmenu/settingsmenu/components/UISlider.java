@@ -4,11 +4,13 @@ import assets.Assets;
 import gui.ConstraintFactory;
 import gui.SliderListener;
 import gui.UIComponent;
-import gui.UIConstraints;
 import gui.components.UIClickable;
 import gui.components.UIImage;
 import gui.components.UIText;
-import gui.constraints.*;
+import gui.constraints.UICenterConstraint;
+import gui.constraints.UIImageAspectConstraint;
+import gui.constraints.UIPassthroughConstraint;
+import gui.constraints.UIRelativeConstraint;
 import input.MouseListener;
 import physics.Vector2D;
 

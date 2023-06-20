@@ -3,7 +3,6 @@ package scenes.levels;
 import event.Event;
 import event.EventSystem;
 import event.EventType;
-import graphics.GameWindow;
 
 public class LevelLogic {
     private int strokes = 0;

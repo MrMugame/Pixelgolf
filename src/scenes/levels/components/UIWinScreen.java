@@ -7,9 +7,7 @@ import gui.components.UIContainer;
 import gui.components.UIImage;
 import gui.constraints.*;
 import scenes.levels.Level;
-import scenes.levels.LevelLoader;
 import scenes.mainmenu.MainMenu;
-import state.GameState;
 
 public class UIWinScreen extends UIComponent {
 

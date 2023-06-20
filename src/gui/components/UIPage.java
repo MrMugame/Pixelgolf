@@ -2,9 +2,6 @@ package gui.components;
 
 import gui.ConstraintFactory;
 import gui.UIComponent;
-import gui.UIConstraints;
-import gui.constraints.UIPixelConstraint;
-import gui.constraints.UIRelativeConstraint;
 
 import java.util.ArrayList;
 import java.util.Arrays;

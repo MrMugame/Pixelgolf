@@ -1,10 +1,7 @@
 package game.physics;
 
 import game.Component;
-import game.GameObject;
 import physics.Collider;
-import physics.Collision;
-import physics.Polygon;
 import physics.Vector2D;
 
 import java.util.ArrayList;

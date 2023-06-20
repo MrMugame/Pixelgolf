@@ -8,13 +8,10 @@ import game.GameObject;
 import graphics.GameWindow;
 import physics.Collider;
 import physics.Collision;
-import physics.Polygon;
 import physics.Vector2D;
-import scenes.levels.Level;
 import sound.SoundSystem;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();

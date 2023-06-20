@@ -1,7 +1,6 @@
 package game.graphics;
 
 import assets.Assets;
-import game.Component;
 
 import java.awt.image.BufferedImage;
 

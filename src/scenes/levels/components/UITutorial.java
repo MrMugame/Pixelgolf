@@ -5,12 +5,10 @@ import event.Event;
 import event.EventSystem;
 import event.EventType;
 import event.Observer;
-import graphics.GameWindow;
 import gui.UIComponent;
 import gui.components.UIImage;
 import gui.components.UIText;
 import gui.constraints.*;
-import scenes.levels.Level;
 import state.GameState;
 
 import java.awt.*;

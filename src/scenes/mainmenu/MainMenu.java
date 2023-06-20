@@ -1,6 +1,5 @@
 package scenes.mainmenu;
 
-import assets.Assets;
 import graphics.Camera;
 import gui.UIComponent;
 import gui.components.UIPage;
@@ -8,8 +7,8 @@ import gui.constraints.UIPixelConstraint;
 import gui.constraints.UIRelativeConstraint;
 import scenes.Scene;
 import scenes.mainmenu.levelmenu.UILevelMenu;
-import scenes.mainmenu.startmenu.UIMainScreen;
 import scenes.mainmenu.settingsmenu.UISettingsMenu;
+import scenes.mainmenu.startmenu.UIMainScreen;
 import sound.Playlist;
 import sound.SoundSystem;
 

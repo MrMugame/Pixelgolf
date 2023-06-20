@@ -11,7 +11,6 @@ import gui.constraints.UIEndAlignContstraint;
 import gui.constraints.UIImageAspectConstraint;
 import gui.constraints.UIUnitConstraint;
 import scenes.levels.Level;
-import state.GameState;
 
 import java.awt.*;
 
