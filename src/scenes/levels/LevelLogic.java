@@ -20,11 +20,11 @@ public class LevelLogic {
     }
 
     public int getStars() {
-        if (strokes < threeStar) {
+        if (strokes <= threeStar) {
             return 3;
-        } else if (strokes < twoStar) {
+        } else if (strokes <= twoStar) {
             return 2;
-        } else if (strokes < oneStar) {
+        } else if (strokes <= oneStar) {
             return 1;
         } else {
             return 0;
