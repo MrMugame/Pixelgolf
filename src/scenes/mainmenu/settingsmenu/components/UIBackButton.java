@@ -14,7 +14,7 @@ public class UIBackButton extends UIClickable {
 
     @Override
     protected void init() {
-        // Hitbox von den Knöpfen ist, dadurch dass es nur quadratische Hitboxen gibt, etwas größer als die Texture, aber damit fange ich jetzt nicht an
+        // Hitbox von den Knöpfen ist, dadurch dass es nur quadratische Hitboxen gibt, etwas größer als die Texture, aber ich fange jetzt nicht an nicht quadratische Hitboxen zu implementieren
         hovered = new UIImage("ui/back_button_hover.png");
         hovered.setConstraints(ConstraintFactory.fullscreen());
         hovered.getConstraints().addHeight(new UIImageAspectConstraint());

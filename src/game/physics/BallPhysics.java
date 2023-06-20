@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class BallPhysics extends ActivePhysicsComponent {
     public ArrayList<Collision> collisions = new ArrayList<>();
-    private GameObject justTPd; // Hässlich
+    private GameObject justTPd;
 
     public BallPhysics(float mass) {
         super(mass);

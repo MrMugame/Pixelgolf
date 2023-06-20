@@ -21,7 +21,7 @@ public class SoundSystem {
 
     public void update() {
         if (playlist != null && !playlist.getCurrent().getClip().isRunning()) {
-            // Clips schließen, weil die sonst Memory leaken (Frag mich nicht, Java halt). Vermutlich bei Sounds auch nötig, aber wegen der geringen größe nicht lohnenswert
+            // Clips schließen, weil die sonst Memory leaken (Frag mich nicht, Java halt). Vermutlich bei SFX-Sounds auch nötig, aber wegen der geringen größe nicht interessant
             playlist.getCurrent().getClip().close();
             play(playlist.getNext(), volumeMusic);
         }

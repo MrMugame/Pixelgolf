@@ -33,14 +33,10 @@ public class MouseListener implements java.awt.event.MouseListener, MouseWheelLi
         mouse.x -= insets.left;
         mouse.y -= insets.top;
 
-        // Clamp to window size
         mouse.x = Math.max(0, Math.min(w.WIDTH, mouse.x));
         mouse.y = Math.max(0, Math.min(w.HEIGHT, mouse.y));
 
-        // Translate to the center
-        Vector2D pos = new Vector2D(mouse.x, mouse.y);
-
-        return Transform.fromScreenPosition(pos);
+        return Transform.fromScreenPosition(new Vector2D(mouse.x, mouse.y));
     }
 
     public Vector2D getMousePositionScreen() {

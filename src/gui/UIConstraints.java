@@ -2,8 +2,8 @@ package gui;
 
 public class UIConstraints {
 
-    // Initialize to -100, so it initially renders offscreen to prevent graphics bug
-    public int width, height, x, y = -100;
+    // Auf -100 initialisieren, damit es am Anfang nicht auf dem Bildschirm rendert um somit Grafikbugs zu vermeiden
+    public int width, height, x = -100, y = -100;
 
     public UIConstraint widthCt, heightCt, xCt, yCt;
 

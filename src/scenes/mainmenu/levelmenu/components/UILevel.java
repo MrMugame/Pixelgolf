@@ -66,7 +66,6 @@ public class UILevel extends UIClickable {
         selecter.getConstraints().addY(new UIUnitConstraint(-1.5f));
         selecter.getConstraints().addWidth(new UIRelativeConstraint(1.1f));
         selecter.getConstraints().addHeight(new UIImageAspectConstraint());
-
     }
 
     @Override
