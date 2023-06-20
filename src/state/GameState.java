@@ -15,7 +15,7 @@ public class GameState implements Serializable {
 
     private final HashMap<Integer, LevelState> levels = new HashMap<>();
 
-    private final HashMap<String, Boolean> property = new HashMap<>();
+    private final HashMap<String, Boolean> properties = new HashMap<>();
 
     private GameState() {}
 
@@ -37,14 +37,14 @@ public class GameState implements Serializable {
     }
 
     public boolean getProperty(String name) {
-        if (property.containsKey(name)) {
-            return property.get(name);
+        if (properties.containsKey(name)) {
+            return properties.get(name);
         }
         return false;
     }
 
     public void setProperty(String name, boolean value) {
-        property.put(name, value);
+        properties.put(name, value);
         save();
     }
 
